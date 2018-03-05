@@ -1,3 +1,4 @@
+import com.jfoenix.controls.JFXButton;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -22,7 +23,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         //Establish primary stage
-        primaryStage.setTitle("Source Controller");
+        primaryStage.setTitle("Bibliography Mangement Tool");
 
         //Setup basic BorderPane
         BorderPane layout = new BorderPane();
@@ -42,9 +43,9 @@ public class Main extends Application {
         buttonBar.setSpacing(10);
 
         //Setup buttons in buttonbar
-        Button newSource = new Button("New");
-        Button editSource = new Button("Edit");
-        Button deleteSource = new Button("Delete");
+        JFXButton newSource = new JFXButton("New");
+        JFXButton editSource = new JFXButton("Edit");
+        JFXButton deleteSource = new JFXButton("Delete");
         buttonBar.getChildren().addAll(newSource, editSource, deleteSource);
 
         //Setup text display
@@ -63,6 +64,7 @@ public class Main extends Application {
 
         //Setup TableView Object
         TableView<Source> sourceTable = new TableView<>();
+
         sourceTable.setMinHeight(500);
         sourceTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         sourceTable.setMinSize(400, 10);
