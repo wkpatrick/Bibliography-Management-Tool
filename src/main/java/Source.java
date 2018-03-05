@@ -3,8 +3,7 @@ public class Source {
     String title;
     String author;
 
-    public Source(String sourceTitle, String authorName)
-    {
+    public Source(String sourceTitle, String authorName) {
         title = sourceTitle;
         author = authorName;
     }

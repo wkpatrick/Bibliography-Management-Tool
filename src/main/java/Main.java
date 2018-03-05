@@ -15,12 +15,12 @@ import javafx.util.Callback;
 
 public class Main extends Application {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         //Establish primary stage
         primaryStage.setTitle("Source Controller");
 
@@ -30,7 +30,7 @@ public class Main extends Application {
         //Setup right HBox
         HBox rightDisplay = new HBox();
         rightDisplay.setAlignment(Pos.TOP_LEFT);
-        rightDisplay.setPadding(new Insets(5,5,5,7));
+        rightDisplay.setPadding(new Insets(5, 5, 5, 7));
 
         //Setup left VBox
         VBox bottomDisplay = new VBox();
@@ -38,7 +38,7 @@ public class Main extends Application {
 
         //Setup bottom row HBox
         HBox buttonBar = new HBox();
-        buttonBar.setPadding(new Insets(8,5,5,3));
+        buttonBar.setPadding(new Insets(8, 5, 5, 3));
         buttonBar.setSpacing(10);
 
         //Setup buttons in buttonbar
@@ -52,12 +52,12 @@ public class Main extends Application {
 
         //Setup TableView Columns
         //Title Column
-        TableColumn<Source,String> titleColumn = new TableColumn<>("Title");
+        TableColumn<Source, String> titleColumn = new TableColumn<>("Title");
         titleColumn.setMinWidth(200);
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
 
         //Author Column
-        TableColumn<Source,String> authorColumn = new TableColumn<>("Author");
+        TableColumn<Source, String> authorColumn = new TableColumn<>("Author");
         authorColumn.setMinWidth(200);
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
 
@@ -65,13 +65,12 @@ public class Main extends Application {
         TableView<Source> sourceTable = new TableView<>();
         sourceTable.setMinHeight(500);
         sourceTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        sourceTable.setMinSize(400,10);
+        sourceTable.setMinSize(400, 10);
         sourceTable.getColumns().addAll(titleColumn, authorColumn);
         sourceTable.getSelectionModel().selectedItemProperty().addListener((obs, oldProperty, newProperty) -> {
-            if (newProperty != null){
+            if (newProperty != null) {
                 sourceDisplay.setText(newProperty.title + '\n' + newProperty.author);
-            }
-            else{
+            } else {
                 sourceDisplay.setText("");
             }
         });
@@ -80,7 +79,7 @@ public class Main extends Application {
         MenuBar menuBar = new MenuBar();
         Menu fileMenu = new Menu("File");
         Menu settingsMenu = new Menu("Settings");
-        menuBar.getMenus().addAll(fileMenu,settingsMenu);
+        menuBar.getMenus().addAll(fileMenu, settingsMenu);
 
         //Setup File submenu
         MenuItem newButton = new MenuItem("_New List...");
@@ -93,7 +92,7 @@ public class Main extends Application {
         newSource.setOnAction(e -> sourceTable.getItems().add(ChildWindow.NewSource()));
         deleteSource.setOnAction(e -> sourceTable.getItems().remove(sourceTable.getSelectionModel().getSelectedItem()));
         editSource.setOnAction(e -> {
-            if(sourceTable.getSelectionModel().getSelectedItem() != null){
+            if (sourceTable.getSelectionModel().getSelectedItem() != null) {
                 Source editedSource = ChildWindow.EditSource(sourceTable.getSelectionModel().getSelectedItem());
                 int i = sourceTable.getSelectionModel().getSelectedIndex();
                 sourceTable.getItems().remove(sourceTable.getSelectionModel().getSelectedItem());
@@ -115,13 +114,12 @@ public class Main extends Application {
         layout.setCenter(rightDisplay);
 
         //Define final scene measurements
-        Scene scene = new Scene(layout,900,600);
+        Scene scene = new Scene(layout, 900, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    private void CloseProgram(Stage primaryStage)
-    {
+    private void CloseProgram(Stage primaryStage) {
         //Potential future code to save open lists, etc.
         primaryStage.close();
     }

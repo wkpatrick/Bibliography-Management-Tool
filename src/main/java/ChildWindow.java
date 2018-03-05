@@ -20,7 +20,7 @@ public class ChildWindow {
 
     static Source returnSource;
 
-    public static void Alert(String title, String message){//opens alert windows, used for errors, messages, etc.
+    public static void Alert(String title, String message) {//opens alert windows, used for errors, messages, etc.
         Stage window = new Stage();
 
         window.initModality(Modality.APPLICATION_MODAL);
@@ -41,8 +41,7 @@ public class ChildWindow {
         window.showAndWait();
     }
 
-    public static Source NewSource()
-    {//opens a window to add a new source
+    public static Source NewSource() {//opens a window to add a new source
         Stage window = new Stage();
 
         window.initModality(Modality.APPLICATION_MODAL);
@@ -67,12 +66,12 @@ public class ChildWindow {
         });
 
         HBox bottomBar = new HBox();
-        bottomBar.setPadding(new Insets(5,5,5,5));
+        bottomBar.setPadding(new Insets(5, 5, 5, 5));
         bottomBar.setSpacing(10);
         bottomBar.getChildren().addAll(saveButton, closeButton);
 
         VBox layout = new VBox(10);
-        layout.setPadding(new Insets(5,5,5,5));
+        layout.setPadding(new Insets(5, 5, 5, 5));
         layout.getChildren().addAll(intro, titleField, authorField, bottomBar);
         layout.setAlignment(Pos.TOP_LEFT);
 
@@ -83,8 +82,7 @@ public class ChildWindow {
         return returnSource;
     }
 
-    public static Source EditSource(Source originalSource)
-    {//Opens a window to edit existing sources
+    public static Source EditSource(Source originalSource) {//Opens a window to edit existing sources
         Stage window = new Stage();
 
         window.initModality(Modality.APPLICATION_MODAL);
@@ -108,12 +106,12 @@ public class ChildWindow {
         });
 
         HBox bottomBar = new HBox();
-        bottomBar.setPadding(new Insets(5,5,5,5));
+        bottomBar.setPadding(new Insets(5, 5, 5, 5));
         bottomBar.setSpacing(10);
         bottomBar.getChildren().addAll(saveButton, closeButton);
 
         VBox layout = new VBox(10);
-        layout.setPadding(new Insets(5,5,5,5));
+        layout.setPadding(new Insets(5, 5, 5, 5));
         layout.getChildren().addAll(intro, titleField, authorField, bottomBar);
         layout.setAlignment(Pos.TOP_LEFT);
 
