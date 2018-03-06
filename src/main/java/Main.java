@@ -14,6 +14,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
+            primaryStage.setTitle("Bibliography Management Tool");
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
         }

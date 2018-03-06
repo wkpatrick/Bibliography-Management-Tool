@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Bibliography-Management-Tool.iml" filepath="$PROJECT_DIR$/.idea/modules/Bibliography-Management-Tool.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Bibliography-Management-Tool.iml" filepath="$PROJECT_DIR$/Bibliography-Management-Tool.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Bibliography-Management-Tool_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Bibliography-Management-Tool_main.iml" group="Bibliography-Management-Tool" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Bibliography-Management-Tool_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Bibliography-Management-Tool_test.iml" group="Bibliography-Management-Tool" />
     </modules>
