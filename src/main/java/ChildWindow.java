@@ -70,7 +70,7 @@ public class ChildWindow {
         authorLine.setPadding(new Insets(0, 5, 0, 5));
         authorLine.setSpacing(10);
         TextField authorField = new TextField();
-        authorField.setPromptText("");
+        authorField.setPromptText("Multiple authors separated by commas");
         Label authorLabel = new Label("Author:");
         authorLabel.setMinSize(100,0);
         authorLine.getChildren().addAll(authorLabel, authorField);
@@ -335,7 +335,7 @@ public class ChildWindow {
         authorLine.setPadding(new Insets(0, 5, 0, 5));
         authorLine.setSpacing(10);
         TextField authorField = new TextField(originalSource.author.toString());
-        authorField.setPromptText("");
+        authorField.setPromptText("Multiple authors separated by commas");
         Label authorLabel = new Label("Author:");
         authorLabel.setMinSize(100,0);
         authorLine.getChildren().addAll(authorLabel, authorField);

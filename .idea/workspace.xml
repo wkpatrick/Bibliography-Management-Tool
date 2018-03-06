@@ -4,7 +4,6 @@
     <list default="true" id="5f5f4413-a36d-4a80-8257-16eb6d46c87d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ChildWindow.java" afterPath="$PROJECT_DIR$/src/main/java/ChildWindow.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" afterPath="$PROJECT_DIR$/src/main/java/Main.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -73,8 +72,8 @@
       <file leaf-file-name="ChildWindow.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ChildWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="273" column="13" lean-forward="true" selection-start-line="273" selection-start-column="13" selection-end-line="273" selection-end-column="13" />
+            <state relative-caret-position="190">
+              <caret line="329" column="25" lean-forward="true" selection-start-line="329" selection-start-column="25" selection-end-line="329" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#Alert#0;class#ChildWindow#0" expanded="false" />
@@ -801,7 +800,14 @@
       <option name="project" value="LOCAL" />
       <updated>1520298425514</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="New and edit source windows finished with additional attributes.">
+      <created>1520299503431</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1520299503431</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -853,7 +859,8 @@
     <MESSAGE value="Added Source class" />
     <MESSAGE value="ACTUALLY ADDED THE OTHER CLASSES THIS TIME HOPEFULLY" />
     <MESSAGE value="Filled out Source class attributes, 70% implemented those attributes in main program." />
-    <option name="LAST_COMMIT_MESSAGE" value="Filled out Source class attributes, 70% implemented those attributes in main program." />
+    <MESSAGE value="New and edit source windows finished with additional attributes." />
+    <option name="LAST_COMMIT_MESSAGE" value="New and edit source windows finished with additional attributes." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1544,8 +1551,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ChildWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="273" column="13" lean-forward="true" selection-start-line="273" selection-start-column="13" selection-end-line="273" selection-end-column="13" />
+        <state relative-caret-position="190">
+          <caret line="329" column="25" lean-forward="true" selection-start-line="329" selection-start-column="25" selection-end-line="329" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Alert#0;class#ChildWindow#0" expanded="false" />
