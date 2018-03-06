@@ -32,32 +32,68 @@ public class Source {
             String authorString = author.toString();
             authorString.replace("[","");
             authorString.replace("]","");
-            finalOutput += authorString + '.';
+            finalOutput += authorString + ". ";
         }
-        if(title != ""){finalOutput += title + '.';}
-        if(MagazineTitle != ""){finalOutput += MagazineTitle + '.';}
-        if(WebsiteTitle != ""){finalOutput += WebsiteTitle + '.';}
-        if(Database != ""){finalOutput += Database + '.';}
-        if(DatabaseService != ""){finalOutput += DatabaseService + '.';}
-        if(Version != 0){finalOutput += "ver." + Version + ',';}
-        if(Volume != 0){finalOutput += Volume + ',';}
-        if(Edition != 0){finalOutput += Edition + ',';}
-        if(Issue != 0){finalOutput += Issue + ',';}
-        if(Publisher != ""){finalOutput += Publisher + ',';}
-        if(YearPublished != 0){finalOutput += YearPublished + ',';}
-        if(DatePublished != ""){finalOutput += DatePublished + ',';}
-        if(Medium != ""){finalOutput += Medium + ',';}
-        if(URL != ""){finalOutput += URL + ',';}
+        if(title != ""){finalOutput += title + ". ";}
+        if(MagazineTitle != ""){finalOutput += MagazineTitle + ". ";}
+        if(WebsiteTitle != ""){finalOutput += WebsiteTitle + ". ";}
+        if(Database != ""){finalOutput += Database + ". ";}
+        if(DatabaseService != ""){finalOutput += DatabaseService + ". ";}
+        if(Version != 0){finalOutput += "ver." + Version + ", ";}
+        if(Volume != 0){finalOutput += Volume + ", ";}
+        if(Edition != 0){finalOutput += Edition + ", ";}
+        if(Issue != 0){finalOutput += Issue + ", ";}
+        if(Publisher != ""){finalOutput += Publisher + ", ";}
+        if(YearPublished != 0){finalOutput += YearPublished + ", ";}
+        if(DatePublished != ""){finalOutput += DatePublished + ", ";}
+        if(Medium != ""){finalOutput += Medium + ", ";}
+        if(URL != ""){finalOutput += URL + ", ";}
         if(PagesCitedStart != 0 && PagesCitedEnd != 0){
             if(PagesCitedEnd > PagesCitedStart){
-                finalOutput += "pp" + PagesCitedStart + "-" + PagesCitedEnd + ',';
+                finalOutput += "pp " + PagesCitedStart + "-" + PagesCitedEnd + ", ";
             }
             else {
-                finalOutput += "pp" + PagesCitedStart + "-" + "end" + ',';
+                finalOutput += "pp " + PagesCitedStart + "-" + "end" + ", ";
             }
         }
-        if(Annotation != ""){finalOutput += Annotation + ',';}
-        finalOutput = finalOutput.substring(0, finalOutput.length()-1);
+        if(Annotation != ""){finalOutput += Annotation + ", ";}
+        finalOutput = finalOutput.substring(0, finalOutput.length()-2);
+        return finalOutput;
+    }
+
+    public String ToAPA()//APA wants some things in italics. Could be an issue.
+    {
+        String finalOutput = "";
+        if(author != null){
+            String authorString = author.toString();
+            authorString.replace("[","");
+            authorString.replace("]","");
+            finalOutput += authorString + ". ";
+        }
+        if(DatePublished != ""){finalOutput += "(" + DatePublished + ")" + ", ";}
+        else {finalOutput += "n.d." + ", ";}
+        if(title != ""){finalOutput += title + ". ";}
+        if(Publisher != ""){finalOutput += Publisher + ", ";}
+        if(MagazineTitle != ""){finalOutput += MagazineTitle + ". ";}
+        if(WebsiteTitle != ""){finalOutput += WebsiteTitle + ". ";}
+        if(Volume != 0){finalOutput += Volume + ", ";}
+        if(Edition != 0){finalOutput += Edition + ", ";}
+        if(Issue != 0){finalOutput += "(" + Issue + ")" + ", ";}
+        if(Database != ""){finalOutput += Database + ". ";}
+        if(DatabaseService != ""){finalOutput += DatabaseService + ". ";}
+        if(Version != 0){finalOutput += "ver." + Version + ", ";}
+        if(Medium != ""){finalOutput += Medium + ", ";}
+        if(URL != ""){finalOutput += URL + ", ";}
+        if(PagesCitedStart != 0 && PagesCitedEnd != 0){
+            if(PagesCitedEnd > PagesCitedStart){
+                finalOutput += "pp " + PagesCitedStart + "-" + PagesCitedEnd + ", ";
+            }
+            else {
+                finalOutput += "pp " + PagesCitedStart + "-" + "end" + ", ";
+            }
+        }
+        if(Annotation != ""){finalOutput += Annotation + ", ";}
+        finalOutput = finalOutput.substring(0, finalOutput.length()-2);
         return finalOutput;
     }
 
