@@ -229,20 +229,68 @@ public class ChildWindow {
             returnSource.author = authorList;
             returnSource.setMagazineTitle(magazineTitleField.getText());
             returnSource.setWebsiteTitle(websiteTitleField.getText());
-            returnSource.setVolume(Integer.parseInt(volumeField.getText()));
-            returnSource.setEdition(Integer.parseInt(editionField.getText()));
-            returnSource.setIssue(Integer.parseInt(issueField.getText()));
             returnSource.setPublisher(publisherField.getText());
-            returnSource.setYearPublished(Integer.parseInt(yearPublishedField.getText()));
             returnSource.setDatePublished(datePublishedField.getText());
             returnSource.setURL(URLField.getText());
-            returnSource.setVersion(Integer.parseInt(versionField.getText()));
             returnSource.setDatabase(databaseField.getText());
             returnSource.setDatabaseService(databaseServiceField.getText());
             returnSource.setMedium(mediumField.getText());
-            returnSource.setPagesCitedStart(Integer.parseInt(pagesCited1Field.getText()));
-            returnSource.setPagesCitedEnd(Integer.parseInt(pagesCited2Field.getText()));
             returnSource.setAnnotation(annotationField.getText());
+            try
+            {
+                returnSource.setVolume(Integer.parseInt(volumeField.getText()));
+            }
+            catch(Exception ex)
+            {
+
+            }
+            try
+            {
+                returnSource.setEdition(Integer.parseInt(editionField.getText()));
+            }
+            catch(Exception ex)
+            {
+
+            }
+            try
+            {
+                returnSource.setIssue(Integer.parseInt(issueField.getText()));
+            }
+            catch(Exception ex)
+            {
+
+            }
+            try
+            {
+                returnSource.setYearPublished(Integer.parseInt(yearPublishedField.getText()));
+            }
+            catch(Exception ex)
+            {
+
+            }
+            try
+            {
+                returnSource.setVersion(Integer.parseInt(versionField.getText()));
+            }
+            catch(Exception ex)
+            {
+
+            }
+            try
+            {
+                returnSource.setPagesCitedStart(Integer.parseInt(pagesCited1Field.getText()));
+            }
+            catch(Exception ex)
+            {
+
+            }
+            try{
+                returnSource.setPagesCitedEnd(Integer.parseInt(pagesCited2Field.getText()));
+            }
+            catch(Exception ex)
+            {
+
+            }
             window.close();
         });
 
@@ -446,20 +494,68 @@ public class ChildWindow {
             returnSource.author = authorList;
             returnSource.setMagazineTitle(magazineTitleField.getText());
             returnSource.setWebsiteTitle(websiteTitleField.getText());
-            returnSource.setVolume(Integer.parseInt(volumeField.getText()));
-            returnSource.setEdition(Integer.parseInt(editionField.getText()));
-            returnSource.setIssue(Integer.parseInt(issueField.getText()));
             returnSource.setPublisher(publisherField.getText());
-            returnSource.setYearPublished(Integer.parseInt(yearPublishedField.getText()));
             returnSource.setDatePublished(datePublishedField.getText());
             returnSource.setURL(URLField.getText());
-            returnSource.setVersion(Integer.parseInt(versionField.getText()));
             returnSource.setDatabase(databaseField.getText());
             returnSource.setDatabaseService(databaseServiceField.getText());
             returnSource.setMedium(mediumField.getText());
-            returnSource.setPagesCitedStart(Integer.parseInt(pagesCited1Field.getText()));
-            returnSource.setPagesCitedEnd(Integer.parseInt(pagesCited2Field.getText()));
             returnSource.setAnnotation(annotationField.getText());
+            try
+            {
+                returnSource.setVolume(Integer.parseInt(volumeField.getText()));
+            }
+            catch(Exception ex)
+            {
+
+            }
+            try
+            {
+                returnSource.setEdition(Integer.parseInt(editionField.getText()));
+            }
+            catch(Exception ex)
+            {
+
+            }
+            try
+            {
+                returnSource.setIssue(Integer.parseInt(issueField.getText()));
+            }
+            catch(Exception ex)
+            {
+
+            }
+            try
+            {
+                returnSource.setYearPublished(Integer.parseInt(yearPublishedField.getText()));
+            }
+            catch(Exception ex)
+            {
+
+            }
+            try
+            {
+                returnSource.setVersion(Integer.parseInt(versionField.getText()));
+            }
+            catch(Exception ex)
+            {
+
+            }
+            try
+            {
+                returnSource.setPagesCitedStart(Integer.parseInt(pagesCited1Field.getText()));
+            }
+            catch(Exception ex)
+            {
+
+            }
+            try{
+                returnSource.setPagesCitedEnd(Integer.parseInt(pagesCited2Field.getText()));
+            }
+            catch(Exception ex)
+            {
+
+            }
             window.close();
         });
 

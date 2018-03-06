@@ -91,7 +91,13 @@ public class Main extends Application {
 
         //Configure all button functionality
         closeButton.setOnAction(e -> CloseProgram(primaryStage));
-        newSource.setOnAction(e -> sourceTable.getItems().add(ChildWindow.NewSource()));
+        newSource.setOnAction(e -> {
+            Source freshSource = ChildWindow.NewSource();
+            if(freshSource != null)
+            {
+                sourceTable.getItems().add(freshSource);
+            }
+        });
         deleteSource.setOnAction(e -> sourceTable.getItems().remove(sourceTable.getSelectionModel().getSelectedItem()));
         editSource.setOnAction(e -> {
             if (sourceTable.getSelectionModel().getSelectedItem() != null) {
