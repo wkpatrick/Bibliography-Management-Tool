@@ -41,6 +41,8 @@ out/
 # User-specific stuff:
 workspace.xml
 misc.xml
+gradle.xml
+
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/dictionaries
