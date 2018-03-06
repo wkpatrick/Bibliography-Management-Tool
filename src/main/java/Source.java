@@ -25,6 +25,42 @@ public class Source {
         title = sourceTitle;
     }
 
+    public String ToMLA()
+    {
+        String finalOutput = "";
+        if(title != ""){finalOutput += title + ',';}
+        if(author != null){
+            String authorString = author.toString();
+            authorString.replace("[","");
+            authorString.replace("]","");
+            finalOutput += authorString + ',';
+        }
+        if(MagazineTitle != ""){finalOutput += MagazineTitle + ',';}
+        if(WebsiteTitle != ""){finalOutput += WebsiteTitle + ',';}
+        if(Volume != 0){finalOutput += Volume + ',';}
+        if(Edition != 0){finalOutput += Edition + ',';}
+        if(Issue != 0){finalOutput += Issue + ',';}
+        if(Publisher != ""){finalOutput += Publisher + ',';}
+        if(YearPublished != 0){finalOutput += YearPublished + ',';}
+        if(DatePublished != ""){finalOutput += DatePublished + ',';}
+        if(URL != ""){finalOutput += URL + ',';}
+        if(Version != 0){finalOutput += Version + ',';}
+        if(Database != ""){finalOutput += Database + ',';}
+        if(DatabaseService != ""){finalOutput += DatabaseService + ',';}
+        if(Medium != ""){finalOutput += Medium + ',';}
+        if(PagesCitedStart != 0 && PagesCitedEnd != 0){
+            if(PagesCitedEnd > PagesCitedStart){
+                finalOutput += PagesCitedStart + " - " + PagesCitedEnd + ',';
+            }
+            else {
+                finalOutput += PagesCitedStart + " - " + "end" + ',';
+            }
+        }
+        if(Annotation != ""){finalOutput += Annotation + ',';}
+        finalOutput = finalOutput.substring(0, finalOutput.length()-1);
+        return finalOutput;
+    }
+
     public void AddAuthor(String newAuthor)
     {
         author.add(newAuthor);
