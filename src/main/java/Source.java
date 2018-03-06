@@ -39,7 +39,7 @@ public class Source {
         if(WebsiteTitle != ""){finalOutput += WebsiteTitle + '.';}
         if(Database != ""){finalOutput += Database + '.';}
         if(DatabaseService != ""){finalOutput += DatabaseService + '.';}
-        if(Version != 0){finalOutput += Version + ',';}
+        if(Version != 0){finalOutput += "ver." + Version + ',';}
         if(Volume != 0){finalOutput += Volume + ',';}
         if(Edition != 0){finalOutput += Edition + ',';}
         if(Issue != 0){finalOutput += Issue + ',';}
@@ -50,10 +50,10 @@ public class Source {
         if(URL != ""){finalOutput += URL + ',';}
         if(PagesCitedStart != 0 && PagesCitedEnd != 0){
             if(PagesCitedEnd > PagesCitedStart){
-                finalOutput += PagesCitedStart + " - " + PagesCitedEnd + ',';
+                finalOutput += "pp" + PagesCitedStart + "-" + PagesCitedEnd + ',';
             }
             else {
-                finalOutput += PagesCitedStart + " - " + "end" + ',';
+                finalOutput += "pp" + PagesCitedStart + "-" + "end" + ',';
             }
         }
         if(Annotation != ""){finalOutput += Annotation + ',';}
