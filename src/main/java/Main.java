@@ -23,7 +23,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         //Establish primary stage
-        primaryStage.setTitle("Bibliography Mangement Tool");
+        primaryStage.setTitle("Bibliography Management Tool");
 
         //Setup basic BorderPane
         BorderPane layout = new BorderPane();
@@ -71,7 +71,7 @@ public class Main extends Application {
         sourceTable.getColumns().addAll(titleColumn, authorColumn);
         sourceTable.getSelectionModel().selectedItemProperty().addListener((obs, oldProperty, newProperty) -> {
             if (newProperty != null) {
-                sourceDisplay.setText(newProperty.title + '\n' + newProperty.author);
+                sourceDisplay.setText(newProperty.title + '\n' + newProperty.author.toString());
             } else {
                 sourceDisplay.setText("");
             }
