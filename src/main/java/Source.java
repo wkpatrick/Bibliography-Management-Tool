@@ -28,26 +28,26 @@ public class Source {
     public String ToMLA()
     {
         String finalOutput = "";
-        if(title != ""){finalOutput += title + ',';}
         if(author != null){
             String authorString = author.toString();
             authorString.replace("[","");
             authorString.replace("]","");
-            finalOutput += authorString + ',';
+            finalOutput += authorString + '.';
         }
-        if(MagazineTitle != ""){finalOutput += MagazineTitle + ',';}
-        if(WebsiteTitle != ""){finalOutput += WebsiteTitle + ',';}
+        if(title != ""){finalOutput += title + '.';}
+        if(MagazineTitle != ""){finalOutput += MagazineTitle + '.';}
+        if(WebsiteTitle != ""){finalOutput += WebsiteTitle + '.';}
+        if(Database != ""){finalOutput += Database + '.';}
+        if(DatabaseService != ""){finalOutput += DatabaseService + '.';}
+        if(Version != 0){finalOutput += Version + ',';}
         if(Volume != 0){finalOutput += Volume + ',';}
         if(Edition != 0){finalOutput += Edition + ',';}
         if(Issue != 0){finalOutput += Issue + ',';}
         if(Publisher != ""){finalOutput += Publisher + ',';}
         if(YearPublished != 0){finalOutput += YearPublished + ',';}
         if(DatePublished != ""){finalOutput += DatePublished + ',';}
-        if(URL != ""){finalOutput += URL + ',';}
-        if(Version != 0){finalOutput += Version + ',';}
-        if(Database != ""){finalOutput += Database + ',';}
-        if(DatabaseService != ""){finalOutput += DatabaseService + ',';}
         if(Medium != ""){finalOutput += Medium + ',';}
+        if(URL != ""){finalOutput += URL + ',';}
         if(PagesCitedStart != 0 && PagesCitedEnd != 0){
             if(PagesCitedEnd > PagesCitedStart){
                 finalOutput += PagesCitedStart + " - " + PagesCitedEnd + ',';
