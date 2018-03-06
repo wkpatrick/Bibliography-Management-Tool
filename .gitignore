@@ -39,6 +39,8 @@ gradle-app.setting
 out/
 
 # User-specific stuff:
+workspace.xml
+misc.xml
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/dictionaries
