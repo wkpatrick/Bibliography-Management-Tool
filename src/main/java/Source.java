@@ -1,253 +1,370 @@
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.StringProperty;
+
 import java.util.List;
 
 public class Source {
 
-    String title;
-    List<String> author;
-    String MagazineTitle;
-    String WebsiteTitle;
-    int Volume;
-    int Edition;
-    int Issue;
-    String Publisher;
-    int YearPublished;
-    String DatePublished;
-    String URL;
-    int Version;
-    String Annotation;
-    String Database;
-    String DatabaseService;
-    String Medium;
-    int PagesCitedStart;
-    int PagesCitedEnd;
+    StringProperty title;
+    List<StringProperty> author;
+    StringProperty MagazineTitle;
+    StringProperty WebsiteTitle;
+    IntegerProperty Volume;
+    IntegerProperty Edition;
+    IntegerProperty Issue;
+    StringProperty Publisher;
+    IntegerProperty YearPublished;
+    StringProperty DatePublished;
+    StringProperty URL;
+    IntegerProperty Version;
+    StringProperty Annotation;
+    StringProperty Database;
+    StringProperty DatabaseService;
+    StringProperty Medium;
+    IntegerProperty PagesCitedStart;
+    IntegerProperty PagesCitedEnd;
 
     public Source(String sourceTitle) {
-        title = sourceTitle;
+        this.setTitle(sourceTitle);
     }
 
-    public String ToMLA()
-    {
+    public String ToMLA() {
         String finalOutput = "";
-        if(author != null){
+        if (author != null) {
             String authorString = author.toString();
-            authorString.replace("[","");
-            authorString.replace("]","");
+            authorString.replace("[", "");
+            authorString.replace("]", "");
             finalOutput += authorString + ". ";
         }
-        if(title != ""){finalOutput += title + ". ";}
-        if(MagazineTitle != ""){finalOutput += MagazineTitle + ". ";}
-        if(WebsiteTitle != ""){finalOutput += WebsiteTitle + ". ";}
-        if(Database != ""){finalOutput += Database + ". ";}
-        if(DatabaseService != ""){finalOutput += DatabaseService + ". ";}
-        if(Version != 0){finalOutput += "ver." + Version + ", ";}
-        if(Volume != 0){finalOutput += Volume + ", ";}
-        if(Edition != 0){finalOutput += Edition + ", ";}
-        if(Issue != 0){finalOutput += Issue + ", ";}
-        if(Publisher != ""){finalOutput += Publisher + ", ";}
-        if(YearPublished != 0){finalOutput += YearPublished + ", ";}
-        if(DatePublished != ""){finalOutput += DatePublished + ", ";}
-        if(Medium != ""){finalOutput += Medium + ", ";}
-        if(URL != ""){finalOutput += URL + ", ";}
-        if(PagesCitedStart != 0 && PagesCitedEnd != 0){
-            if(PagesCitedEnd > PagesCitedStart){
+        if (title.get() != "") {
+            finalOutput += title + ". ";
+        }
+        if (MagazineTitle.get() != "") {
+            finalOutput += MagazineTitle + ". ";
+        }
+        if (WebsiteTitle.get() != "") {
+            finalOutput += WebsiteTitle + ". ";
+        }
+        if (Database.get() != "") {
+            finalOutput += Database + ". ";
+        }
+        if (DatabaseService.get() != "") {
+            finalOutput += DatabaseService + ". ";
+        }
+        if (Version.get() != 0) {
+            finalOutput += "ver." + Version + ", ";
+        }
+        if (Volume.get() != 0) {
+            finalOutput += Volume + ", ";
+        }
+        if (Edition.get() != 0) {
+            finalOutput += Edition + ", ";
+        }
+        if (Issue.get() != 0) {
+            finalOutput += Issue + ", ";
+        }
+        if (Publisher.get() != "") {
+            finalOutput += Publisher + ", ";
+        }
+        if (YearPublished.get() != 0) {
+            finalOutput += YearPublished + ", ";
+        }
+        if (DatePublished.get() != "") {
+            finalOutput += DatePublished + ", ";
+        }
+        if (Medium.get() != "") {
+            finalOutput += Medium + ", ";
+        }
+        if (URL.get() != "") {
+            finalOutput += URL + ", ";
+        }
+        if (PagesCitedStart.get() != 0 && PagesCitedEnd.get() != 0) {
+            if (PagesCitedEnd.get() > PagesCitedStart.get()) {
                 finalOutput += "pp " + PagesCitedStart + "-" + PagesCitedEnd + ", ";
-            }
-            else {
+            } else {
                 finalOutput += "pp " + PagesCitedStart + "-" + "end" + ", ";
             }
         }
-        if(Annotation != ""){finalOutput += Annotation + ", ";}
-        finalOutput = finalOutput.substring(0, finalOutput.length()-2);
+        if (Annotation.get() != "") {
+            finalOutput += Annotation + ", ";
+        }
+        finalOutput = finalOutput.substring(0, finalOutput.length() - 2);
         return finalOutput;
     }
 
     public String ToAPA()//APA wants some things in italics. Could be an issue.
     {
         String finalOutput = "";
-        if(author != null){
+        if (author != null) {
             String authorString = author.toString();
-            authorString.replace("[","");
-            authorString.replace("]","");
+            authorString.replace("[", "");
+            authorString.replace("]", "");
             finalOutput += authorString + ". ";
         }
-        if(DatePublished != ""){finalOutput += "(" + DatePublished + ")" + ", ";}
-        else {finalOutput += "n.d." + ", ";}
-        if(title != ""){finalOutput += title + ". ";}
-        if(Publisher != ""){finalOutput += Publisher + ", ";}
-        if(MagazineTitle != ""){finalOutput += MagazineTitle + ". ";}
-        if(WebsiteTitle != ""){finalOutput += WebsiteTitle + ". ";}
-        if(Volume != 0){finalOutput += Volume + ", ";}
-        if(Edition != 0){finalOutput += Edition + ", ";}
-        if(Issue != 0){finalOutput += "(" + Issue + ")" + ", ";}
-        if(Database != ""){finalOutput += Database + ". ";}
-        if(DatabaseService != ""){finalOutput += DatabaseService + ". ";}
-        if(Version != 0){finalOutput += "ver." + Version + ", ";}
-        if(Medium != ""){finalOutput += Medium + ", ";}
-        if(URL != ""){finalOutput += URL + ", ";}
-        if(PagesCitedStart != 0 && PagesCitedEnd != 0){
-            if(PagesCitedEnd > PagesCitedStart){
+        if (DatePublished.get() != "") {
+            finalOutput += "(" + DatePublished + ")" + ", ";
+        } else {
+            finalOutput += "n.d." + ", ";
+        }
+        if (title.get() != "") {
+            finalOutput += title + ". ";
+        }
+        if (Publisher.get() != "") {
+            finalOutput += Publisher + ", ";
+        }
+        if (MagazineTitle.get() != "") {
+            finalOutput += MagazineTitle + ". ";
+        }
+        if (WebsiteTitle.get() != "") {
+            finalOutput += WebsiteTitle + ". ";
+        }
+        if (Volume.get() != 0) {
+            finalOutput += Volume + ", ";
+        }
+        if (Edition.get() != 0) {
+            finalOutput += Edition + ", ";
+        }
+        if (Issue.get() != 0) {
+            finalOutput += "(" + Issue + ")" + ", ";
+        }
+        if (Database.get() != "") {
+            finalOutput += Database + ". ";
+        }
+        if (DatabaseService.get() != "") {
+            finalOutput += DatabaseService + ". ";
+        }
+        if (Version.get() != 0) {
+            finalOutput += "ver." + Version + ", ";
+        }
+        if (Medium.get() != "") {
+            finalOutput += Medium + ", ";
+        }
+        if (URL.get() != "") {
+            finalOutput += URL + ", ";
+        }
+        if (PagesCitedStart.get() != 0 && PagesCitedEnd.get() != 0) {
+            if (PagesCitedEnd.get() > PagesCitedStart.get()) {
                 finalOutput += "pp " + PagesCitedStart + "-" + PagesCitedEnd + ", ";
-            }
-            else {
+            } else {
                 finalOutput += "pp " + PagesCitedStart + "-" + "end" + ", ";
             }
         }
-        if(Annotation != ""){finalOutput += Annotation + ", ";}
-        finalOutput = finalOutput.substring(0, finalOutput.length()-2);
+        if (Annotation.get() != "") {
+            finalOutput += Annotation + ", ";
+        }
+        finalOutput = finalOutput.substring(0, finalOutput.length() - 2);
         return finalOutput;
     }
 
-    public void AddAuthor(String newAuthor)
-    {
-        author.add(newAuthor);
-    }
-
-    public void RemoveAuthor(String ditchedAuthor)
-    {
-        author.remove(ditchedAuthor);
-    }
-
     public String getTitle() {
+        return title.get();
+    }
+
+    public StringProperty titleProperty() {
         return title;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title.set(title);
     }
 
-    public List<String> getAuthor() {
+    public List<StringProperty> getAuthor() {
         return author;
     }
 
-    public void setAuthor(List<String> author) {
+    public void setAuthor(List<StringProperty> author) {
         this.author = author;
     }
 
-    public int getVolume() {
-        return Volume;
-    }
-
-    public void setVolume(int volume) {
-        Volume = volume;
-    }
-
-    public int getEdition() {
-        return Edition;
-    }
-
-    public void setEdition(int edition) {
-        Edition = edition;
-    }
-
-    public int getIssue() {
-        return Issue;
-    }
-
-    public void setIssue(int issue) {
-        Issue = issue;
-    }
-
-    public String getPublisher() {
-        return Publisher;
-    }
-
-    public void setPublisher(String publisher) {
-        Publisher = publisher;
-    }
-
-    public int getYearPublished() {
-        return YearPublished;
-    }
-
-    public void setYearPublished(int yearPublished) {
-        YearPublished = yearPublished;
-    }
-
-    public String getDatePublished() {
-        return DatePublished;
-    }
-
-    public void setDatePublished(String datePublished) {
-        DatePublished = datePublished;
-    }
-
-    public String getWebsiteTitle() {
-        return WebsiteTitle;
-    }
-
-    public void setWebsiteTitle(String websiteTitle) {
-        WebsiteTitle = websiteTitle;
-    }
-
-    public String getURL() {
-        return URL;
-    }
-
-    public void setURL(String URL) {
-        this.URL = URL;
-    }
-
-    public int getVersion() {
-        return Version;
-    }
-
-    public void setVersion(int version) {
-        Version = version;
-    }
-
-    public String getAnnotation() {
-        return Annotation;
-    }
-
-    public void setAnnotation(String annotation) {
-        Annotation = annotation;
-    }
-
-    public String getDatabase() {
-        return Database;
-    }
-
-    public void setDatabase(String database) {
-        Database = database;
-    }
-
-    public String getDatabaseService() {
-        return DatabaseService;
-    }
-
-    public void setDatabaseService(String databaseService) {
-        DatabaseService = databaseService;
-    }
-
-    public String getMedium() {
-        return Medium;
-    }
-
-    public void setMedium(String medium) {
-        Medium = medium;
-    }
-
-    public int getPagesCitedStart() {
-        return PagesCitedStart;
-    }
-
-    public void setPagesCitedStart(int pagesCitedStart) {
-        PagesCitedStart = pagesCitedStart;
-    }
-
-    public int getPagesCitedEnd() {
-        return PagesCitedEnd;
-    }
-
-    public void setPagesCitedEnd(int pagesCitedEnd) {
-        PagesCitedEnd = pagesCitedEnd;
-    }
-
     public String getMagazineTitle() {
+        return MagazineTitle.get();
+    }
+
+    public StringProperty magazineTitleProperty() {
         return MagazineTitle;
     }
 
     public void setMagazineTitle(String magazineTitle) {
-        MagazineTitle = magazineTitle;
+        this.MagazineTitle.set(magazineTitle);
+    }
+
+    public String getWebsiteTitle() {
+        return WebsiteTitle.get();
+    }
+
+    public StringProperty websiteTitleProperty() {
+        return WebsiteTitle;
+    }
+
+    public void setWebsiteTitle(String websiteTitle) {
+        this.WebsiteTitle.set(websiteTitle);
+    }
+
+    public int getVolume() {
+        return Volume.get();
+    }
+
+    public IntegerProperty volumeProperty() {
+        return Volume;
+    }
+
+    public void setVolume(int volume) {
+        this.Volume.set(volume);
+    }
+
+    public int getEdition() {
+        return Edition.get();
+    }
+
+    public IntegerProperty editionProperty() {
+        return Edition;
+    }
+
+    public void setEdition(int edition) {
+        this.Edition.set(edition);
+    }
+
+    public int getIssue() {
+        return Issue.get();
+    }
+
+    public IntegerProperty issueProperty() {
+        return Issue;
+    }
+
+    public void setIssue(int issue) {
+        this.Issue.set(issue);
+    }
+
+    public String getPublisher() {
+        return Publisher.get();
+    }
+
+    public StringProperty publisherProperty() {
+        return Publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.Publisher.set(publisher);
+    }
+
+    public int getYearPublished() {
+        return YearPublished.get();
+    }
+
+    public IntegerProperty yearPublishedProperty() {
+        return YearPublished;
+    }
+
+    public void setYearPublished(int yearPublished) {
+        this.YearPublished.set(yearPublished);
+    }
+
+    public String getDatePublished() {
+        return DatePublished.get();
+    }
+
+    public StringProperty datePublishedProperty() {
+        return DatePublished;
+    }
+
+    public void setDatePublished(String datePublished) {
+        this.DatePublished.set(datePublished);
+    }
+
+    public String getURL() {
+        return URL.get();
+    }
+
+    public StringProperty URLProperty() {
+        return URL;
+    }
+
+    public void setURL(String URL) {
+        this.URL.set(URL);
+    }
+
+    public int getVersion() {
+        return Version.get();
+    }
+
+    public IntegerProperty versionProperty() {
+        return Version;
+    }
+
+    public void setVersion(int version) {
+        this.Version.set(version);
+    }
+
+    public String getAnnotation() {
+        return Annotation.get();
+    }
+
+    public StringProperty annotationProperty() {
+        return Annotation;
+    }
+
+    public void setAnnotation(String annotation) {
+        this.Annotation.set(annotation);
+    }
+
+    public String getDatabase() {
+        return Database.get();
+    }
+
+    public StringProperty databaseProperty() {
+        return Database;
+    }
+
+    public void setDatabase(String database) {
+        this.Database.set(database);
+    }
+
+    public String getDatabaseService() {
+        return DatabaseService.get();
+    }
+
+    public StringProperty databaseServiceProperty() {
+        return DatabaseService;
+    }
+
+    public void setDatabaseService(String databaseService) {
+        this.DatabaseService.set(databaseService);
+    }
+
+    public String getMedium() {
+        return Medium.get();
+    }
+
+    public StringProperty mediumProperty() {
+        return Medium;
+    }
+
+    public void setMedium(String medium) {
+        this.Medium.set(medium);
+    }
+
+    public int getPagesCitedStart() {
+        return PagesCitedStart.get();
+    }
+
+    public IntegerProperty pagesCitedStartProperty() {
+        return PagesCitedStart;
+    }
+
+    public void setPagesCitedStart(int pagesCitedStart) {
+        this.PagesCitedStart.set(pagesCitedStart);
+    }
+
+    public int getPagesCitedEnd() {
+        return PagesCitedEnd.get();
+    }
+
+    public IntegerProperty pagesCitedEndProperty() {
+        return PagesCitedEnd;
+    }
+
+    public void setPagesCitedEnd(int pagesCitedEnd) {
+        this.PagesCitedEnd.set(pagesCitedEnd);
     }
 }
