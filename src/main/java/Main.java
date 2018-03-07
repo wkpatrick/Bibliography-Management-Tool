@@ -19,6 +19,13 @@ public class Main extends Application {
             primaryStage.setTitle("Bibliography Management Tool");
             primaryStage.setScene(new Scene(root));
             MainWindowController.sourceList = new ArrayList<>();
+            MainWindowController.currentlySelected = null;
+            /*
+            MainWindowController.sourceTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+                if(newSelection != null){
+                    MainWindowController.currentlySelected = newSelection;
+                }
+            });*/
             primaryStage.show();
         }
         catch(Exception e){

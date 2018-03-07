@@ -35,7 +35,7 @@
         <Menu fx:id="menuSettings" text="Settings">
         </Menu>
     </MenuBar>
-    <TableView GridPane.columnIndex="0" GridPane.rowIndex="1">
+    <TableView id="sourceTable" onMouseClicked="#UpdateSelected" GridPane.columnIndex="0" GridPane.rowIndex="1">
         <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY" /></columnResizePolicy>
         <columns>
             <TableColumn text="Title">
