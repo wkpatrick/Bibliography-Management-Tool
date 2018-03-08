@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane alignment="center" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindowController">
+<GridPane alignment="center" prefWidth="571.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindowController">
     <columnConstraints>
         <ColumnConstraints hgrow="ALWAYS" />
         <ColumnConstraints />
@@ -49,17 +49,17 @@
         <JFXButton text="Edit" />
         <JFXButton text="Delete" />
     </HBox>
-    <Label text="AAAAAAAAAAAAAAA" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+    <Label text="Source Information" GridPane.columnIndex="1" GridPane.rowIndex="0" />
     <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
         <ListView>
-            <Label text="AAAAAAAA" /><TextField text="AAAAAAA" />
-            <Label text="AAAAAAAA" /><TextField text="AAAAAAA" />
-            <Label text="AAAAAAAA" /><TextField text="AAAAAAA" />
-            <Label text="AAAAAAAA" /><TextField text="AAAAAAA" />
-            <Label text="AAAAAAAA" /><TextField text="AAAAAAA" />
-            <Label text="AAAAAAAA" /><TextField text="AAAAAAA" />
-            <Label text="AAAAAAAA" /><TextField text="AAAAAAA" />
-            <Label text="AAAAAAAA" /><TextField text="AAAAAAA" />
+            <Label text="Title" /><TextField fx:id="titleField" />
+            <Label text="Authors" /><TextField fx:id="authorField" />
+            <Label text="Magazine Title" /><TextField fx:id="magazineTitleField" />
+            <Label text="Website Title" /><TextField fx:id="websiteTitleField" />
+            <Label text="Volume" /><TextField fx:id="volumeField" />
+            <Label text="Edition" /><TextField fx:id="editionField" />
+            <Label text="Issue" /><TextField fx:id="issueField" />
+            <Label text="Publisher" /><TextField fx:id="publisherField" />
         </ListView>
     </VBox>
 </GridPane>
