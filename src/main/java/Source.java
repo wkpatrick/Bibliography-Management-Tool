@@ -62,25 +62,25 @@ public class Source {
 
     public String ToMLA() {
         String finalOutput = "";
-        if (author != null) {
+        if (!author.isEmpty()) {
             String authorString = author.toString();
             authorString.replace("[", "");
             authorString.replace("]", "");
             finalOutput += authorString + ". ";
         }
-        if (title.get() != "") {
+        if (!title.get().equals("")) {
             finalOutput += title + ". ";
         }
-        if (MagazineTitle.get() != "") {
+        if (!MagazineTitle.get().equals("")) {
             finalOutput += MagazineTitle + ". ";
         }
-        if (WebsiteTitle.get() != "") {
+        if (!WebsiteTitle.get().equals("")) {
             finalOutput += WebsiteTitle + ". ";
         }
-        if (Database.get() != "") {
+        if (!Database.get().equals("")) {
             finalOutput += Database + ". ";
         }
-        if (DatabaseService.get() != "") {
+        if (!DatabaseService.get().equals("")) {
             finalOutput += DatabaseService + ". ";
         }
         if (Version.get() != 0) {
@@ -95,19 +95,19 @@ public class Source {
         if (Issue.get() != 0) {
             finalOutput += Issue + ", ";
         }
-        if (Publisher.get() != "") {
+        if (!Publisher.get().equals("")) {
             finalOutput += Publisher + ", ";
         }
         if (YearPublished.get() != 0) {
             finalOutput += YearPublished + ", ";
         }
-        if (DatePublished.get() != "") {
+        if (!DatePublished.get().equals("")) {
             finalOutput += DatePublished + ", ";
         }
-        if (Medium.get() != "") {
+        if (!Medium.get().equals("")) {
             finalOutput += Medium + ", ";
         }
-        if (URL.get() != "") {
+        if (!URL.get().equals("")) {
             finalOutput += URL + ", ";
         }
         if (PagesCitedStart.get() != 0 && PagesCitedEnd.get() != 0) {
@@ -117,7 +117,7 @@ public class Source {
                 finalOutput += "pp " + PagesCitedStart + "-" + "end" + ", ";
             }
         }
-        if (Annotation.get() != "") {
+        if (!Annotation.get().equals("")) {
             finalOutput += Annotation + ", ";
         }
         finalOutput = finalOutput.substring(0, finalOutput.length() - 2);
@@ -127,27 +127,27 @@ public class Source {
     public String ToAPA()//APA wants some things in italics. Could be an issue.
     {
         String finalOutput = "";
-        if (author != null) {
+        if (!author.isEmpty()) {
             String authorString = author.toString();
-            authorString.replace("[", "");
-            authorString.replace("]", "");
+            authorString = authorString.replace("[", "");
+            authorString = authorString.replace("]", "");
             finalOutput += authorString + ". ";
         }
-        if (DatePublished.get() != "") {
+        if (!DatePublished.get().equals("")) {
             finalOutput += "(" + DatePublished + ")" + ", ";
         } else {
             finalOutput += "n.d." + ", ";
         }
-        if (title.get() != "") {
+        if (!title.get().equals("")) {
             finalOutput += title + ". ";
         }
-        if (Publisher.get() != "") {
+        if (!Publisher.get().equals("")) {
             finalOutput += Publisher + ", ";
         }
-        if (MagazineTitle.get() != "") {
+        if (!MagazineTitle.get().equals("")) {
             finalOutput += MagazineTitle + ". ";
         }
-        if (WebsiteTitle.get() != "") {
+        if (!WebsiteTitle.get().equals("")) {
             finalOutput += WebsiteTitle + ". ";
         }
         if (Volume.get() != 0) {
@@ -159,19 +159,19 @@ public class Source {
         if (Issue.get() != 0) {
             finalOutput += "(" + Issue + ")" + ", ";
         }
-        if (Database.get() != "") {
+        if (!Database.get().equals("")) {
             finalOutput += Database + ". ";
         }
-        if (DatabaseService.get() != "") {
+        if (!DatabaseService.get().equals("")) {
             finalOutput += DatabaseService + ". ";
         }
         if (Version.get() != 0) {
             finalOutput += "ver." + Version + ", ";
         }
-        if (Medium.get() != "") {
+        if (!Medium.get().equals("")) {
             finalOutput += Medium + ", ";
         }
-        if (URL.get() != "") {
+        if (!URL.get().equals("")) {
             finalOutput += URL + ", ";
         }
         if (PagesCitedStart.get() != 0 && PagesCitedEnd.get() != 0) {
@@ -181,7 +181,7 @@ public class Source {
                 finalOutput += "pp " + PagesCitedStart + "-" + "end" + ", ";
             }
         }
-        if (Annotation.get() != "") {
+        if (!Annotation.get().equals("")) {
             finalOutput += Annotation + ", ";
         }
         finalOutput = finalOutput.substring(0, finalOutput.length() - 2);
