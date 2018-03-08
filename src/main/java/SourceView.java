@@ -91,11 +91,6 @@ public class SourceView {
                 output.setPagesCitedEnd(Integer.parseInt(pagesCitedField2.getText()));
             }
             MainWindowController.sourceList.add(output);
-            String debug = "";
-            for (Source s:MainWindowController.sourceList) {
-                debug = debug + s.ToMLA();
-            }
-            System.out.println(debug);
             titleField.getScene().getWindow().hide();
         }
     }
