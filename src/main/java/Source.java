@@ -27,24 +27,24 @@ public class Source {
     IntegerProperty PagesCitedEnd;
 
     public Source(String sourceTitle) {
-        title = new SimpleStringProperty();
+        title = new SimpleStringProperty("");
         title.set(sourceTitle);
-        MagazineTitle = new SimpleStringProperty();
-        WebsiteTitle = new SimpleStringProperty();
-        Volume = new SimpleIntegerProperty();
-        Edition = new SimpleIntegerProperty();
-        Issue = new SimpleIntegerProperty();
-        Publisher = new SimpleStringProperty();
-        YearPublished = new SimpleIntegerProperty();
-        DatePublished = new SimpleStringProperty();
-        URL = new SimpleStringProperty();
-        Version = new SimpleIntegerProperty();
-        Annotation = new SimpleStringProperty();
-        Database = new SimpleStringProperty();
-        DatabaseService = new SimpleStringProperty();
-        Medium = new SimpleStringProperty();
-        PagesCitedStart = new SimpleIntegerProperty();
-        PagesCitedEnd = new SimpleIntegerProperty();
+        MagazineTitle = new SimpleStringProperty("");
+        WebsiteTitle = new SimpleStringProperty("");
+        Volume = new SimpleIntegerProperty(0);
+        Edition = new SimpleIntegerProperty(0);
+        Issue = new SimpleIntegerProperty(0);
+        Publisher = new SimpleStringProperty("");
+        YearPublished = new SimpleIntegerProperty(0);
+        DatePublished = new SimpleStringProperty("");
+        URL = new SimpleStringProperty("");
+        Version = new SimpleIntegerProperty(0);
+        Annotation = new SimpleStringProperty("");
+        Database = new SimpleStringProperty("");
+        DatabaseService = new SimpleStringProperty("");
+        Medium = new SimpleStringProperty("");
+        PagesCitedStart = new SimpleIntegerProperty(0);
+        PagesCitedEnd = new SimpleIntegerProperty(0);
     }
 
     public void AddAuthor(String newAuthor){
@@ -63,62 +63,64 @@ public class Source {
     public String ToMLA() {
         String finalOutput = "";
         if (!author.isEmpty()) {
-            String authorString = author.toString();
-            authorString.replace("[", "");
-            authorString.replace("]", "");
+            String authorString = "";
+            for (StringProperty s:author) {
+                authorString += s.get() + ", ";
+            }
+            authorString = authorString.substring(0, authorString.length()-2);
             finalOutput += authorString + ". ";
         }
         if (!title.get().equals("")) {
-            finalOutput += title + ". ";
+            finalOutput += title.get() + ". ";
         }
         if (!MagazineTitle.get().equals("")) {
-            finalOutput += MagazineTitle + ". ";
+            finalOutput += MagazineTitle.get() + ". ";
         }
         if (!WebsiteTitle.get().equals("")) {
-            finalOutput += WebsiteTitle + ". ";
+            finalOutput += WebsiteTitle.get() + ". ";
         }
         if (!Database.get().equals("")) {
-            finalOutput += Database + ". ";
+            finalOutput += Database.get() + ". ";
         }
         if (!DatabaseService.get().equals("")) {
-            finalOutput += DatabaseService + ". ";
+            finalOutput += DatabaseService.get() + ". ";
         }
         if (Version.get() != 0) {
-            finalOutput += "ver." + Version + ", ";
+            finalOutput += "ver." + Version.get() + ", ";
         }
         if (Volume.get() != 0) {
-            finalOutput += Volume + ", ";
+            finalOutput += Volume.get() + ", ";
         }
         if (Edition.get() != 0) {
-            finalOutput += Edition + ", ";
+            finalOutput += Edition.get() + ", ";
         }
         if (Issue.get() != 0) {
-            finalOutput += Issue + ", ";
+            finalOutput += Issue.get() + ", ";
         }
         if (!Publisher.get().equals("")) {
-            finalOutput += Publisher + ", ";
+            finalOutput += Publisher.get() + ", ";
         }
         if (YearPublished.get() != 0) {
-            finalOutput += YearPublished + ", ";
+            finalOutput += YearPublished.get() + ", ";
         }
         if (!DatePublished.get().equals("")) {
-            finalOutput += DatePublished + ", ";
+            finalOutput += DatePublished.get() + ", ";
         }
         if (!Medium.get().equals("")) {
-            finalOutput += Medium + ", ";
+            finalOutput += Medium.get() + ", ";
         }
         if (!URL.get().equals("")) {
-            finalOutput += URL + ", ";
+            finalOutput += URL.get() + ", ";
         }
         if (PagesCitedStart.get() != 0 && PagesCitedEnd.get() != 0) {
             if (PagesCitedEnd.get() > PagesCitedStart.get()) {
-                finalOutput += "pp " + PagesCitedStart + "-" + PagesCitedEnd + ", ";
+                finalOutput += "pp " + PagesCitedStart.get() + "-" + PagesCitedEnd.get() + ", ";
             } else {
-                finalOutput += "pp " + PagesCitedStart + "-" + "end" + ", ";
+                finalOutput += "pp " + PagesCitedStart.get() + "-" + "end" + ", ";
             }
         }
         if (!Annotation.get().equals("")) {
-            finalOutput += Annotation + ", ";
+            finalOutput += Annotation.get() + ", ";
         }
         finalOutput = finalOutput.substring(0, finalOutput.length() - 2);
         return finalOutput;
@@ -128,61 +130,63 @@ public class Source {
     {
         String finalOutput = "";
         if (!author.isEmpty()) {
-            String authorString = author.toString();
-            authorString = authorString.replace("[", "");
-            authorString = authorString.replace("]", "");
+            String authorString = "";
+            for (StringProperty s:author) {
+                authorString += s.get() + ", ";
+            }
+            authorString = authorString.substring(0, authorString.length()-2);
             finalOutput += authorString + ". ";
         }
         if (!DatePublished.get().equals("")) {
-            finalOutput += "(" + DatePublished + ")" + ", ";
+            finalOutput += "(" + DatePublished.get() + ")" + ", ";
         } else {
             finalOutput += "n.d." + ", ";
         }
         if (!title.get().equals("")) {
-            finalOutput += title + ". ";
+            finalOutput += title.get() + ". ";
         }
         if (!Publisher.get().equals("")) {
-            finalOutput += Publisher + ", ";
+            finalOutput += Publisher.get() + ", ";
         }
         if (!MagazineTitle.get().equals("")) {
-            finalOutput += MagazineTitle + ". ";
+            finalOutput += MagazineTitle.get() + ". ";
         }
         if (!WebsiteTitle.get().equals("")) {
-            finalOutput += WebsiteTitle + ". ";
+            finalOutput += WebsiteTitle.get() + ". ";
         }
         if (Volume.get() != 0) {
-            finalOutput += Volume + ", ";
+            finalOutput += Volume.get() + ", ";
         }
         if (Edition.get() != 0) {
-            finalOutput += Edition + ", ";
+            finalOutput += Edition.get() + ", ";
         }
         if (Issue.get() != 0) {
-            finalOutput += "(" + Issue + ")" + ", ";
+            finalOutput += "(" + Issue.get() + ")" + ", ";
         }
         if (!Database.get().equals("")) {
-            finalOutput += Database + ". ";
+            finalOutput += Database.get() + ". ";
         }
         if (!DatabaseService.get().equals("")) {
-            finalOutput += DatabaseService + ". ";
+            finalOutput += DatabaseService.get() + ". ";
         }
         if (Version.get() != 0) {
-            finalOutput += "ver." + Version + ", ";
+            finalOutput += "ver." + Version.get() + ", ";
         }
         if (!Medium.get().equals("")) {
-            finalOutput += Medium + ", ";
+            finalOutput += Medium.get() + ", ";
         }
         if (!URL.get().equals("")) {
-            finalOutput += URL + ", ";
+            finalOutput += URL.get() + ", ";
         }
         if (PagesCitedStart.get() != 0 && PagesCitedEnd.get() != 0) {
             if (PagesCitedEnd.get() > PagesCitedStart.get()) {
-                finalOutput += "pp " + PagesCitedStart + "-" + PagesCitedEnd + ", ";
+                finalOutput += "pp " + PagesCitedStart.get() + "-" + PagesCitedEnd.get() + ", ";
             } else {
-                finalOutput += "pp " + PagesCitedStart + "-" + "end" + ", ";
+                finalOutput += "pp " + PagesCitedStart.get() + "-" + "end" + ", ";
             }
         }
         if (!Annotation.get().equals("")) {
-            finalOutput += Annotation + ", ";
+            finalOutput += Annotation.get() + ", ";
         }
         finalOutput = finalOutput.substring(0, finalOutput.length() - 2);
         return finalOutput;
