@@ -1,3 +1,4 @@
+/*
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Application;
 import javafx.beans.property.BooleanProperty;
@@ -577,3 +578,4 @@ public class ChildWindow {
     }
 
 }
+*/

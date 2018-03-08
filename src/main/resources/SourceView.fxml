@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane minHeight="450.0" prefHeight="450.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SourceView">
+<AnchorPane fx:id="anchor" minHeight="450.0" prefHeight="450.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SourceView">
    <children>
       <VBox layoutX="26.0" layoutY="16.0" prefWidth="252.0">
          <children>
@@ -118,7 +118,7 @@
             </HBox>
          </children>
       </VBox>
-      <Button fx:id="saveButton" layoutX="364.0" layoutY="410.0" mnemonicParsing="false" text="Save" />
-      <Button fx:id="exitButton" layoutX="417.0" layoutY="410.0" mnemonicParsing="false" text="Exit" />
+      <Button fx:id="saveButton" layoutX="364.0" layoutY="410.0" mnemonicParsing="false" onAction="#SaveSource" text="Save" />
+      <Button fx:id="exitButton" layoutX="417.0" layoutY="410.0" mnemonicParsing="false" onAction="#Close" text="Exit" />
    </children>
 </AnchorPane>

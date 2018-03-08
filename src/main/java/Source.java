@@ -1,4 +1,6 @@
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import java.util.List;
@@ -25,7 +27,37 @@ public class Source {
     IntegerProperty PagesCitedEnd;
 
     public Source(String sourceTitle) {
-        this.setTitle(sourceTitle);
+        title = new SimpleStringProperty();
+        title.set(sourceTitle);
+        MagazineTitle = new SimpleStringProperty();
+        WebsiteTitle = new SimpleStringProperty();
+        Volume = new SimpleIntegerProperty();
+        Edition = new SimpleIntegerProperty();
+        Issue = new SimpleIntegerProperty();
+        Publisher = new SimpleStringProperty();
+        YearPublished = new SimpleIntegerProperty();
+        DatePublished = new SimpleStringProperty();
+        URL = new SimpleStringProperty();
+        Version = new SimpleIntegerProperty();
+        Annotation = new SimpleStringProperty();
+        Database = new SimpleStringProperty();
+        DatabaseService = new SimpleStringProperty();
+        Medium = new SimpleStringProperty();
+        PagesCitedStart = new SimpleIntegerProperty();
+        PagesCitedEnd = new SimpleIntegerProperty();
+    }
+
+    public void AddAuthor(String newAuthor){
+        author.add(new SimpleStringProperty(newAuthor));
+    }
+
+    public void RemoveAuthor(String badAuthor){
+        for (StringProperty s: author) {
+            if(s.get().equals(badAuthor)){
+                author.remove(s);
+                break;
+            }
+        }
     }
 
     public String ToMLA() {

@@ -21,7 +21,7 @@ public class MainWindowController {
             Parent root = FXMLLoader.load(getClass().getResource("SourceView.fxml"));
             primaryStage.setTitle("New Source");
             primaryStage.setScene(new Scene(root));
-            SourceView.Start();
+            //SourceView.Start();
             primaryStage.show();
         }
         catch(Exception e){
