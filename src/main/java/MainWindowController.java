@@ -18,10 +18,10 @@ public class MainWindowController {
     public void createNewSource(ActionEvent actionEvent) {
         try {
             Stage primaryStage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("SourceView.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("AddSourceView.fxml"));
             primaryStage.setTitle("New Source");
             primaryStage.setScene(new Scene(root));
-            //SourceView.Start();
+            //AddSourceController.Start();
             primaryStage.show();
         }
         catch(Exception e){

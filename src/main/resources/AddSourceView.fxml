@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="anchor" minHeight="450.0" prefHeight="450.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AddSourceController">
+   <children>
+      <VBox layoutX="26.0" layoutY="16.0" prefWidth="252.0">
+         <children>
+            <HBox>
+               <children>
+                  <Label minWidth="100.0" text="Title:" />
+                  <TextField fx:id="titleField" minWidth="200.0" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label minWidth="100.0" text="Authors:" />
+                  <TextField fx:id="authorField" minWidth="200.0" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label minWidth="100.0" text="Magazine Title:" />
+                  <TextField fx:id="magazineTitleField" minWidth="200.0" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label minWidth="100.0" text="Website Title:" />
+                  <TextField fx:id="websiteTitleField" minWidth="200.0" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label minWidth="100.0" text="Volume:" />
+                  <TextField fx:id="volumeField" minWidth="200.0" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label minWidth="100.0" text="Edition:" />
+                  <TextField fx:id="editionField" minWidth="200.0" />
+               </children>
+            </HBox>
+               <HBox>
+               <children>
+                  <Label minWidth="100.0" text="Issue:" />
+                  <TextField fx:id="issueField" minWidth="200.0" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label minWidth="100.0" text="Publisher:" />
+                  <TextField fx:id="publisherField" minWidth="200.0" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label minWidth="100.0" text="Year Published:" />
+                  <TextField fx:id="yearPublishedField" minWidth="200.0" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label minWidth="100.0" text="Date Published:" />
+                  <TextField fx:id="datePublishedField" minWidth="200.0" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label minWidth="100.0" text="URL:" />
+                  <TextField fx:id="URLfield" minWidth="200.0" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label minWidth="100.0" text="Version:" />
+                  <TextField fx:id="versionField" minWidth="200.0" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label minWidth="100.0" text="Database:" />
+                  <TextField fx:id="databaseField" minWidth="200.0" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label minWidth="100.0" text="Database Service:" />
+                  <TextField fx:id="databaseServiceField" minWidth="200.0" />
+               </children>
+            </HBox>
+            <HBox>
+                 <children>
+                  <Label minWidth="100.0" text="Medium:" />
+                  <TextField fx:id="mediumField" minWidth="200.0" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label minWidth="100.0" text="Pages Cited:" />
+                  <TextField fx:id="pagesCitedField1" prefWidth="50.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
+                  <TextField fx:id="pagesCitedField2" prefWidth="50.0" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label minWidth="100.0" text="Annotation:" />
+                  <TextField fx:id="annotationField" minWidth="200.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Button fx:id="saveButton" layoutX="364.0" layoutY="410.0" mnemonicParsing="false" onAction="#SaveSource" text="Save" />
+      <Button fx:id="exitButton" layoutX="417.0" layoutY="410.0" mnemonicParsing="false" onAction="#Close" text="Exit" />
+   </children>
+</AnchorPane>

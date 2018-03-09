@@ -8,7 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class SourceView {
+public class AddSourceController {
 
     @FXML AnchorPane anchor;
 
