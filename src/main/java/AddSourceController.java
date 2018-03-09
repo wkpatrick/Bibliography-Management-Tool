@@ -10,8 +10,6 @@ import java.util.Arrays;
 
 public class AddSourceController {
 
-    @FXML AnchorPane anchor;
-
     @FXML TextField titleField;
     @FXML TextField authorField;
     @FXML TextField magazineTitleField;

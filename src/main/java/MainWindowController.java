@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainWindowController {
@@ -21,7 +23,7 @@ public class MainWindowController {
             Parent root = FXMLLoader.load(getClass().getResource("AddSourceView.fxml"));
             primaryStage.setTitle("New Source");
             primaryStage.setScene(new Scene(root));
-            //AddSourceController.Start();
+            sourceList = new ArrayList<>();
             primaryStage.show();
         }
         catch(Exception e){
