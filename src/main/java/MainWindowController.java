@@ -75,7 +75,7 @@ public class MainWindowController {
             primaryStage.setScene(new Scene(rootLayout));
             primaryStage.show();
 
-            AddSourceController controller = loader.getController();
+            ImportController controller = loader.getController();
             controller.setMainWindow(this.mainWindow);
 
 
@@ -85,6 +85,24 @@ public class MainWindowController {
     }
 
     public void exportSources(ActionEvent actionEvent) {
+        try {
+            Stage primaryStage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("Export.fxml"));
 
+            GridPane rootLayout = (GridPane) loader.load();
+
+
+            primaryStage.setTitle("Export Sources");
+            primaryStage.setScene(new Scene(rootLayout));
+            primaryStage.show();
+
+            ExportController controller = loader.getController();
+            controller.setMainWindow(this.mainWindow);
+
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 }

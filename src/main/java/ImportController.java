@@ -20,6 +20,8 @@ import java.util.List;
 
 public class ImportController
 {
+    private Main mainWindow;
+
     public TextField filepathField;
     public Button filepathButton;
     public Button openButton;
@@ -102,5 +104,9 @@ public class ImportController
         }
 
         return true;
+    }
+
+    public void setMainWindow(Main mainWindow) {
+        this.mainWindow = mainWindow;
     }
 }
