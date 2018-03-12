@@ -1,5 +1,5 @@
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -11,20 +11,20 @@ public class Source {
     StringProperty author;
     StringProperty MagazineTitle;
     StringProperty WebsiteTitle;
-    IntegerProperty Volume;
-    IntegerProperty Edition;
-    IntegerProperty Issue;
+    StringProperty Volume;
+    StringProperty Edition;
+    StringProperty Issue;
     StringProperty Publisher;
-    IntegerProperty YearPublished;
+    StringProperty YearPublished;
     StringProperty DatePublished;
     StringProperty URL;
-    IntegerProperty Version;
+    StringProperty Version;
     StringProperty Annotation;
     StringProperty Database;
     StringProperty DatabaseService;
     StringProperty Medium;
-    IntegerProperty PagesCitedStart;
-    IntegerProperty PagesCitedEnd;
+    StringProperty PagesCitedStart;
+    StringProperty PagesCitedEnd;
 
     public Source(String sourceTitle) {
         title = new SimpleStringProperty("");
@@ -32,20 +32,20 @@ public class Source {
         author = new SimpleStringProperty("");
         MagazineTitle = new SimpleStringProperty("");
         WebsiteTitle = new SimpleStringProperty("");
-        Volume = new SimpleIntegerProperty(0);
-        Edition = new SimpleIntegerProperty(0);
-        Issue = new SimpleIntegerProperty(0);
+        Volume = new SimpleStringProperty("");
+        Edition = new SimpleStringProperty("");
+        Issue = new SimpleStringProperty("");
         Publisher = new SimpleStringProperty("");
-        YearPublished = new SimpleIntegerProperty(0);
+        YearPublished = new SimpleStringProperty("");
         DatePublished = new SimpleStringProperty("");
         URL = new SimpleStringProperty("");
-        Version = new SimpleIntegerProperty(0);
+        Version = new SimpleStringProperty("");
         Annotation = new SimpleStringProperty("");
         Database = new SimpleStringProperty("");
         DatabaseService = new SimpleStringProperty("");
         Medium = new SimpleStringProperty("");
-        PagesCitedStart = new SimpleIntegerProperty(0);
-        PagesCitedEnd = new SimpleIntegerProperty(0);
+        PagesCitedStart = new SimpleStringProperty("");
+        PagesCitedEnd = new SimpleStringProperty("");
     }
 
 /*
@@ -93,22 +93,22 @@ public class Source {
         if (!DatabaseService.get().equals("")) {
             finalOutput += DatabaseService.get() + ". ";
         }
-        if (Version.get() != 0) {
+        if (!Version.get().equals("")) {
             finalOutput += "ver." + Version.get() + ", ";
         }
-        if (Volume.get() != 0) {
+        if (!Volume.get().equals("")) {
             finalOutput += Volume.get() + ", ";
         }
-        if (Edition.get() != 0) {
+        if (!Edition.get().equals("")) {
             finalOutput += Edition.get() + ", ";
         }
-        if (Issue.get() != 0) {
+        if (!Issue.get().equals("")) {
             finalOutput += Issue.get() + ", ";
         }
         if (!Publisher.get().equals("")) {
             finalOutput += Publisher.get() + ", ";
         }
-        if (YearPublished.get() != 0) {
+        if (!YearPublished.get().equals("")) {
             finalOutput += YearPublished.get() + ", ";
         }
         if (!DatePublished.get().equals("")) {
@@ -120,8 +120,8 @@ public class Source {
         if (!URL.get().equals("")) {
             finalOutput += URL.get() + ", ";
         }
-        if (PagesCitedStart.get() != 0 && PagesCitedEnd.get() != 0) {
-            if (PagesCitedEnd.get() > PagesCitedStart.get()) {
+        if (!PagesCitedStart.get().equals("") && !PagesCitedEnd.get().equals("")) {
+            if (Integer.parseInt(PagesCitedEnd.get()) > Integer.parseInt(PagesCitedStart.get())) {
                 finalOutput += "pp " + PagesCitedStart.get() + "-" + PagesCitedEnd.get() + ", ";
             } else {
                 finalOutput += "pp " + PagesCitedStart.get() + "-" + "end" + ", ";
@@ -168,13 +168,13 @@ public class Source {
         if (!WebsiteTitle.get().equals("")) {
             finalOutput += WebsiteTitle.get() + ". ";
         }
-        if (Volume.get() != 0) {
+        if (!Volume.get().equals("")) {
             finalOutput += Volume.get() + ", ";
         }
-        if (Edition.get() != 0) {
+        if (!Edition.get().equals("")) {
             finalOutput += Edition.get() + ", ";
         }
-        if (Issue.get() != 0) {
+        if (!Issue.get().equals("")) {
             finalOutput += "(" + Issue.get() + ")" + ", ";
         }
         if (!Database.get().equals("")) {
@@ -183,7 +183,7 @@ public class Source {
         if (!DatabaseService.get().equals("")) {
             finalOutput += DatabaseService.get() + ". ";
         }
-        if (Version.get() != 0) {
+        if (!Version.get().equals("")) {
             finalOutput += "ver." + Version.get() + ", ";
         }
         if (!Medium.get().equals("")) {
@@ -192,8 +192,8 @@ public class Source {
         if (!URL.get().equals("")) {
             finalOutput += URL.get() + ", ";
         }
-        if (PagesCitedStart.get() != 0 && PagesCitedEnd.get() != 0) {
-            if (PagesCitedEnd.get() > PagesCitedStart.get()) {
+        if (!PagesCitedStart.get().equals("") && !PagesCitedEnd.get().equals("")) {
+            if (Integer.parseInt(PagesCitedEnd.get()) > Integer.parseInt(PagesCitedStart.get())) {
                 finalOutput += "pp " + PagesCitedStart.get() + "-" + PagesCitedEnd.get() + ", ";
             } else {
                 finalOutput += "pp " + PagesCitedStart.get() + "-" + "end" + ", ";
@@ -262,39 +262,39 @@ public class Source {
         this.WebsiteTitle.set(websiteTitle);
     }
 
-    public int getVolume() {
+    public String getVolume() {
         return Volume.get();
     }
 
-    public IntegerProperty volumeProperty() {
+    public StringProperty volumeProperty() {
         return Volume;
     }
 
-    public void setVolume(int volume) {
+    public void setVolume(String volume) {
         this.Volume.set(volume);
     }
 
-    public int getEdition() {
+    public String getEdition() {
         return Edition.get();
     }
 
-    public IntegerProperty editionProperty() {
+    public StringProperty editionProperty() {
         return Edition;
     }
 
-    public void setEdition(int edition) {
+    public void setEdition(String edition) {
         this.Edition.set(edition);
     }
 
-    public int getIssue() {
+    public String getIssue() {
         return Issue.get();
     }
 
-    public IntegerProperty issueProperty() {
+    public StringProperty issueProperty() {
         return Issue;
     }
 
-    public void setIssue(int issue) {
+    public void setIssue(String issue) {
         this.Issue.set(issue);
     }
 
@@ -310,15 +310,15 @@ public class Source {
         this.Publisher.set(publisher);
     }
 
-    public int getYearPublished() {
+    public String getYearPublished() {
         return YearPublished.get();
     }
 
-    public IntegerProperty yearPublishedProperty() {
+    public StringProperty yearPublishedProperty() {
         return YearPublished;
     }
 
-    public void setYearPublished(int yearPublished) {
+    public void setYearPublished(String yearPublished) {
         this.YearPublished.set(yearPublished);
     }
 
@@ -346,15 +346,15 @@ public class Source {
         this.URL.set(URL);
     }
 
-    public int getVersion() {
+    public String getVersion() {
         return Version.get();
     }
 
-    public IntegerProperty versionProperty() {
+    public StringProperty versionProperty() {
         return Version;
     }
 
-    public void setVersion(int version) {
+    public void setVersion(String version) {
         this.Version.set(version);
     }
 
@@ -406,27 +406,27 @@ public class Source {
         this.Medium.set(medium);
     }
 
-    public int getPagesCitedStart() {
+    public String getPagesCitedStart() {
         return PagesCitedStart.get();
     }
 
-    public IntegerProperty pagesCitedStartProperty() {
+    public StringProperty pagesCitedStartProperty() {
         return PagesCitedStart;
     }
 
-    public void setPagesCitedStart(int pagesCitedStart) {
+    public void setPagesCitedStart(String pagesCitedStart) {
         this.PagesCitedStart.set(pagesCitedStart);
     }
 
-    public int getPagesCitedEnd() {
+    public String getPagesCitedEnd() {
         return PagesCitedEnd.get();
     }
 
-    public IntegerProperty pagesCitedEndProperty() {
+    public StringProperty pagesCitedEndProperty() {
         return PagesCitedEnd;
     }
 
-    public void setPagesCitedEnd(int pagesCitedEnd) {
+    public void setPagesCitedEnd(String pagesCitedEnd) {
         this.PagesCitedEnd.set(pagesCitedEnd);
     }
 }

@@ -71,19 +71,19 @@ public class AddSourceController {
                 output.setWebsiteTitle(websiteTitleField.getText());
             }
             if (!volumeField.getText().equals("")) {
-                output.setVolume(Integer.parseInt(volumeField.getText()));
+                output.setVolume(volumeField.getText());
             }
             if (!editionField.getText().equals("")) {
-                output.setEdition(Integer.parseInt(editionField.getText()));
+                output.setEdition(editionField.getText());
             }
             if (!issueField.getText().equals("")) {
-                output.setIssue(Integer.parseInt(issueField.getText()));
+                output.setIssue(issueField.getText());
             }
             if (!publisherField.getText().equals("")) {
                 output.setPublisher(publisherField.getText());
             }
             if (!yearPublishedField.getText().equals("")) {
-                output.setYearPublished(Integer.parseInt(yearPublishedField.getText()));
+                output.setYearPublished(yearPublishedField.getText());
             }
             if (!datePublishedField.getText().equals("")) {
                 output.setDatePublished(datePublishedField.getText());
@@ -92,7 +92,7 @@ public class AddSourceController {
                 output.setURL(URLfield.getText());
             }
             if (!versionField.getText().equals("")) {
-                output.setVersion(Integer.parseInt(versionField.getText()));
+                output.setVersion(versionField.getText());
             }
             if (!databaseField.getText().equals("")) {
                 output.setDatabase(databaseField.getText());
@@ -107,10 +107,10 @@ public class AddSourceController {
                 output.setAnnotation(annotationField.getText());
             }
             if (!pagesCitedField1.getText().equals("")) {
-                output.setPagesCitedStart(Integer.parseInt(pagesCitedField1.getText()));
+                output.setPagesCitedStart(pagesCitedField1.getText());
             }
             if (!pagesCitedField2.getText().equals("")) {
-                output.setPagesCitedEnd(Integer.parseInt(pagesCitedField2.getText()));
+                output.setPagesCitedEnd(pagesCitedField2.getText());
             }
 
             mainWindow.addSource(output);
