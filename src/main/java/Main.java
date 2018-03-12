@@ -1,4 +1,6 @@
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,27 +16,16 @@ public class Main extends Application {
     Stage primaryStage;
     GridPane rootLayout;
 
+    ObservableList<Source> sourceList;
+
+
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        /**
-         try{
-         Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
-         primaryStage.setTitle("Bibliography Management Tool");
-         primaryStage.setScene(new Scene(root));
-         MainWindowController.sourceList = new ArrayList<>();
-         MainWindowController.currentlySelected = null;
-
-         primaryStage.show();
-         }
-         catch(Exception e){
-         System.out.print(e);
-         }
-         **/
-
+        sourceList = FXCollections.observableArrayList();
         this.primaryStage = primaryStage;
 
         initRootLayout();
@@ -48,7 +39,10 @@ public class Main extends Application {
             loader.setLocation(getClass().getResource("MainWindow.fxml"));
             rootLayout = loader.load();
 
-            Scene mainScene = new Scene(rootLayout,800,600);
+            MainWindowController controller = loader.getController();
+            controller.setMainWindow(this);
+            
+            Scene mainScene = new Scene(rootLayout, 800, 600);
             primaryStage.setScene(mainScene);
             primaryStage.setTitle("Bibliography Management Tool");
             primaryStage.show();
@@ -65,6 +59,9 @@ public class Main extends Application {
             AnchorPane listOfSources = loader.load();
 
             rootLayout.add(listOfSources, 0, 1);
+            ListOfSourcesController controller = loader.getController();
+            controller.setMainWindow(this);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -81,6 +78,14 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public ObservableList<Source> getSourceList() {
+        return sourceList;
+    }
+
+    public void addSource(Source source) {
+        sourceList.add(source);
     }
 
 }

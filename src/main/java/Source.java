@@ -47,13 +47,13 @@ public class Source {
         PagesCitedEnd = new SimpleIntegerProperty(0);
     }
 
-    public void AddAuthor(String newAuthor){
+    public void AddAuthor(String newAuthor) {
         author.add(new SimpleStringProperty(newAuthor));
     }
 
-    public void RemoveAuthor(String badAuthor){
-        for (StringProperty s: author) {
-            if(s.get().equals(badAuthor)){
+    public void RemoveAuthor(String badAuthor) {
+        for (StringProperty s : author) {
+            if (s.get().equals(badAuthor)) {
                 author.remove(s);
                 break;
             }
@@ -64,10 +64,10 @@ public class Source {
         String finalOutput = "";
         if (!author.isEmpty()) {
             String authorString = "";
-            for (StringProperty s:author) {
+            for (StringProperty s : author) {
                 authorString += s.get() + ", ";
             }
-            authorString = authorString.substring(0, authorString.length()-2);
+            authorString = authorString.substring(0, authorString.length() - 2);
             finalOutput += authorString + ". ";
         }
         if (!title.get().equals("")) {
@@ -131,10 +131,10 @@ public class Source {
         String finalOutput = "";
         if (!author.isEmpty()) {
             String authorString = "";
-            for (StringProperty s:author) {
+            for (StringProperty s : author) {
                 authorString += s.get() + ", ";
             }
-            authorString = authorString.substring(0, authorString.length()-2);
+            authorString = authorString.substring(0, authorString.length() - 2);
             finalOutput += authorString + ". ";
         }
         if (!DatePublished.get().equals("")) {
