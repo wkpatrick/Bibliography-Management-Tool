@@ -121,10 +121,15 @@ public class Source {
             finalOutput += URL.get() + ", ";
         }
         if (!PagesCitedStart.get().equals("") && !PagesCitedEnd.get().equals("")) {
-            if (Integer.parseInt(PagesCitedEnd.get()) > Integer.parseInt(PagesCitedStart.get())) {
-                finalOutput += "pp " + PagesCitedStart.get() + "-" + PagesCitedEnd.get() + ", ";
-            } else {
-                finalOutput += "pp " + PagesCitedStart.get() + "-" + "end" + ", ";
+            try {
+                if (Integer.parseInt(PagesCitedEnd.get()) > Integer.parseInt(PagesCitedStart.get())) {
+                    finalOutput += "pp " + PagesCitedStart.get() + "-" + PagesCitedEnd.get() + ", ";
+                } else {
+                    finalOutput += "pp " + PagesCitedStart.get() + "-" + "end" + ", ";
+                }
+            }
+            catch(Exception e){
+                System.out.println("Pages cited formatting error!");
             }
         }
         if (!Annotation.get().equals("")) {
@@ -193,10 +198,15 @@ public class Source {
             finalOutput += URL.get() + ", ";
         }
         if (!PagesCitedStart.get().equals("") && !PagesCitedEnd.get().equals("")) {
-            if (Integer.parseInt(PagesCitedEnd.get()) > Integer.parseInt(PagesCitedStart.get())) {
-                finalOutput += "pp " + PagesCitedStart.get() + "-" + PagesCitedEnd.get() + ", ";
-            } else {
-                finalOutput += "pp " + PagesCitedStart.get() + "-" + "end" + ", ";
+            try {
+                if (Integer.parseInt(PagesCitedEnd.get()) > Integer.parseInt(PagesCitedStart.get())) {
+                    finalOutput += "pp " + PagesCitedStart.get() + "-" + PagesCitedEnd.get() + ", ";
+                } else {
+                    finalOutput += "pp " + PagesCitedStart.get() + "-" + "end" + ", ";
+                }
+            }
+            catch(Exception e){
+                System.out.println("Pages cited formatting error!");
             }
         }
         if (!Annotation.get().equals("")) {
