@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class MainWindowController {
@@ -52,4 +53,38 @@ public class MainWindowController {
         this.mainWindow = mainWindow;
     }
 
+    public void createNewList(ActionEvent actionEvent) {
+    }
+
+    public void openList(ActionEvent actionEvent) {
+    }
+
+    public void saveList(ActionEvent actionEvent) {
+    }
+
+    public void importSources(ActionEvent actionEvent) {
+        try {
+            Stage primaryStage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("Import.fxml"));
+
+            GridPane rootLayout = (GridPane) loader.load();
+
+
+            primaryStage.setTitle("Import Sources");
+            primaryStage.setScene(new Scene(rootLayout));
+            primaryStage.show();
+
+            AddSourceController controller = loader.getController();
+            controller.setMainWindow(this.mainWindow);
+
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void exportSources(ActionEvent actionEvent) {
+
+    }
 }

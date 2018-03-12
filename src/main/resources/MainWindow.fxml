@@ -24,9 +24,11 @@
     </rowConstraints>
     <MenuBar fx:id="menu" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="0" GridPane.valignment="TOP">
         <Menu fx:id="menuFile" text="File">
-            <MenuItem text="New List" />
-            <MenuItem text="Open List" />
-            <MenuItem text="Save List" />
+            <MenuItem onAction="#createNewList" text="New List" />
+            <MenuItem onAction="#openList" text="Open List" />
+            <MenuItem onAction="#saveList" text="Save List" />
+            <MenuItem onAction="#importSources" text="Import" />
+            <MenuItem onAction="#exportSources" text="Export" />
             <MenuItem onAction="#Close" text="Exit" />
         </Menu>
         <Menu fx:id="menuSettings" text="Settings">
