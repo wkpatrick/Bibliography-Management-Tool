@@ -51,6 +51,7 @@ public class AddSourceController {
     public void SaveSource() {
         if (!titleField.getText().equals("")) {
             Source output = new Source(titleField.getText());
+            /*
             if (authorField.getText() != "") {
                 ArrayList<String> list1 = new ArrayList<>(Arrays.asList(authorField.getText().split("\\s*,\\s*")));
                 ArrayList<StringProperty> list2 = new ArrayList<>();
@@ -58,6 +59,10 @@ public class AddSourceController {
                     list2.add(new SimpleStringProperty(s));
                 }
                 output.setAuthor(list2);//yeesh
+            }
+            */
+            if(!authorField.getText().equals("")) {
+                output.setAuthor(authorField.getText());
             }
             if (!magazineTitleField.getText().equals("")) {
                 output.setMagazineTitle(magazineTitleField.getText());

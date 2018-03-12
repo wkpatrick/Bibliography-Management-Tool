@@ -25,7 +25,6 @@ public class MainWindowController {
 
             AnchorPane rootLayout = (AnchorPane) loader.load();
 
-
             primaryStage.setTitle("New Source");
             primaryStage.setScene(new Scene(rootLayout));
             primaryStage.show();
@@ -70,7 +69,6 @@ public class MainWindowController {
 
             GridPane rootLayout = (GridPane) loader.load();
 
-
             primaryStage.setTitle("Import Sources");
             primaryStage.setScene(new Scene(rootLayout));
             primaryStage.show();
@@ -92,13 +90,13 @@ public class MainWindowController {
 
             GridPane rootLayout = (GridPane) loader.load();
 
-
             primaryStage.setTitle("Export Sources");
             primaryStage.setScene(new Scene(rootLayout));
             primaryStage.show();
 
             ExportController controller = loader.getController();
             controller.setMainWindow(this.mainWindow);
+            controller.initSources();
 
 
         } catch (Exception e) {

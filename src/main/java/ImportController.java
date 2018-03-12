@@ -31,9 +31,7 @@ public class ImportController
     private File inputFile;
 
     public List<Source> importSources;
-    public Source testSource;
-
-    public static final ObservableList outputSource = FXCollections.observableArrayList();
+    private Source testSource;
 
     public void openFile(ActionEvent actionEvent)
     {
@@ -68,10 +66,6 @@ public class ImportController
         testSource = objectMapper.readValue(jsonData, Source.class);
 
         System.out.println(testSource.getTitle());
-
-        //TODO: Checkbox selection format will be implemented.
-        outputSource.add(testSource.getTitle());
-        sourcesList.setItems(outputSource);
     }
 
     private boolean validFile()

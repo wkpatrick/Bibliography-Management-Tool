@@ -8,7 +8,7 @@ import java.util.List;
 public class Source {
 
     StringProperty title;
-    List<StringProperty> author;
+    StringProperty author;
     StringProperty MagazineTitle;
     StringProperty WebsiteTitle;
     IntegerProperty Volume;
@@ -29,6 +29,7 @@ public class Source {
     public Source(String sourceTitle) {
         title = new SimpleStringProperty("");
         title.set(sourceTitle);
+        author = new SimpleStringProperty("");
         MagazineTitle = new SimpleStringProperty("");
         WebsiteTitle = new SimpleStringProperty("");
         Volume = new SimpleIntegerProperty(0);
@@ -47,6 +48,7 @@ public class Source {
         PagesCitedEnd = new SimpleIntegerProperty(0);
     }
 
+/*
     public void AddAuthor(String newAuthor) {
         author.add(new SimpleStringProperty(newAuthor));
     }
@@ -59,9 +61,11 @@ public class Source {
             }
         }
     }
+*/
 
     public String ToMLA() {
         String finalOutput = "";
+        /*
         if (!author.isEmpty()) {
             String authorString = "";
             for (StringProperty s : author) {
@@ -69,6 +73,10 @@ public class Source {
             }
             authorString = authorString.substring(0, authorString.length() - 2);
             finalOutput += authorString + ". ";
+        }
+        */
+        if (!author.get().equals("")) {
+            finalOutput += author.get() + ". ";
         }
         if (!title.get().equals("")) {
             finalOutput += title.get() + ". ";
@@ -129,6 +137,7 @@ public class Source {
     public String ToAPA()//APA wants some things in italics. Could be an issue.
     {
         String finalOutput = "";
+        /*
         if (!author.isEmpty()) {
             String authorString = "";
             for (StringProperty s : author) {
@@ -136,6 +145,11 @@ public class Source {
             }
             authorString = authorString.substring(0, authorString.length() - 2);
             finalOutput += authorString + ". ";
+        }
+        */
+
+        if(!author.get().equals("")){
+            finalOutput += author.get() + ". ";
         }
         if (!DatePublished.get().equals("")) {
             finalOutput += "(" + DatePublished.get() + ")" + ", ";
@@ -204,12 +218,24 @@ public class Source {
         this.title.set(title);
     }
 
+    /*
     public List<StringProperty> getAuthor() {
         return author;
     }
 
     public void setAuthor(List<StringProperty> author) {
         this.author = author;
+    }
+    */
+
+    public String getAuthor()
+    {
+        return author.get();
+    }
+
+    public void setAuthor(String author)
+    {
+        this.author.set(author);
     }
 
     public String getMagazineTitle() {
