@@ -86,6 +86,7 @@ public class Main extends Application {
 
     public void addSource(Source source) {
         sourceList.add(source);
+        System.out.println(source.getTitle());
     }
 
 }
