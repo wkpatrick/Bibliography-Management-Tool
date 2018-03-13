@@ -1,8 +1,13 @@
 import com.jfoenix.controls.JFXToggleButton;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 public class ExportController {
     public TableView<Source> sourceTable;
@@ -39,8 +44,8 @@ public class ExportController {
     }
 
     public void exportSources(ActionEvent actionEvent) {
-        ObservableList<Source> exportList = sourceList;
-        exportList.clear();
+        ObservableList<Source> exportList;
+        exportList = FXCollections.observableArrayList();
 
         for(int i = 0; i < sourceTable.getItems().size(); i++)
         {
@@ -48,6 +53,24 @@ public class ExportController {
             {
                 exportList.add(sourceTable.getItems().get(i));
             }
+        }
+
+        try {
+            Stage primaryStage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("ExportDisplay.fxml"));
+
+            GridPane rootLayout = (GridPane) loader.load();
+
+            primaryStage.setTitle("Exported Sources");
+            primaryStage.setScene(new Scene(rootLayout));
+            primaryStage.show();
+
+            ExportDisplayController controller = loader.getController();
+            controller.loadSources(exportList, toggleButtonStyle.isSelected());
+
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
 

@@ -3,7 +3,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Source {
 
@@ -65,6 +65,73 @@ public class Source {
         }
     }
 */
+    public String ToMLAHtml() {
+        String finalOutput = "";
+
+        if (!author.get().equals("")) {
+            finalOutput += author.get() + ". ";
+        }
+        if (!title.get().equals("")) {
+            finalOutput += "<i>" + title.get() + "</i>. ";
+        }
+        if (!MagazineTitle.get().equals("")) {
+            finalOutput += "\"" + MagazineTitle.get() + "\". ";
+        }
+        if (!WebsiteTitle.get().equals("")) {
+            finalOutput += "<i>" + WebsiteTitle.get() + "</i>. ";
+        }
+        if (!Database.get().equals("")) {
+            finalOutput += Database.get() + ". ";
+        }
+        if (!DatabaseService.get().equals("")) {
+            finalOutput += DatabaseService.get() + ". ";
+        }
+        if (!Version.get().equals("")) {
+            finalOutput += "ver." + Version.get() + ", ";
+        }
+        if (!Volume.get().equals("")) {
+            finalOutput += Volume.get() + ", ";
+        }
+        if (!Edition.get().equals("")) {
+            finalOutput += Edition.get() + ", ";
+        }
+        if (!Issue.get().equals("")) {
+            finalOutput += Issue.get() + ", ";
+        }
+        if (!Publisher.get().equals("")) {
+            finalOutput += Publisher.get() + ", ";
+        }
+        if (!YearPublished.get().equals("")) {
+            finalOutput += YearPublished.get() + ", ";
+        }
+        if (!DatePublished.get().equals("")) {
+            finalOutput += DatePublished.get() + ", ";
+        }
+        if (!Medium.get().equals("")) {
+            finalOutput += Medium.get() + ", ";
+        }
+        if (!URL.get().equals("")) {
+            finalOutput += URL.get() + ", ";
+        }
+        if (!PagesCitedStart.get().equals("") && !PagesCitedEnd.get().equals("")) {
+            try {
+                if (Integer.parseInt(PagesCitedEnd.get()) > Integer.parseInt(PagesCitedStart.get())) {
+                    finalOutput += "pp " + PagesCitedStart.get() + "-" + PagesCitedEnd.get() + ", ";
+                } else {
+                    finalOutput += "pp " + PagesCitedStart.get() + "-" + "end" + ", ";
+                }
+            }
+            catch(Exception e){
+                System.out.println("Pages cited formatting error!");
+            }
+        }
+        if (!Annotation.get().equals("")) {
+            finalOutput += Annotation.get() + ", ";
+        }
+        finalOutput = finalOutput.substring(0, finalOutput.length() - 2);
+
+        return finalOutput;
+    }
 
     public String ToMLA() {
         String finalOutput = "";
@@ -119,6 +186,73 @@ public class Source {
         }
         if (!Medium.get().equals("")) {
             finalOutput += Medium.get() + ", ";
+        }
+        if (!URL.get().equals("")) {
+            finalOutput += URL.get() + ", ";
+        }
+        if (!PagesCitedStart.get().equals("") && !PagesCitedEnd.get().equals("")) {
+            try {
+                if (Integer.parseInt(PagesCitedEnd.get()) > Integer.parseInt(PagesCitedStart.get())) {
+                    finalOutput += "pp " + PagesCitedStart.get() + "-" + PagesCitedEnd.get() + ", ";
+                } else {
+                    finalOutput += "pp " + PagesCitedStart.get() + "-" + "end" + ", ";
+                }
+            }
+            catch(Exception e){
+                System.out.println("Pages cited formatting error!");
+            }
+        }
+        if (!Annotation.get().equals("")) {
+            finalOutput += Annotation.get() + ", ";
+        }
+        finalOutput = finalOutput.substring(0, finalOutput.length() - 2);
+        return finalOutput;
+    }
+
+    public String ToAPAHtml()
+    {
+        String finalOutput = "";
+
+        if(!author.get().equals("")){
+            finalOutput += author.get() + ". ";
+        }
+        if (!DatePublished.get().equals("")) {
+            finalOutput += "(" + DatePublished.get() + ")" + ", ";
+        } else {
+            finalOutput += "n.d." + ", ";
+        }
+        if (!title.get().equals("")) {
+            finalOutput += title.get() + ". ";
+        }
+        if (!Publisher.get().equals("")) {
+            finalOutput += Publisher.get() + ", ";
+        }
+        if (!MagazineTitle.get().equals("")) {
+            finalOutput += "<i>" + MagazineTitle.get() + "</i>. ";
+        }
+        if (!WebsiteTitle.get().equals("")) {
+            finalOutput += WebsiteTitle.get() + ". ";
+        }
+        if (!Volume.get().equals("")) {
+            finalOutput += "<i>" + Volume.get() + "</i>, ";
+        }
+        if (!Edition.get().equals("")) {
+            finalOutput += "<i>" + Edition.get() + "</i>, ";
+        }
+        if (!Issue.get().equals("")) {
+            finalOutput += "(" + Issue.get() + ")" + ", ";
+        }
+        if (!Database.get().equals("")) {
+            finalOutput += Database.get() + ". ";
+        }
+        if (!DatabaseService.get().equals("")) {
+            finalOutput += DatabaseService.get() + ". ";
+        }
+        if (!Version.get().equals("")) {
+            finalOutput += "ver." + Version.get() + ", ";
+        }
+        if (!Medium.get().equals("")) {
+            finalOutput += "[" + Medium.get() + "], ";
         }
         if (!URL.get().equals("")) {
             finalOutput += URL.get() + ", ";
