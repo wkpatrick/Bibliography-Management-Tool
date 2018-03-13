@@ -24,8 +24,6 @@ public class MainWindowController {
 
     private Main mainWindow;
 
-    public static Source currentlySelected;
-
     //Some variables so I can access some of the fxml objects
     //private Main mainWindow;
     @FXML
@@ -60,11 +58,6 @@ public class MainWindowController {
     public void Close(ActionEvent actionEvent) {
         //save current list?
         Platform.exit();
-    }
-
-    public void UpdateSelected(ActionEvent actionEvent) {
-        TableView<Source> source = (TableView) actionEvent.getSource();
-        currentlySelected = source.getSelectionModel().getSelectedItem();
     }
 
     public void setMainWindow(Main mainWindow) {
@@ -128,10 +121,9 @@ public class MainWindowController {
         userFile = fileChooser.showOpenDialog(null);
         Source sTemp = new Source("");
         //ObservableList<Source> tempList = FXCollections.observableArrayList();;
-        if(userFile.exists())
-        {
-                mainWindow.sourceList.clear();
-                try (Scanner scan = new Scanner(userFile)) {
+        if (userFile.exists()) {
+            mainWindow.sourceList.clear();
+            try (Scanner scan = new Scanner(userFile)) {
                 while (scan.hasNextLine()) {
 
                     String x = "";
@@ -190,28 +182,22 @@ public class MainWindowController {
                     }
                     if (x.contains("PagesCitedEnd")) {
                         sTemp.setPagesCitedEnd(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
-
+                    }
                     if (x.contains("“MagazineTitle”")) {
                         sTemp.setMagazineTitle(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
                     }
 
-                        //Here it should be adding the source to the source list, resetting the source temp, sTemp and starting again until we reach the end of the file.
-                        // System.out.println(sTemp.getTitle() + " hello hello");
+                    //Here it should be adding the source to the source list, resetting the source temp, sTemp and starting again until we reach the end of the file.
+                    // System.out.println(sTemp.getTitle() + " hello hello");
 
-                        mainWindow.addSource(sTemp);
-                        sTemp = new Source("");
-                    }
-
-
+                    mainWindow.addSource(sTemp);
+                    sTemp = new Source("");
                 }
 
 
-
-
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             }
-                catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
         }//end IF file exists.
     }
 
