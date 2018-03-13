@@ -81,12 +81,12 @@ public class Main extends Application {
     }
 
     public ObservableList<Source> getSourceList() {
+        System.out.println(sourceList);
         return sourceList;
     }
 
     public void addSource(Source source) {
         sourceList.add(source);
-        System.out.println(source.getTitle());
     }
 
 }

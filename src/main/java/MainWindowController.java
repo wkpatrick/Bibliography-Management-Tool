@@ -129,95 +129,86 @@ public class MainWindowController {
         Source sTemp = new Source("");
         try (Scanner scan = new Scanner(userFile)) {
             while (scan.hasNextLine()) {
-                //System.out.println(scan.nextLine());
+
                 String x = "";
-                if(scan.nextLine() != null) {
+                if(scan.nextLine() != "") {
                      x = scan.nextLine();
+                     //System.out.println(x);
                 }
 
+
+                if(x.contains("“Title”"))
+                {
+                   // System.out.println("Debug: "+ x);
+                   // System.out.println("Debug2: " + x.substring(x.indexOf(":")+1, x.indexOf(",")) );
+                    sTemp.setTitle(x.substring(x.indexOf(":")+1, x.indexOf(",")));
+                   // System.out.println(sTemp.getTitle());
+                }
                 if(x.contains("Author"))
                 {
 
-                    String y = x.substring(x.indexOf(":")+1, x.indexOf(","));
-                    sTemp.setAuthor(y);
-                }
-                if(x.contains("Title"))
-                {
-                    String y = x.substring(x.indexOf(":")+1, x.indexOf(","));
-                    //System.out.println(y);
-                    sTemp.setTitle(y);
+                    //String y = x.substring(x.indexOf(":")+1, x.indexOf(","));
+                    sTemp.setAuthor(x.substring(x.indexOf(":")+1, x.indexOf(",")));
                 }
                 if(x.contains("Volume"))
                 {
-                    String y = x.substring(x.indexOf(":")+1, x.indexOf(","));
-                    sTemp.setVolume(y);
+                    sTemp.setVolume(x.substring(x.indexOf(":")+1, x.indexOf(",")));
                 }
                 if(x.contains("Edition"))
                 {
-                   String y = x.substring(x.indexOf(":")+1, x.indexOf(","));
-                    sTemp.setEdition(y);
+                    sTemp.setEdition(x.substring(x.indexOf(":")+1, x.indexOf(",")));
                 }
                 if(x.contains("Publisher"))
                 {
-                    String y = x.substring(x.indexOf(":")+1, x.indexOf(","));
-                    sTemp.setPublisher(y);
+                    sTemp.setPublisher(x.substring(x.indexOf(":")+1, x.indexOf(",")));
                 }
                 if(x.contains("DatePublished"))
                 {
-                    String y = x.substring(x.indexOf(":")+1, x.indexOf(","));
-                    sTemp.setDatePublished(y);
+                    sTemp.setDatePublished(x.substring(x.indexOf(":")+1, x.indexOf(",")));
                 }
                 if(x.contains("WebsiteTitle"))
                 {
-                    String y = x.substring(x.indexOf(":")+1, x.indexOf(","));
-                    sTemp.setWebsiteTitle(y);
+                    sTemp.setWebsiteTitle(x.substring(x.indexOf(":")+1, x.indexOf(",")));
                 }
                 if(x.contains("URL"))
                 {
-                    String y = x.substring(x.indexOf(":")+1, x.indexOf(","));
-                    sTemp.setURL(y);
+                    sTemp.setURL(x.substring(x.indexOf(":")+1, x.indexOf(",")));
                 }
                 if(x.contains("Version"))
                 {
-                    String y = x.substring(x.indexOf(":")+1, x.indexOf(","));
-                    sTemp.setVersion(y);
+                    sTemp.setVersion(x.substring(x.indexOf(":")+1, x.indexOf(",")));
                 }
                 if(x.contains("Annotation"))
                 {
-                    String y = x.substring(x.indexOf(":")+1, x.indexOf(","));
-                    sTemp.setAnnotation(y);
+                    sTemp.setAnnotation(x.substring(x.indexOf(":")+1, x.indexOf(",")));
                 }
                 if(x.contains("Database") && !x.contains("Service"))
                 {
-                    String y = x.substring(x.indexOf(":")+1, x.indexOf(","));
-                    sTemp.setDatabase(y);
+                    sTemp.setDatabase(x.substring(x.indexOf(":")+1, x.indexOf(",")));
                 }
                 if(x.contains("DatabaseService"))
                 {
-                    String y = x.substring(x.indexOf(":")+1, x.indexOf(","));
-                    sTemp.setDatabaseService(y);
+                    sTemp.setDatabaseService(x.substring(x.indexOf(":")+1, x.indexOf(",")));
                 }
                 if(x.contains("Medium"))
                 {
-                    String y = x.substring(x.indexOf(":")+1, x.indexOf(","));
-                    sTemp.setMedium(y);
+                    sTemp.setMedium(x.substring(x.indexOf(":")+1, x.indexOf(",")));
                 }
                 if(x.contains("PageCitedStart"))
                 {
-                    String y = x.substring(x.indexOf(":")+1, x.indexOf(","));
-                    sTemp.setPagesCitedStart(y);
+                    sTemp.setPagesCitedStart(x.substring(x.indexOf(":")+1, x.indexOf(",")));
                 }
                 if(x.contains("PagesCitedEnd"))
                 {
-                    String y = x.substring(x.indexOf(":")+1, x.indexOf(","));
-                    sTemp.setPagesCitedEnd(y);
+                    sTemp.setPagesCitedEnd(x.substring(x.indexOf(":")+1, x.indexOf(",")));
+
                 }
-                if(x.contains("MagazineTitle") && x.contains("EOL"))
+                if(x.contains("“MagazineTitle”"))
                 {
-                    String y = x.substring(x.indexOf(":")+1, x.indexOf(","));
-                    sTemp.setMagazineTitle(y);
-                    
+                    sTemp.setMagazineTitle(x.substring(x.indexOf(":")+1, x.indexOf(",")));
+
                     //Here it should be adding the source to the source list, resetting the source temp, sTemp and starting again until we reach the end of the file.
+                   // System.out.println(sTemp.getTitle() + " hello hello");
                     mainWindow.addSource(sTemp);
                     sTemp = new Source("");
                 }
@@ -245,22 +236,22 @@ public class MainWindowController {
             try {
 
                 String JsonFileToDisk = ""+
-                        "           \t           \t“Author” : %s,\n" +
-                        "           \t           \t“Title” : %s,\n" +
-                        "           \t           \t“Volume” : %s,\n" +
-                        "           \t           \t“Edition” : %s,\n" +
-                        "           \t           \t“Publisher” : %s,\n" +
-                        "                          \t“DatePublished” : %s,\n" +
-                        "                          \t“WebsiteTitle” : %s,\n" +
-                        "                          \t“URL” : %s,\n" +
-                        "                          \t“Version” : %s,\n" +
-                        "                          \t“Annotation” : %s,\n" +
-                        "                          \t“Database” : %s,\n" +
-                        "                          \t“DatabaseService” : %s,\n" +
-                        "                          \t“Medium” : %s,\n" +
-                        "                          \t“PagesCitedStart” : %s,\n" +
-                        "                          \t“PagesCitedEnd” : %s,\n" +
-                        "                          \t“MagazineTitle” : %s,EOL\n";
+                        "“Author”:%s,\n" +
+                        "“Title”:%s,\n" +
+                        "“Volume”:%s,\n" +
+                        "“Edition”:%s,\n" +
+                        "“Publisher”:%s,\n" +
+                        "“DatePublished”:%s,\n" +
+                        "“WebsiteTitle”:%s,\n" +
+                        "“URL”:%s,\n" +
+                        "“Version”:%s,\n" +
+                        "“Annotation”:%s,\n" +
+                        "“Database”:%s,\n" +
+                        "“DatabaseService”:%s,\n" +
+                        "“Medium”:%s,\n" +
+                        "“PagesCitedStart”:%s,\n" +
+                        "“PagesCitedEnd”:%s,\n" +
+                        "“MagazineTitle”:%s,\n";
 
                 FileWriter fileWriter = new FileWriter(file);
                 //fileWriter.write(mainWindow.getSourceList().toString());
