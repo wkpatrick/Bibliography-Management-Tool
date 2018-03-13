@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import javafx.event.ActionEvent;
-import javafx.scene.input.KeyEvent;
 
 public class SourceListViewController {
     private Main mainWindow;
@@ -13,7 +12,9 @@ public class SourceListViewController {
     @FXML
     private TableColumn<Source, String> titleColumn;
     @FXML
-    private TableColumn<Source, String> databaseColumn;
+    private TableColumn<Source, String> authorColumn;
+    @FXML
+    private TableColumn<Source, String> mediumColumn;
     @FXML
     TextField titleField;
     @FXML
@@ -62,8 +63,11 @@ public class SourceListViewController {
         titleColumn.setCellValueFactory(cellData -> cellData.getValue().titleProperty());
         titleColumn.setText("Title");
 
-        databaseColumn.setCellValueFactory(cellData -> cellData.getValue().databaseProperty());
-        databaseColumn.setText("Database");
+        authorColumn.setCellValueFactory(cellData -> cellData.getValue().authorProperty());
+        authorColumn.setText("Author");
+
+        mediumColumn.setCellValueFactory(cellData -> cellData.getValue().mediumProperty());
+        mediumColumn.setText("Medium");
 
         sourceTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showSource(newValue)
