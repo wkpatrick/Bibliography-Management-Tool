@@ -51,6 +51,7 @@ public class AddSourceController {
     public void SaveSource() {
         if (!titleField.getText().equals("")) {
             Source output = new Source(titleField.getText());
+            //test
             /*
             if (authorField.getText() != "") {
                 ArrayList<String> list1 = new ArrayList<>(Arrays.asList(authorField.getText().split("\\s*,\\s*")));

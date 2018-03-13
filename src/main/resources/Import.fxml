@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <GridPane alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ImportController">
     <padding><Insets bottom="25" left="25" right="25" top="25" /></padding>
-    <Label text="Select File for Import" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+    <Label text="Select File for Import" GridPane.columnIndex="0" GridPane.rowIndex="0" />
     <VBox alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="1">
         <HBox alignment="CENTER">
             <padding><Insets bottom="5" top="5" /></padding>
             <TextField fx:id="filepathField" />
             <Button fx:id="filepathButton" onAction="#openFile" text="..." />
         </HBox>
-        <Button fx:id="openButton" text="Open" onAction="#openContents"/>
+        <Button fx:id="openButton" onAction="#openContents" text="Open" />
         <padding><Insets bottom="5" top="5" /></padding>
     </VBox>
     <VBox alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="2">
@@ -30,7 +29,7 @@
     <HBox alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="3">
         <padding><Insets bottom="5" top="5" /></padding>
         <Button fx:id="okButton" text="OK" />
-        <Button fx:id="cancelButton" text="Cancel" />
+        <Button fx:id="cancelButton" onAction="#Close" text="Cancel" />
     </HBox>
     <columnConstraints>
         <ColumnConstraints />
@@ -39,5 +38,6 @@
         <RowConstraints />
         <RowConstraints />
         <RowConstraints />
+      <RowConstraints />
     </rowConstraints>
 </GridPane>

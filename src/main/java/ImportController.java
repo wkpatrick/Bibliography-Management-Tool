@@ -52,6 +52,10 @@ public class ImportController
         }
     }
 
+    public void Close(){
+        cancelButton.getScene().getWindow().hide();
+    }
+
     //Currently opens files with just ONE json object
     //TODO: Open multiple json objects from a file.
     public void openContents(ActionEvent actionEvent) throws IOException {
