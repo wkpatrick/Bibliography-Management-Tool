@@ -268,5 +268,26 @@ public class SourceListViewController {
         this.mainWindow = mainWindow;
         testList = mainWindow.getSourceList();
         sourceTable.setItems(testList);
+
+        Source source1 = new Source("How to not fall behind schdule");
+        source1.setAuthor("Not Group 4");
+        source1.setYearPublished("2018");
+        source1.setMedium("Book");
+
+        Source source2 = new Source("Writing Code Gud");
+        source2.setAuthor("Still Not Group 4");
+        source2.setURL("wkrp.xyz/notgroup4");
+        source2.setMedium("Web");
+
+        Source source3 = new Source("Accomplishing Thigs On Time");
+        source3.setAuthor("Some Group That Is On Time");
+        source3.setMedium("Smoke Signal");
+        source3.setYearPublished("1000");
+
+        testList.add(source1);
+        testList.add(source2);
+        testList.add(source3);
+
+
     }
 }
