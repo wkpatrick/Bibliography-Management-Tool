@@ -1,6 +1,7 @@
 import javafx.beans.property.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
 
 import java.util.List;
 
@@ -440,5 +441,10 @@ public class Source {
 
     public void setPagesCitedEnd(String pagesCitedEnd) {
         this.PagesCitedEnd.set(pagesCitedEnd);
+    }
+
+
+    public ObservableValue<Boolean> isSelected() {
+        return Selected;
     }
 }
