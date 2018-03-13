@@ -1,37 +1,29 @@
-import com.fasterxml.jackson.databind.ObjectMapper;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import jdk.nashorn.internal.parser.JSONParser;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
+import java.util.ArrayList;
 
 
 public class ImportController
 {
+    public ListView<String> sourcesDisplayList;
     private Main mainWindow;
 
     public TextField filepathField;
     public Button filepathButton;
     public Button openButton;
-    public ListView sourcesList;
     public Button okButton;
     public Button cancelButton;
     private File inputFile;
-
-    public List<Source> importSources;
-    private Source testSource;
 
     public void openFile(ActionEvent actionEvent)
     {
@@ -46,9 +38,10 @@ public class ImportController
             inputFile = fileChooser.showOpenDialog(new Stage());
             filepathField.setText(inputFile.getAbsolutePath());
         }
-        catch(Exception ignored)
+        catch(Exception e)
         {
-
+            //noinspection ThrowablePrintedToSystemOut
+            System.out.print(e);
         }
     }
 
@@ -56,20 +49,32 @@ public class ImportController
         cancelButton.getScene().getWindow().hide();
     }
 
-    //Currently opens files with just ONE json object
     //TODO: Open multiple json objects from a file.
     public void openContents(ActionEvent actionEvent) throws IOException {
-        sourcesList.getItems().clear();
+        sourcesDisplayList.getItems().clear();
 
         if(!validFile())
             return;
 
-        byte[] jsonData = Files.readAllBytes(Paths.get(inputFile.getAbsolutePath()));
-        ObjectMapper objectMapper = new ObjectMapper();
+        byte[] rawData = Files.readAllBytes(Paths.get(inputFile.getAbsolutePath()));
+        String fullData = new String(rawData);
 
-        testSource = objectMapper.readValue(jsonData, Source.class);
+        ArrayList<String> returnString = new ArrayList<>();
+        ArrayList<String> outputString = new ArrayList<>();
 
-        System.out.println(testSource.getTitle());
+        String buffer;
+
+        int temp = 0;
+        for(int index = 0; index < fullData.length(); index++)
+        {
+            if(fullData.charAt(index) == ',')
+            {
+                returnString.add(fullData.substring(temp, index));
+                temp = index+1;
+            }
+        }
+
+        sourcesDisplayList.getItems().addAll(returnString);
     }
 
     private boolean validFile()

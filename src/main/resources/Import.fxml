@@ -24,7 +24,7 @@
         <padding><Insets bottom="5" top="5" /></padding>
     </VBox>
     <VBox alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="2">
-        <ListView fx:id="sourcesList" />
+        <ListView fx:id="sourcesDisplayList" />
     </VBox>
     <HBox alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="3">
         <padding><Insets bottom="5" top="5" /></padding>
