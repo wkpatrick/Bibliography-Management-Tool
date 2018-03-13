@@ -72,7 +72,6 @@ public class SourceListViewController {
         deleteItem = new MenuItem("Delete Source");
 
         deleteItem.setOnAction((ActionEvent event) -> {
-            System.out.println("Menu item 1");
             int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
             if (selectedIndex >= 0) {
                 sourceTable.getItems().remove(selectedIndex);
