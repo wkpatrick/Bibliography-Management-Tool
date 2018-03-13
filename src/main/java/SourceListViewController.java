@@ -1,9 +1,9 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+
+import javafx.event.ActionEvent;
 
 public class SourceListViewController {
     private Main mainWindow;
@@ -49,6 +49,10 @@ public class SourceListViewController {
     TextField pagesCitedField1;
     @FXML
     TextField pagesCitedField2;
+    @FXML
+    private ContextMenu rightClickMenu;
+    @FXML
+    private MenuItem deleteItem;
 
     private ObservableList<Source> testList = FXCollections.observableArrayList();
 
@@ -63,6 +67,21 @@ public class SourceListViewController {
         sourceTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showSource(newValue)
         );
+
+        rightClickMenu = new ContextMenu();
+        deleteItem = new MenuItem("Delete Source");
+
+        deleteItem.setOnAction((ActionEvent event) -> {
+            System.out.println("Menu item 1");
+            int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0) {
+                sourceTable.getItems().remove(selectedIndex);
+            }
+        });
+
+        rightClickMenu.getItems().add(deleteItem);
+        sourceTable.setContextMenu(rightClickMenu);
+
     }
 
     public void showSource(Source source) {
@@ -107,9 +126,7 @@ public class SourceListViewController {
 
     public void setMainWindow(Main mainWindow) {
         this.mainWindow = mainWindow;
-
         testList = mainWindow.getSourceList();
-
         sourceTable.setItems(testList);
     }
 
