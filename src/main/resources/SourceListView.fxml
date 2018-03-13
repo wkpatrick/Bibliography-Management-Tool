@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXListView?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -19,6 +20,9 @@
                                 <TableColumn fx:id="titleColumn" prefWidth="75.0" text="Column X" />
                                 <TableColumn fx:id="databaseColumn" prefWidth="75.0" text="Column X" />
                             </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                         </TableView>
                     </children>
                 </AnchorPane>
@@ -66,4 +70,7 @@
             </items>
         </SplitPane>
     </children>
+   <padding>
+      <Insets top="5.0" />
+   </padding>
 </AnchorPane>
