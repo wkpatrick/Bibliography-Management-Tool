@@ -209,6 +209,7 @@ public class MainWindowController {
         saveFile.setTitle("Save file");
 
         File file = saveFile.showSaveDialog(null);
+
         if (file != null) {
             try {
 

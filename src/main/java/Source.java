@@ -51,20 +51,20 @@ public class Source {
         Selected = new SimpleBooleanProperty(true);
     }
 
-/*
-    public void AddAuthor(String newAuthor) {
-        author.add(new SimpleStringProperty(newAuthor));
-    }
+    /*
+        public void AddAuthor(String newAuthor) {
+            author.add(new SimpleStringProperty(newAuthor));
+        }
 
-    public void RemoveAuthor(String badAuthor) {
-        for (StringProperty s : author) {
-            if (s.get().equals(badAuthor)) {
-                author.remove(s);
-                break;
+        public void RemoveAuthor(String badAuthor) {
+            for (StringProperty s : author) {
+                if (s.get().equals(badAuthor)) {
+                    author.remove(s);
+                    break;
+                }
             }
         }
-    }
-*/
+    */
     public String ToMLAHtml() {
         String finalOutput = "";
 
@@ -120,8 +120,7 @@ public class Source {
                 } else {
                     finalOutput += "pp " + PagesCitedStart.get() + "-" + "end" + ", ";
                 }
-            }
-            catch(Exception e){
+            } catch (Exception e) {
                 System.out.println("Pages cited formatting error!");
             }
         }
@@ -197,8 +196,7 @@ public class Source {
                 } else {
                     finalOutput += "pp " + PagesCitedStart.get() + "-" + "end" + ", ";
                 }
-            }
-            catch(Exception e){
+            } catch (Exception e) {
                 System.out.println("Pages cited formatting error!");
             }
         }
@@ -209,11 +207,10 @@ public class Source {
         return finalOutput;
     }
 
-    public String ToAPAHtml()
-    {
+    public String ToAPAHtml() {
         String finalOutput = "";
 
-        if(!author.get().equals("")){
+        if (!author.get().equals("")) {
             finalOutput += author.get() + ". ";
         }
         if (!DatePublished.get().equals("")) {
@@ -264,8 +261,7 @@ public class Source {
                 } else {
                     finalOutput += "pp " + PagesCitedStart.get() + "-" + "end" + ", ";
                 }
-            }
-            catch(Exception e){
+            } catch (Exception e) {
                 System.out.println("Pages cited formatting error!");
             }
         }
@@ -290,7 +286,7 @@ public class Source {
         }
         */
 
-        if(!author.get().equals("")){
+        if (!author.get().equals("")) {
             finalOutput += author.get() + ". ";
         }
         if (!DatePublished.get().equals("")) {
@@ -341,8 +337,7 @@ public class Source {
                 } else {
                     finalOutput += "pp " + PagesCitedStart.get() + "-" + "end" + ", ";
                 }
-            }
-            catch(Exception e){
+            } catch (Exception e) {
                 System.out.println("Pages cited formatting error!");
             }
         }
@@ -365,23 +360,15 @@ public class Source {
         this.title.set(title);
     }
 
-    /*
-    public List<StringProperty> getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(List<StringProperty> author) {
-        this.author = author;
-    }
-    */
-
-    public String getAuthor()
-    {
+    public String getAuthor() {
         return author.get();
     }
 
-    public void setAuthor(String author)
-    {
+    public StringProperty authorProperty() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
         this.author.set(author);
     }
 

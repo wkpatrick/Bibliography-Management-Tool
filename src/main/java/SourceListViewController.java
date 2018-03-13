@@ -12,7 +12,9 @@ public class SourceListViewController {
     @FXML
     private TableColumn<Source, String> titleColumn;
     @FXML
-    private TableColumn<Source, String> databaseColumn;
+    private TableColumn<Source, String> authorColumn;
+    @FXML
+    private TableColumn<Source, String> mediumColumn;
     @FXML
     TextField titleField;
     @FXML
@@ -61,8 +63,11 @@ public class SourceListViewController {
         titleColumn.setCellValueFactory(cellData -> cellData.getValue().titleProperty());
         titleColumn.setText("Title");
 
-        databaseColumn.setCellValueFactory(cellData -> cellData.getValue().databaseProperty());
-        databaseColumn.setText("Database");
+        authorColumn.setCellValueFactory(cellData -> cellData.getValue().authorProperty());
+        authorColumn.setText("Author");
+
+        mediumColumn.setCellValueFactory(cellData -> cellData.getValue().mediumProperty());
+        mediumColumn.setText("Medium");
 
         sourceTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showSource(newValue)
@@ -75,6 +80,142 @@ public class SourceListViewController {
             int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
             if (selectedIndex >= 0) {
                 sourceTable.getItems().remove(selectedIndex);
+            }
+        });
+
+        titleField.textProperty().addListener((obj, oldValue, newValue) -> {
+            int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0) {
+                Source selectedSource = sourceTable.getSelectionModel().getSelectedItem();
+                selectedSource.setTitle(newValue);
+            }
+        });
+
+        authorField.textProperty().addListener((obj, oldValue, newValue) -> {
+            int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0) {
+                Source selectedSource = sourceTable.getSelectionModel().getSelectedItem();
+                selectedSource.setAuthor(newValue);
+            }
+        });
+
+        magazineTitleField.textProperty().addListener((obj, oldValue, newValue) -> {
+            int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0) {
+                Source selectedSource = sourceTable.getSelectionModel().getSelectedItem();
+                selectedSource.setMagazineTitle(newValue);
+            }
+        });
+
+        websiteTitleField.textProperty().addListener((obj, oldValue, newValue) -> {
+            int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0) {
+                Source selectedSource = sourceTable.getSelectionModel().getSelectedItem();
+                selectedSource.setWebsiteTitle(newValue);
+            }
+        });
+
+        volumeField.textProperty().addListener((obj, oldValue, newValue) -> {
+            int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0) {
+                Source selectedSource = sourceTable.getSelectionModel().getSelectedItem();
+                selectedSource.setVolume(newValue);
+            }
+        });
+
+        editionField.textProperty().addListener((obj, oldValue, newValue) -> {
+            int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0) {
+                Source selectedSource = sourceTable.getSelectionModel().getSelectedItem();
+                selectedSource.setEdition(newValue);
+            }
+        });
+
+        issueField.textProperty().addListener((obj, oldValue, newValue) -> {
+            int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0) {
+                Source selectedSource = sourceTable.getSelectionModel().getSelectedItem();
+                selectedSource.setIssue(newValue);
+            }
+        });
+
+        publisherField.textProperty().addListener((obj, oldValue, newValue) -> {
+            int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0) {
+                Source selectedSource = sourceTable.getSelectionModel().getSelectedItem();
+                selectedSource.setPublisher(newValue);
+            }
+        });
+
+        yearPublishedField.textProperty().addListener((obj, oldValue, newValue) -> {
+            int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0) {
+                Source selectedSource = sourceTable.getSelectionModel().getSelectedItem();
+                selectedSource.setYearPublished(newValue);
+            }
+        });
+
+        datePublishedField.textProperty().addListener((obj, oldValue, newValue) -> {
+            int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0) {
+                Source selectedSource = sourceTable.getSelectionModel().getSelectedItem();
+                selectedSource.setDatePublished(newValue);
+            }
+        });
+
+        URLfield.textProperty().addListener((obj, oldValue, newValue) -> {
+            int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0) {
+                Source selectedSource = sourceTable.getSelectionModel().getSelectedItem();
+                selectedSource.setURL(newValue);
+            }
+        });
+
+        versionField.textProperty().addListener((obj, oldValue, newValue) -> {
+            int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0) {
+                Source selectedSource = sourceTable.getSelectionModel().getSelectedItem();
+                selectedSource.setVersion(newValue);
+            }
+        });
+
+        annotationField.textProperty().addListener((obj, oldValue, newValue) -> {
+            int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0) {
+                Source selectedSource = sourceTable.getSelectionModel().getSelectedItem();
+                selectedSource.setAnnotation(newValue);
+            }
+        });
+
+        databaseField.textProperty().addListener((obj, oldValue, newValue) -> {
+            int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0) {
+                Source selectedSource = sourceTable.getSelectionModel().getSelectedItem();
+                selectedSource.setDatabase(newValue);
+            }
+        });
+
+        mediumField.textProperty().addListener((obj, oldValue, newValue) -> {
+            int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0) {
+                Source selectedSource = sourceTable.getSelectionModel().getSelectedItem();
+                selectedSource.setMedium(newValue);
+            }
+        });
+
+        pagesCitedField1.textProperty().addListener((obj, oldValue, newValue) -> {
+            int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0) {
+                Source selectedSource = sourceTable.getSelectionModel().getSelectedItem();
+                selectedSource.setPagesCitedStart(newValue);
+            }
+        });
+
+        pagesCitedField2.textProperty().addListener((obj, oldValue, newValue) -> {
+            int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0) {
+                Source selectedSource = sourceTable.getSelectionModel().getSelectedItem();
+                selectedSource.setPagesCitedEnd(newValue);
             }
         });
 
@@ -128,5 +269,4 @@ public class SourceListViewController {
         testList = mainWindow.getSourceList();
         sourceTable.setItems(testList);
     }
-
 }
