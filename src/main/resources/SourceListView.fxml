@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SourceListViewController">
+    <children>
+        <SplitPane dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <children>
+                        <TableView fx:id="sourceTable" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <columns>
+                                <TableColumn fx:id="titleColumn" prefWidth="75.0" text="Column X" />
+                                <TableColumn fx:id="databaseColumn" prefWidth="75.0" text="Column X" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </AnchorPane>
+
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <JFXListView prefHeight="611.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Label text="Title" />
+                        <TextField fx:id="titleField" />
+                        <Label text="Authors" />
+                        <TextField fx:id="authorField" />
+                        <Label text="Magazine Title" />
+                        <TextField fx:id="magazineTitleField" />
+                        <Label text="Website Title" />
+                        <TextField fx:id="websiteTitleField" />
+                        <Label text="Volume" />
+                        <TextField fx:id="volumeField" />
+                        <Label text="Edition" />
+                        <TextField fx:id="editionField" />
+                        <Label text="Issue" />
+                        <TextField fx:id="issueField" />
+                        <Label text="Publisher" />
+                        <TextField fx:id="publisherField" />
+                        <Label text="Year Published" />
+                        <TextField fx:id="yearPublishedField" />
+                        <Label text="Date Published" />
+                        <TextField fx:id="datePublishedField" />
+                        <Label text="URL" />
+                        <TextField fx:id="URLfield" />
+                        <Label text="Version" />
+                        <TextField fx:id="versionField" />
+                        <Label text="Database" />
+                        <TextField fx:id="databaseField" />
+                        <Label text="Database Service" />
+                        <TextField fx:id="databaseServiceField" />
+                        <Label text="Medium" />
+                        <TextField fx:id="mediumField" />
+                        <Label text="Pages Cited Start" />
+                        <TextField fx:id="pagesCitedField1" />
+                        <Label text="Pages Cited End" />
+                        <TextField fx:id="pagesCitedField2" />
+                        <Label text="Annotation" />
+                        <TextField fx:id="annotationField" />
+                    </JFXListView>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
+</AnchorPane>

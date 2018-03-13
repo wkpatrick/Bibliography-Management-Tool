@@ -75,7 +75,6 @@ public class MainWindowController {
     }
 
 
-
     public void importSources(ActionEvent actionEvent) {
         try {
             Stage primaryStage = new Stage();
@@ -121,7 +120,7 @@ public class MainWindowController {
 
     //Open and save, Randolph
     @FXML
-    private void openList(ActionEvent actionEvent){
+    private void openList(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(jsonFilter);
         fileChooser.setTitle("Select file to open");
@@ -192,9 +191,9 @@ public class MainWindowController {
                     if (x.contains("PagesCitedEnd")) {
                         sTemp.setPagesCitedEnd(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
 
-                    }
                     if (x.contains("“MagazineTitle”")) {
                         sTemp.setMagazineTitle(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
+                    }
 
                         //Here it should be adding the source to the source list, resetting the source temp, sTemp and starting again until we reach the end of the file.
                         // System.out.println(sTemp.getTitle() + " hello hello");
@@ -217,17 +216,17 @@ public class MainWindowController {
     }
 
     @FXML
-    private void saveList(ActionEvent actionEvent){
+    private void saveList(ActionEvent actionEvent) {
 
         FileChooser saveFile = new FileChooser();
         saveFile.getExtensionFilters().add(jsonFilter);
         saveFile.setTitle("Save file");
 
         File file = saveFile.showSaveDialog(null);
-        if(file != null) {
+        if (file != null) {
             try {
 
-                String JsonFileToDisk = ""+
+                String JsonFileToDisk = "" +
                         "“Author”:%s,\n" +
                         "“Title”:%s,\n" +
                         "“Volume”:%s,\n" +
@@ -247,7 +246,7 @@ public class MainWindowController {
 
                 FileWriter fileWriter = new FileWriter(file);
                 //fileWriter.write(mainWindow.getSourceList().toString());
-                for (Source str:mainWindow.getSourceList()) {
+                for (Source str : mainWindow.getSourceList()) {
                     System.out.println(str.getTitle());
                     String temp = String.format(JsonFileToDisk, str.getAuthor(), str.getTitle(),
                             str.getVersion(), str.getEdition(), str.getPublisher(), str.getDatePublished(),

@@ -2,14 +2,12 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Main extends Application {
 
@@ -29,8 +27,7 @@ public class Main extends Application {
         this.primaryStage = primaryStage;
 
         initRootLayout();
-        initListOfSourcesView();
-        initSourceView();
+        initSourceListView();
     }
 
     public void initRootLayout() {
@@ -41,7 +38,7 @@ public class Main extends Application {
 
             MainWindowController controller = loader.getController();
             controller.setMainWindow(this);
-            
+
             Scene mainScene = new Scene(rootLayout, 800, 600);
             primaryStage.setScene(mainScene);
             primaryStage.setTitle("Bibliography Management Tool");
@@ -52,14 +49,14 @@ public class Main extends Application {
         }
     }
 
-    public void initListOfSourcesView() {
+    public void initSourceListView() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("ListOfSources.fxml"));
+            loader.setLocation(getClass().getResource("SourceListView.fxml"));
             AnchorPane listOfSources = loader.load();
 
-            rootLayout.add(listOfSources, 0, 1);
-            ListOfSourcesController controller = loader.getController();
+            rootLayout.add(listOfSources, 0, 1, 2, 1);
+            SourceListViewController controller = loader.getController();
             controller.setMainWindow(this);
 
         } catch (IOException e) {
@@ -68,17 +65,6 @@ public class Main extends Application {
 
     }
 
-    public void initSourceView() {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("SourceView.fxml"));
-            AnchorPane sourceView = loader.load();
-
-            rootLayout.add(sourceView, 1, 1);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public ObservableList<Source> getSourceList() {
 
