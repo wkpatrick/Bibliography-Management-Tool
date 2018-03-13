@@ -125,103 +125,95 @@ public class MainWindowController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(jsonFilter);
         fileChooser.setTitle("Select file to open");
+
         userFile = fileChooser.showOpenDialog(null);
         Source sTemp = new Source("");
-        try (Scanner scan = new Scanner(userFile)) {
-            while (scan.hasNextLine()) {
+        //ObservableList<Source> tempList = FXCollections.observableArrayList();;
+        if(userFile.exists())
+        {
+                mainWindow.sourceList.clear();
+                try (Scanner scan = new Scanner(userFile)) {
+                while (scan.hasNextLine()) {
 
-                String x = "";
-                if(scan.nextLine() != "") {
-                     x = scan.nextLine();
-                     //System.out.println(x);
-                }
+                    String x = "";
+                    if (scan.nextLine() != "") {
+                        x = scan.nextLine();
+                        //System.out.println(x);
+                    }
 
 
-                if(x.contains("“Title”"))
-                {
-                   // System.out.println("Debug: "+ x);
-                   // System.out.println("Debug2: " + x.substring(x.indexOf(":")+1, x.indexOf(",")) );
-                    sTemp.setTitle(x.substring(x.indexOf(":")+1, x.indexOf(",")));
-                   // System.out.println(sTemp.getTitle());
-                }
-                if(x.contains("Author"))
-                {
+                    if (x.contains("“Title”")) {
+                        // System.out.println("Debug: "+ x);
+                        // System.out.println("Debug2: " + x.substring(x.indexOf(":")+1, x.indexOf(",")) );
+                        sTemp.setTitle(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
+                        // System.out.println(sTemp.getTitle());
+                    }
+                    if (x.contains("Author")) {
 
-                    //String y = x.substring(x.indexOf(":")+1, x.indexOf(","));
-                    sTemp.setAuthor(x.substring(x.indexOf(":")+1, x.indexOf(",")));
-                }
-                if(x.contains("Volume"))
-                {
-                    sTemp.setVolume(x.substring(x.indexOf(":")+1, x.indexOf(",")));
-                }
-                if(x.contains("Edition"))
-                {
-                    sTemp.setEdition(x.substring(x.indexOf(":")+1, x.indexOf(",")));
-                }
-                if(x.contains("Publisher"))
-                {
-                    sTemp.setPublisher(x.substring(x.indexOf(":")+1, x.indexOf(",")));
-                }
-                if(x.contains("DatePublished"))
-                {
-                    sTemp.setDatePublished(x.substring(x.indexOf(":")+1, x.indexOf(",")));
-                }
-                if(x.contains("WebsiteTitle"))
-                {
-                    sTemp.setWebsiteTitle(x.substring(x.indexOf(":")+1, x.indexOf(",")));
-                }
-                if(x.contains("URL"))
-                {
-                    sTemp.setURL(x.substring(x.indexOf(":")+1, x.indexOf(",")));
-                }
-                if(x.contains("Version"))
-                {
-                    sTemp.setVersion(x.substring(x.indexOf(":")+1, x.indexOf(",")));
-                }
-                if(x.contains("Annotation"))
-                {
-                    sTemp.setAnnotation(x.substring(x.indexOf(":")+1, x.indexOf(",")));
-                }
-                if(x.contains("Database") && !x.contains("Service"))
-                {
-                    sTemp.setDatabase(x.substring(x.indexOf(":")+1, x.indexOf(",")));
-                }
-                if(x.contains("DatabaseService"))
-                {
-                    sTemp.setDatabaseService(x.substring(x.indexOf(":")+1, x.indexOf(",")));
-                }
-                if(x.contains("Medium"))
-                {
-                    sTemp.setMedium(x.substring(x.indexOf(":")+1, x.indexOf(",")));
-                }
-                if(x.contains("PageCitedStart"))
-                {
-                    sTemp.setPagesCitedStart(x.substring(x.indexOf(":")+1, x.indexOf(",")));
-                }
-                if(x.contains("PagesCitedEnd"))
-                {
-                    sTemp.setPagesCitedEnd(x.substring(x.indexOf(":")+1, x.indexOf(",")));
+                        //String y = x.substring(x.indexOf(":")+1, x.indexOf(","));
+                        sTemp.setAuthor(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
+                    }
+                    if (x.contains("Volume")) {
+                        sTemp.setVolume(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
+                    }
+                    if (x.contains("Edition")) {
+                        sTemp.setEdition(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
+                    }
+                    if (x.contains("Publisher")) {
+                        sTemp.setPublisher(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
+                    }
+                    if (x.contains("DatePublished")) {
+                        sTemp.setDatePublished(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
+                    }
+                    if (x.contains("WebsiteTitle")) {
+                        sTemp.setWebsiteTitle(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
+                    }
+                    if (x.contains("URL")) {
+                        sTemp.setURL(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
+                    }
+                    if (x.contains("Version")) {
+                        sTemp.setVersion(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
+                    }
+                    if (x.contains("Annotation")) {
+                        sTemp.setAnnotation(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
+                    }
+                    if (x.contains("Database") && !x.contains("Service")) {
+                        sTemp.setDatabase(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
+                    }
+                    if (x.contains("DatabaseService")) {
+                        sTemp.setDatabaseService(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
+                    }
+                    if (x.contains("Medium")) {
+                        sTemp.setMedium(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
+                    }
+                    if (x.contains("PageCitedStart")) {
+                        sTemp.setPagesCitedStart(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
+                    }
+                    if (x.contains("PagesCitedEnd")) {
+                        sTemp.setPagesCitedEnd(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
+
+                    }
+                    if (x.contains("“MagazineTitle”")) {
+                        sTemp.setMagazineTitle(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
+
+                        //Here it should be adding the source to the source list, resetting the source temp, sTemp and starting again until we reach the end of the file.
+                        // System.out.println(sTemp.getTitle() + " hello hello");
+
+                        mainWindow.addSource(sTemp);
+                        sTemp = new Source("");
+                    }
+
 
                 }
-                if(x.contains("“MagazineTitle”"))
-                {
-                    sTemp.setMagazineTitle(x.substring(x.indexOf(":")+1, x.indexOf(",")));
 
-                    //Here it should be adding the source to the source list, resetting the source temp, sTemp and starting again until we reach the end of the file.
-                   // System.out.println(sTemp.getTitle() + " hello hello");
-                    mainWindow.addSource(sTemp);
-                    sTemp = new Source("");
-                }
 
 
 
             }
-
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
+                catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+        }//end IF file exists.
     }
 
     @FXML

@@ -81,7 +81,7 @@ public class Main extends Application {
     }
 
     public ObservableList<Source> getSourceList() {
-        System.out.println(sourceList);
+
         return sourceList;
     }
 
