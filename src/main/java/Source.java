@@ -1,5 +1,4 @@
-import javafx.beans.property.StringProperty;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -26,6 +25,8 @@ public class Source {
     StringProperty PagesCitedStart;
     StringProperty PagesCitedEnd;
 
+    BooleanProperty Selected;
+
     public Source(String sourceTitle) {
         title = new SimpleStringProperty("");
         title.set(sourceTitle);
@@ -46,6 +47,7 @@ public class Source {
         Medium = new SimpleStringProperty("");
         PagesCitedStart = new SimpleStringProperty("");
         PagesCitedEnd = new SimpleStringProperty("");
+        Selected = new SimpleBooleanProperty(true);
     }
 
 /*
