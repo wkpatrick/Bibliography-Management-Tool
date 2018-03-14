@@ -1,8 +1,12 @@
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -11,11 +15,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ImportController
 {
-    public ListView<String> sourcesDisplayList;
+    public TableView<Source> sourceTable;
     private Main mainWindow;
 
     public TextField filepathField;
@@ -24,6 +29,10 @@ public class ImportController
     public Button okButton;
     public Button cancelButton;
     private File inputFile;
+
+    private boolean validSources = false;
+
+    private ObservableList<Source> importList;
 
     public void openFile(ActionEvent actionEvent)
     {
@@ -51,30 +60,126 @@ public class ImportController
 
     //TODO: Open multiple json objects from a file.
     public void openContents(ActionEvent actionEvent) throws IOException {
-        sourcesDisplayList.getItems().clear();
+
+        importList = FXCollections.observableArrayList();
+
+        sourceTable.getItems().clear();
 
         if(!validFile())
             return;
 
         byte[] rawData = Files.readAllBytes(Paths.get(inputFile.getAbsolutePath()));
-        String fullData = new String(rawData);
+        String jsonData = new String(rawData);
 
-        ArrayList<String> returnString = new ArrayList<>();
-        ArrayList<String> outputString = new ArrayList<>();
+        JsonFactory factory = new JsonFactory();
+        JsonParser parser = factory.createParser(jsonData);
+        JsonToken jsonToken;
 
-        String buffer;
+        /*
+        ObjectMapper objectMapper = new ObjectMapper();
 
-        int temp = 0;
-        for(int index = 0; index < fullData.length(); index++)
-        {
-            if(fullData.charAt(index) == ',')
+        TypeReference<List<Source>> mapType = new TypeReference<List<Source>>() {};
+        List<Source> importList = objectMapper.readValue(jsonData, mapType);
+        */
+
+        Source bufferSource = new Source("");
+
+        while(!parser.isClosed()){
+            jsonToken = parser.nextToken();
+
+            if(JsonToken.START_OBJECT.equals(jsonToken))
             {
-                returnString.add(fullData.substring(temp, index));
-                temp = index+1;
+                bufferSource = new Source("");
+            }
+
+            if(JsonToken.END_OBJECT.equals(jsonToken))
+            {
+                importList.add(bufferSource);
+            }
+
+            if(JsonToken.FIELD_NAME.equals(jsonToken))
+            {
+                switch(parser.getText())
+                {
+                    case "Author":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setAuthor(parser.getText());
+                        break;
+                    case "Title":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setTitle(parser.getText());
+                        break;
+                    case "Volume":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setVolume(parser.getText());
+                        break;
+                    case "Edition":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setEdition(parser.getText());
+                        break;
+                    case "Publisher":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setPublisher(parser.getText());
+                        break;
+                    case "DatePublished":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setDatePublished(parser.getText());
+                        break;
+                    case "WebsiteTitle":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setWebsiteTitle(parser.getText());
+                        break;
+                    case "URL":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setURL(parser.getText());
+                        break;
+                    case "Version":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setVersion(parser.getText());
+                        break;
+                    case "Annotation":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setAnnotation(parser.getText());
+                        break;
+                    case "Database:":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setDatabase(parser.getText());
+                        break;
+                    case "DatabaseService":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setDatabaseService(parser.getText());
+                        break;
+                    case "Medium":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setMedium(parser.getText());
+                        break;
+                    case "PagesCitedStart":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setPagesCitedStart(parser.getText());
+                        break;
+                    case "PagesCitedEnd":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setPagesCitedEnd(parser.getText());
+                        break;
+                    case "MagTitle":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setMagazineTitle(parser.getText());
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
-        sourcesDisplayList.getItems().addAll(returnString);
+        for (Source source:importList)
+        {
+            System.out.println(source.ToMLA() + "\n");
+        }
+
+        ObservableList<Source> data = sourceTable.getItems();
+        data.addAll(importList);
+
+        validSources = true;
     }
 
     private boolean validFile()
@@ -111,5 +216,15 @@ public class ImportController
 
     public void setMainWindow(Main mainWindow) {
         this.mainWindow = mainWindow;
+    }
+
+    public void copyImports(ActionEvent actionEvent) {
+        if(!validSources)
+        {
+            return;
+        }
+
+        mainWindow.sourceList.addAll(importList);
+        cancelButton.getScene().getWindow().hide();
     }
 }
