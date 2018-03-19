@@ -40,7 +40,7 @@
     </HBox>
     <HBox alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="3">
         <Label text="MLA"/>
-        <JFXToggleButton fx:id="toggleButtonStyle" text="APA"/>
+        <JFXToggleButton toggleColor="dimgray" fx:id="toggleButtonStyle" text="APA"/>
     </HBox>
     <columnConstraints>
         <ColumnConstraints hgrow="ALWAYS" />
