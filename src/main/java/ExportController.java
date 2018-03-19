@@ -11,8 +11,6 @@ import javafx.stage.Stage;
 
 public class ExportController {
     public TableView<Source> sourceTable;
-    public TableColumn titleColumn;
-    public TableColumn authorColumn;
     public JFXToggleButton toggleButtonStyle;
     private Main mainWindow;
 

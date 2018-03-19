@@ -20,12 +20,12 @@
     <TableView fx:id="sourceTable" GridPane.columnIndex="0" GridPane.rowIndex="1">
         <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY" /></columnResizePolicy>
         <columns>
-            <TableColumn fx:id="titleColumn" text="Title">
+            <TableColumn text="Title">
                 <cellValueFactory>
                     <PropertyValueFactory property="title" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="authorColumn" text="Author(s)">
+            <TableColumn text="Author(s)">
                 <cellValueFactory>
                     <PropertyValueFactory property="author" />
                 </cellValueFactory>

@@ -1,12 +1,11 @@
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -14,8 +13,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class ImportController
@@ -33,6 +30,8 @@ public class ImportController
     private boolean validSources = false;
 
     private ObservableList<Source> importList;
+
+    private TableColumn< Source, Boolean > selectedColumn = new TableColumn<>( "Select" );
 
     public void openFile(ActionEvent actionEvent)
     {
@@ -171,15 +170,22 @@ public class ImportController
             }
         }
 
-        for (Source source:importList)
+        sourceTable.setEditable(true);
+        selectedColumn.setCellValueFactory( f -> f.getValue().isSelected());
+        selectedColumn.setCellFactory( tc -> new CheckBoxTableCell<>());
+        sourceTable.getColumns().add(selectedColumn);
+
+        try
         {
-            System.out.println(source.ToMLA() + "\n");
+            ObservableList<Source> data = sourceTable.getItems();
+            data.addAll(importList);
+            validSources = true;
         }
-
-        ObservableList<Source> data = sourceTable.getItems();
-        data.addAll(importList);
-
-        validSources = true;
+        catch(Exception e)
+        {
+            //noinspection ThrowablePrintedToSystemOut
+            System.out.println(e);
+        }
     }
 
     private boolean validFile()
@@ -222,6 +228,14 @@ public class ImportController
         if(!validSources)
         {
             return;
+        }
+
+        for(int i = 0; i < sourceTable.getItems().size(); i++)
+        {
+            if(!selectedColumn.getCellObservableValue(i).getValue())
+            {
+                importList.remove(sourceTable.getItems().get(i));
+            }
         }
 
         mainWindow.sourceList.addAll(importList);
