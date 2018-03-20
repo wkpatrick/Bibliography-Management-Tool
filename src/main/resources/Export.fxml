@@ -39,8 +39,8 @@
         <Button fx:id="cancelButton" onAction="#exit" text="Cancel" />
     </HBox>
     <HBox alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="3">
-        <Label text="MLA"/>
-        <JFXToggleButton toggleColor="dimgray" fx:id="toggleButtonStyle" text="APA"/>
+        <Label text="MLA" />
+        <JFXToggleButton fx:id="toggleButtonStyle" text="APA" toggleColor="#fafafa" toggleLineColor="#999999" />
     </HBox>
     <columnConstraints>
         <ColumnConstraints hgrow="ALWAYS" />
