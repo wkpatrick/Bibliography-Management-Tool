@@ -55,6 +55,9 @@ public class MainWindowController {
         }
     }
 
+
+
+
     public void Close(ActionEvent actionEvent) {
         //save current list?
         Platform.exit();

@@ -1,9 +1,13 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import javafx.event.ActionEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class SourceListViewController {
     private Main mainWindow;
@@ -289,5 +293,38 @@ public class SourceListViewController {
         testList.add(source3);
 
 
+    }
+
+    public void deleteSelected(ActionEvent actionEvent) {
+        try {
+            int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0) {
+                sourceTable.getItems().remove(selectedIndex);
+            }
+
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    public void createNewSource(ActionEvent actionEvent) {
+        try {
+            Stage primaryStage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("AddSourceView.fxml"));
+
+            AnchorPane rootLayout = (AnchorPane) loader.load();
+
+            primaryStage.setTitle("New Source");
+            primaryStage.setScene(new Scene(rootLayout));
+            primaryStage.show();
+
+            AddSourceController controller = loader.getController();
+            controller.setMainWindow(this.mainWindow);
+
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 }
