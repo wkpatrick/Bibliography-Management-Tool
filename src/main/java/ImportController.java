@@ -57,7 +57,10 @@ public class ImportController
         cancelButton.getScene().getWindow().hide();
     }
 
-    //TODO: Open multiple json objects from a file.
+
+    /********************************************************************************/
+    /*                     EXTRACTS CONTENTS FROM A FILE                            */
+    /********************************************************************************/
     public void openContents(ActionEvent actionEvent) throws IOException {
 
         importList = FXCollections.observableArrayList();
@@ -73,13 +76,6 @@ public class ImportController
         JsonFactory factory = new JsonFactory();
         JsonParser parser = factory.createParser(jsonData);
         JsonToken jsonToken;
-
-        /*
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        TypeReference<List<Source>> mapType = new TypeReference<List<Source>>() {};
-        List<Source> importList = objectMapper.readValue(jsonData, mapType);
-        */
 
         Source bufferSource = new Source("");
 
@@ -170,11 +166,15 @@ public class ImportController
             }
         }
 
+        //Start block:
+        //This initializes checkboxes into a table- not relevant to Open list due to selecting ALL sources.
         sourceTable.setEditable(true);
         selectedColumn.setCellValueFactory( f -> f.getValue().isSelected());
         selectedColumn.setCellFactory( tc -> new CheckBoxTableCell<>());
         sourceTable.getColumns().add(selectedColumn);
+        //End block
 
+        //This initializes the TableView to display all of the sources.
         try
         {
             ObservableList<Source> data = sourceTable.getItems();
@@ -186,6 +186,26 @@ public class ImportController
             //noinspection ThrowablePrintedToSystemOut
             System.out.println(e);
         }
+
+        /* What sourceTable looks like in the FXML layout.
+
+        <TableView fx:id="sourceTable" GridPane.columnIndex="0" GridPane.rowIndex="2">
+        <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY" /></columnResizePolicy>
+        <columns>
+            <TableColumn text="Title">
+                <cellValueFactory>                              <-----------
+                    <PropertyValueFactory property="title" />   <----------- Required to map the table directly
+                </cellValueFactory>                             <----------- to the "title" StringProperty field.
+            </TableColumn>
+            <TableColumn text="Author(s)">
+                <cellValueFactory>                              <-----------
+                    <PropertyValueFactory property="author" />  <----------- Required to map the table directly
+                </cellValueFactory>                             <----------- to the "author" StringProperty field.
+            </TableColumn>
+        </columns>
+        </TableView>
+
+         */
     }
 
     private boolean validFile()

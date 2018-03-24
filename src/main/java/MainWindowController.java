@@ -68,6 +68,7 @@ public class MainWindowController {
     }
 
     public void createNewList(ActionEvent actionEvent) {
+        mainWindow.sourceList.clear();
     }
 
 

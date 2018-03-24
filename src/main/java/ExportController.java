@@ -9,6 +9,14 @@ import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+//TODO: Set custom source Export styles: drop-down list in ExportController
+//TODO: Create export settings file
+//TODO: Settings > Citation Settings > Open new UI
+//TODO: Edit custom source Export styles: new UI
+//TODO: Save custom source Export styles: new UI
+//TODO: Open custom source Export styles, for editing/saving: new UI
+//JUST for exporting- not across the whole application.
+
 public class ExportController {
     public TableView<Source> sourceTable;
     public JFXToggleButton toggleButtonStyle;

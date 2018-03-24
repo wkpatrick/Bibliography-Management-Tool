@@ -564,7 +564,6 @@ public class Source {
         this.PagesCitedEnd.set(pagesCitedEnd);
     }
 
-
     public ObservableValue<Boolean> isSelected() {
         return Selected;
     }
