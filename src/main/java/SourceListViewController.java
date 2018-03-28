@@ -56,6 +56,8 @@ public class SourceListViewController {
     @FXML
     TextField pagesCitedField2;
     @FXML
+    TextField searchField;
+    @FXML
     private ContextMenu rightClickMenu;
     @FXML
     private MenuItem deleteItem;
@@ -325,6 +327,15 @@ public class SourceListViewController {
 
         } catch (Exception e) {
             System.out.println(e);
+        }
+    }
+    public void UpdateSearchResults(ActionEvent actionEvent){
+        if(searchField.getText().equals("")){
+            //clear associated results list
+        }
+        else{
+            //send string to elasticsearch
+            //use results to populate associated results list
         }
     }
 }
