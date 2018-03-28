@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
+<?import javafx.scene.control.TextArea?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SourceListViewController">
     <children>
         <SplitPane dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -32,42 +33,76 @@
 
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                     <JFXListView prefHeight="611.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                        <Label text="Title" />
-                        <TextField fx:id="titleField" />
-                        <Label text="Authors" />
-                        <TextField fx:id="authorField" />
-                        <Label text="Magazine Title" />
-                        <TextField fx:id="magazineTitleField" />
-                        <Label text="Website Title" />
-                        <TextField fx:id="websiteTitleField" />
-                        <Label text="Volume" />
-                        <TextField fx:id="volumeField" />
-                        <Label text="Edition" />
-                        <TextField fx:id="editionField" />
-                        <Label text="Issue" />
-                        <TextField fx:id="issueField" />
-                        <Label text="Publisher" />
-                        <TextField fx:id="publisherField" />
-                        <Label text="Year Published" />
-                        <TextField fx:id="yearPublishedField" />
-                        <Label text="Date Published" />
-                        <TextField fx:id="datePublishedField" />
-                        <Label text="URL" />
-                        <TextField fx:id="URLfield" />
-                        <Label text="Version" />
-                        <TextField fx:id="versionField" />
-                        <Label text="Database" />
-                        <TextField fx:id="databaseField" />
-                        <Label text="Database Service" />
-                        <TextField fx:id="databaseServiceField" />
-                        <Label text="Medium" />
-                        <TextField fx:id="mediumField" />
-                        <Label text="Pages Cited Start" />
-                        <TextField fx:id="pagesCitedField1" />
-                        <Label text="Pages Cited End" />
-                        <TextField fx:id="pagesCitedField2" />
-                        <Label text="Annotation" />
-                        <TextField fx:id="annotationField" />
+                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                            <Label minWidth="150.0" text="Title" />
+                            <TextField fx:id="titleField" />
+                        </HBox>
+                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                            <Label minWidth="150.0" text="Authors" />
+                            <TextField fx:id="authorField" />
+                        </HBox>
+                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                            <Label minWidth="150.0" text="Magazine Title" />
+                            <TextField fx:id="magazineTitleField" />
+                        </HBox>
+                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                            <Label minWidth="150.0" text="Website Title" />
+                            <TextField fx:id="websiteTitleField" />
+                        </HBox>
+                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                            <Label minWidth="150.0" text="Volume" />
+                            <TextField fx:id="volumeField" />
+                        </HBox>
+                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                            <Label minWidth="150.0" text="Edition" />
+                            <TextField fx:id="editionField" />
+                        </HBox>
+                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                            <Label minWidth="150.0" text="Issue" />
+                            <TextField fx:id="issueField" />
+                        </HBox>
+                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                            <Label minWidth="150.0" text="Publisher" />
+                            <TextField fx:id="publisherField" />
+                        </HBox>
+                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                            <Label minWidth="150.0" text="Year Published" />
+                            <TextField fx:id="yearPublishedField" />
+                        </HBox>
+                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                            <Label minWidth="150.0" text="Date Published" />
+                            <TextField fx:id="datePublishedField" />
+                        </HBox>
+                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                            <Label minWidth="150.0" text="URL" />
+                            <TextField fx:id="URLfield" />
+                        </HBox>
+                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                            <Label minWidth="150.0" text="Version" />
+                            <TextField fx:id="versionField" />
+                        </HBox>
+                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                            <Label minWidth="150.0" text="Database" />
+                            <TextField fx:id="databaseField" />
+                        </HBox>
+                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                            <Label minWidth="150.0" text="Database Service" />
+                            <TextField fx:id="databaseServiceField" />
+                        </HBox>
+                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                            <Label minWidth="150.0" text="Medium" />
+                            <TextField fx:id="mediumField" />
+                        </HBox>
+                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                            <Label minWidth="150.0" text="Pages Cited" />
+                            <TextField fx:id="pagesCitedField1" maxWidth="50" />
+                            <Label alignment="CENTER" minWidth="58" prefWidth="0" text="-" />
+                            <TextField fx:id="pagesCitedField2" maxWidth="50" />
+                        </HBox>
+                        <HBox minHeight="100" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                            <Label minWidth="150.0" prefHeight="90" text="Annotation" />
+                            <TextArea wrapText="true" fx:id="annotationField" prefHeight="100" prefWidth="200" />
+                        </HBox>
                     </JFXListView>
                 </AnchorPane>
             </items>

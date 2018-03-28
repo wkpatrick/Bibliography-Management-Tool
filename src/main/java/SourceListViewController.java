@@ -44,7 +44,7 @@ public class SourceListViewController {
     @FXML
     TextField versionField;
     @FXML
-    TextField annotationField;
+    TextArea annotationField;
     @FXML
     TextField databaseField;
     @FXML
