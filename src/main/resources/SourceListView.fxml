@@ -46,8 +46,12 @@
                             <TextField fx:id="magazineTitleField" />
                         </HBox>
                         <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
-                            <Label minWidth="150.0" text="Website Title" />
-                            <TextField fx:id="websiteTitleField" />
+                            <Label minWidth="150.0" text="Issue" />
+                            <TextField fx:id="issueField" />
+                        </HBox>
+                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                            <Label minWidth="150.0" text="Medium" />
+                            <TextField fx:id="mediumField" />
                         </HBox>
                         <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
                             <Label minWidth="150.0" text="Volume" />
@@ -56,10 +60,6 @@
                         <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
                             <Label minWidth="150.0" text="Edition" />
                             <TextField fx:id="editionField" />
-                        </HBox>
-                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
-                            <Label minWidth="150.0" text="Issue" />
-                            <TextField fx:id="issueField" />
                         </HBox>
                         <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
                             <Label minWidth="150.0" text="Publisher" />
@@ -72,6 +72,10 @@
                         <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
                             <Label minWidth="150.0" text="Date Published" />
                             <TextField fx:id="datePublishedField" />
+                        </HBox>
+                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                            <Label minWidth="150.0" text="Website Title" />
+                            <TextField fx:id="websiteTitleField" />
                         </HBox>
                         <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
                             <Label minWidth="150.0" text="URL" />
@@ -88,10 +92,6 @@
                         <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
                             <Label minWidth="150.0" text="Database Service" />
                             <TextField fx:id="databaseServiceField" />
-                        </HBox>
-                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
-                            <Label minWidth="150.0" text="Medium" />
-                            <TextField fx:id="mediumField" />
                         </HBox>
                         <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
                             <Label minWidth="150.0" text="Pages Cited" />
