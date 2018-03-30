@@ -2,10 +2,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Side;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import javafx.event.ActionEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -62,6 +64,8 @@ public class SourceListViewController {
     @FXML
     private MenuItem deleteItem;
 
+    ContextMenu autocompleteMenu;
+
     private ObservableList<Source> testList = FXCollections.observableArrayList();
 
     @FXML
@@ -81,6 +85,22 @@ public class SourceListViewController {
 
         rightClickMenu = new ContextMenu();
         deleteItem = new MenuItem("Delete Source");
+
+        autocompleteMenu = new ContextMenu();
+        MenuItem menu1 = new MenuItem("Item 1");
+        MenuItem menu2 = new MenuItem("Item 2");
+        MenuItem menu3 = new MenuItem("Item 3");
+        autocompleteMenu.getItems().addAll(menu1, menu2, menu3);
+
+        searchField.setOnKeyTyped((KeyEvent e) ->{
+            if(!searchField.getText().equals("")){
+                //populate autocompleteMenu with proper results through communication with elasticsearch
+                autocompleteMenu.show(searchField, Side.TOP, 0,0);
+            }
+            else{
+                autocompleteMenu.hide();
+            }
+        });
 
         deleteItem.setOnAction((ActionEvent event) -> {
             int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
