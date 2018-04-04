@@ -62,7 +62,6 @@ public class ImportController
     /*                     EXTRACTS CONTENTS FROM A FILE                            */
     /********************************************************************************/
     public void openContents(ActionEvent actionEvent) throws IOException {
-
         importList = FXCollections.observableArrayList();
 
         sourceTable.getItems().clear();

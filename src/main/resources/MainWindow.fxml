@@ -33,6 +33,7 @@
             <MenuItem onAction="#Close" text="Exit" />
         </Menu>
         <Menu fx:id="menuSettings" text="Settings">
+            <MenuItem onAction="#customCitation" text="Citation Export Settings"/>
         </Menu>
     </MenuBar>
     <Label text="Source Information" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER" />
