@@ -257,4 +257,24 @@ public class MainWindowController {
     }
 
 
+    public void customCitation(ActionEvent actionEvent) {
+        try {
+            Stage primaryStage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("CiteStyle.fxml"));
+
+            GridPane rootLayout = (GridPane) loader.load();
+
+            primaryStage.setTitle("Custom Citation Styles");
+            primaryStage.setScene(new Scene(rootLayout));
+            primaryStage.show();
+
+            CiteStyleController controller = loader.getController();
+            controller.setMainWindow(this.mainWindow);
+            controller.init();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 }

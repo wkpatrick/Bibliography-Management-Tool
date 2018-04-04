@@ -567,4 +567,6 @@ public class Source {
     public ObservableValue<Boolean> isSelected() {
         return Selected;
     }
+
+    public void setSelected(boolean input){Selected.setValue(input);}
 }
