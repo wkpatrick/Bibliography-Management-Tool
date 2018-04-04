@@ -20,6 +20,27 @@ public class SourceListViewController {
     @FXML
     private TableColumn<Source, String> authorColumn;
     @FXML
+    private TableColumn<Source, String> magazineTitleColumn;
+
+    @FXML
+    private TableColumn<Source, String> websiteTitleColumn;
+    @FXML
+    private TableColumn<Source, String> volumeColumn;
+    @FXML
+    private TableColumn<Source, String> editionColumn;
+    @FXML
+    private TableColumn<Source, String> issueColumn;
+    @FXML
+    private TableColumn<Source, String> yearPublishedColumn;
+    @FXML
+    private TableColumn<Source, String> datePublishedColumn;
+    @FXML
+    private TableColumn<Source, String> urlColumn;
+    @FXML
+    private TableColumn<Source, String> versionColumn;
+    @FXML
+    private TableColumn<Source, String> annotationColumn;
+    @FXML
     private TableColumn<Source, String> mediumColumn;
     @FXML
     TextField titleField;
@@ -76,8 +97,40 @@ public class SourceListViewController {
         authorColumn.setCellValueFactory(cellData -> cellData.getValue().authorProperty());
         authorColumn.setText("Author");
 
+        magazineTitleColumn.setCellValueFactory(cellData -> cellData.getValue().magazineTitleProperty());
+        magazineTitleColumn.setText("Magazine Title");
+
+        websiteTitleColumn.setCellValueFactory(cellData -> cellData.getValue().websiteTitleProperty());
+        websiteTitleColumn.setText("Website Title");
+
+        volumeColumn.setCellValueFactory(cellData -> cellData.getValue().volumeProperty());
+        volumeColumn.setText("Volume");
+
+        editionColumn.setCellValueFactory(cellData -> cellData.getValue().editionProperty());
+        editionColumn.setText("Edition");
+
+        issueColumn.setCellValueFactory(cellData -> cellData.getValue().issueProperty());
+        issueColumn.setText("Issued");
+
+        yearPublishedColumn.setCellValueFactory(cellData -> cellData.getValue().yearPublishedProperty());
+        yearPublishedColumn.setText("Year Published");
+
+        datePublishedColumn.setCellValueFactory(cellData -> cellData.getValue().datePublishedProperty());
+        datePublishedColumn.setText("Date Published");
+
+        urlColumn.setCellValueFactory(cellData -> cellData.getValue().URLProperty());
+        urlColumn.setText("URL");
+
+        versionColumn.setCellValueFactory(cellData -> cellData.getValue().versionProperty());
+        versionColumn.setText("Version");
+
+        annotationColumn.setCellValueFactory(cellData -> cellData.getValue().annotationProperty());
+        annotationColumn.setText("Annotation");
+
         mediumColumn.setCellValueFactory(cellData -> cellData.getValue().mediumProperty());
         mediumColumn.setText("Medium");
+
+
 
         sourceTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showSource(newValue)
