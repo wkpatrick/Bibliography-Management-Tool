@@ -90,7 +90,8 @@ public class SourceListViewController {
         MenuItem menu1 = new MenuItem("Item 1");
         MenuItem menu2 = new MenuItem("Item 2");
         MenuItem menu3 = new MenuItem("Item 3");
-        autocompleteMenu.getItems().addAll(menu1, menu2, menu3);
+        MenuItem menu4 = new MenuItem("Advanced Search...");
+        autocompleteMenu.getItems().addAll(menu1, menu2, menu3, menu4);
 
         searchField.setOnKeyTyped((KeyEvent e) ->{
             if(!searchField.getText().equals("")){
