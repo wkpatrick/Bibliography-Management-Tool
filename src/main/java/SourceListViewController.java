@@ -402,6 +402,29 @@ public class SourceListViewController {
             System.out.println(e);
         }
     }
+
+    public void advancedSearch(ActionEvent actionEvent) {
+        try {
+            Stage primaryStage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("AdvancedSearchWindow.fxml"));
+
+            AnchorPane rootLayout = (AnchorPane) loader.load();
+
+            primaryStage.setTitle("New Source");
+            primaryStage.setScene(new Scene(rootLayout));
+            primaryStage.show();
+
+            AddSourceController controller = loader.getController();
+            controller.setMainWindow(this.mainWindow);
+
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+
     public void UpdateSearchResults(ActionEvent actionEvent){
         if(searchField.getText().equals("")){
             //clear associated results list
