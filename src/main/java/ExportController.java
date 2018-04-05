@@ -7,7 +7,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.util.Arrays;
+import java.util.Objects;
 
 //TODO: Set custom source Export styles: drop-down list in ExportController
 //TODO: Create export settings file
@@ -20,6 +25,9 @@ import javafx.stage.Stage;
 public class ExportController {
     public TableView<Source> sourceTable;
     public JFXToggleButton toggleButtonStyle;
+    public ChoiceBox<String> styleChoiceBox;
+    public CheckBox styleCheckbox;
+    public HBox toggleContainer;
     private Main mainWindow;
 
     private TableColumn< Source, Boolean > selectedColumn = new TableColumn<>( "Select" );
@@ -28,8 +36,12 @@ public class ExportController {
     public Button cancelButton;
     private ObservableList<Source> sourceList;
 
-    public void initSources()
+    private boolean customStyle;
+
+    void initSources()
     {
+        customStyle = false;
+        ObservableList<String> styleNames = FXCollections.observableArrayList();
         sourceTable.setEditable(true);
         selectedColumn.setCellValueFactory( f -> f.getValue().isSelected());
         selectedColumn.setCellFactory( tc -> new CheckBoxTableCell<>());
@@ -47,6 +59,17 @@ public class ExportController {
             //noinspection ThrowablePrintedToSystemOut
             System.out.println(e);
         }
+
+        File directory = new File("styles/");
+        ObservableList<File> fileList = FXCollections.observableArrayList();
+        fileList.addAll(Arrays.asList(Objects.requireNonNull(directory.listFiles())));
+
+        for(File file:fileList)
+        {
+            styleNames.addAll(file.getName());
+        }
+
+        styleChoiceBox.setItems(styleNames);
     }
 
     public void exportSources(ActionEvent actionEvent) {
@@ -58,6 +81,11 @@ public class ExportController {
             if(selectedColumn.getCellObservableValue(i).getValue())
             {
                 exportList.add(sourceTable.getItems().get(i));
+                sourceList.get(i).setSelected(true);
+            }
+            else
+            {
+                sourceList.get(i).setSelected(false);
             }
         }
 
@@ -74,8 +102,11 @@ public class ExportController {
 
             ExportDisplayController controller = loader.getController();
             controller.loadSources(exportList, toggleButtonStyle.isSelected());
+            if(customStyle)
+                controller.initCustom(styleChoiceBox.getValue());
 
         } catch (Exception e) {
+            //noinspection ThrowablePrintedToSystemOut
             System.out.println(e);
         }
     }
@@ -84,7 +115,22 @@ public class ExportController {
         sourceTable.getScene().getWindow().hide();
     }
 
-    public void setMainWindow(Main mainWindow) {
+    void setMainWindow(Main mainWindow) {
         this.mainWindow = mainWindow;
+    }
+
+    public void setCustomStyle(ActionEvent actionEvent) {
+        customStyle = styleCheckbox.isSelected();
+
+        if(customStyle)
+        {
+            toggleContainer.setDisable(true);
+            toggleContainer.setOpacity(0.5);
+        }
+        else
+        {
+            toggleContainer.setDisable(false);
+            toggleContainer.setOpacity(1);
+        }
     }
 }
