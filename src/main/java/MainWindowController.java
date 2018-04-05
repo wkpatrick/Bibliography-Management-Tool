@@ -252,11 +252,9 @@ public class MainWindowController {
                         bufferSource.setPagesCitedEnd(parser.getText());
                         break;
 
-                    case "Annotations":
+                    case "Annotation":
                         jsonToken = parser.nextToken();
                         bufferSource.setAnnotation(parser.getText());
-                        System.out.println("Debut Annotation value read: "+parser.getText());
-                        System.out.println("Debug Annotation value set as: "+bufferSource.getAnnotation());
                         break;
 
                     default:
