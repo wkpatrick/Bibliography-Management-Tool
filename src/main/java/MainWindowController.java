@@ -233,6 +233,7 @@ public class MainWindowController {
                     case "DatabaseService":
                         jsonToken = parser.nextToken();
                         bufferSource.setDatabaseService(parser.getText());
+                        //confound this
                         System.out.println("Debug DatabaseService value read: "+parser.getText());
                         System.out.println("Debug DatabaseService value set as: "+bufferSource.getDatabaseService());
                         break;
@@ -303,13 +304,13 @@ public class MainWindowController {
                 FileWriter fileWriter = new FileWriter(file);
                 //fileWriter.write(mainWindow.getSourceList().toString());
                 for (Source str : mainWindow.getSourceList()) {
-                    System.out.println(str.getTitle());
+                    //System.out.println(str.getTitle());
                     String temp = String.format(JsonFileToDisk, str.getTitle(), str.getAuthor(), str.getMagazineTitle(), str.getWebsiteTitle(),
                             str.getVolume(), str.getEdition(), str.getIssue(), str.getPublisher(), str.getYearPublished(), str.getDatePublished(),
                             str.getURL(), str.getVersion(), str.getDatabase(), str.getDatabaseService(), str.getMedium(), str.getPagesCitedStart(),
                             str.getPagesCitedEnd(), str.getAnnotation());
 
-                    fileWriter.write(temp);
+                    fileWriter.write(temp+".json");
                 }
                 fileWriter.close();
 
