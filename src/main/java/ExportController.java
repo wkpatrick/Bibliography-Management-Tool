@@ -14,14 +14,6 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.Objects;
 
-//TODO: Set custom source Export styles: drop-down list in ExportController
-//TODO: Create export settings file
-//TODO: Settings > Citation Settings > Open new UI
-//TODO: Edit custom source Export styles: new UI
-//TODO: Save custom source Export styles: new UI
-//TODO: Open custom source Export styles, for editing/saving: new UI
-//JUST for exporting- not across the whole application.
-
 public class ExportController {
     public TableView<Source> sourceTable;
     public JFXToggleButton toggleButtonStyle;
@@ -36,12 +28,12 @@ public class ExportController {
     public Button cancelButton;
     private ObservableList<Source> sourceList;
 
+    private ObservableList<String> styleNames = FXCollections.observableArrayList();
+
     private boolean customStyle;
 
     void initSources()
     {
-        customStyle = false;
-        ObservableList<String> styleNames = FXCollections.observableArrayList();
         sourceTable.setEditable(true);
         selectedColumn.setCellValueFactory( f -> f.getValue().isSelected());
         selectedColumn.setCellFactory( tc -> new CheckBoxTableCell<>());
@@ -59,6 +51,8 @@ public class ExportController {
             //noinspection ThrowablePrintedToSystemOut
             System.out.println(e);
         }
+
+        customStyle = false;
 
         File directory = new File("styles/");
         ObservableList<File> fileList = FXCollections.observableArrayList();

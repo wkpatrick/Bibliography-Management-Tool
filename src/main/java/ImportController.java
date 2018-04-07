@@ -37,10 +37,7 @@ public class ImportController
     {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Sources File");
-        fileChooser.getExtensionFilters().add
-                (
-                        new FileChooser.ExtensionFilter("Source Files", "*.source")
-                );
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Source Files", "*.source"));
         try
         {
             inputFile = fileChooser.showOpenDialog(new Stage());

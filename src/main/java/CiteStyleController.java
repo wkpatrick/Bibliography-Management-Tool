@@ -161,12 +161,12 @@ public class CiteStyleController {
     }
 
     public void editStyle(ActionEvent actionEvent) throws IOException {
-        File fileBuffer = null;
         String selection = styleListView.getSelectionModel().getSelectedItem();
 
         if(selection == null)
             return;
 
+        File fileBuffer = null;
         for(File file:stylesData)
         {
             if(selection.equals(file.getName()))
@@ -179,7 +179,6 @@ public class CiteStyleController {
         if(fileBuffer != null)
         {
             ObjectMapper objectMapper = new ObjectMapper();
-
             List<FieldStyle> buffer = objectMapper.readValue(fileBuffer, new TypeReference<List<FieldStyle>>(){});
 
             for(FieldStyle style:buffer)

@@ -174,9 +174,11 @@ class StyleParser
             for(FieldStyle style:selectedFields)
             {
                 bufferField = getFormattedField(style, source);
-                result.append(bufferField);
                 if(!bufferField.isEmpty())
-                    result.append(".");
+                {
+                    result.append(bufferField);
+                    result.append(". ");
+                }
             }
 
             result.append("<br><br>");
