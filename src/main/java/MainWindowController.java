@@ -129,7 +129,7 @@ public class MainWindowController {
     @FXML
     private void openList(ActionEvent actionEvent) throws IOException {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(jsonFilter);
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Source Files", "*.source"));
         fileChooser.setTitle("Select file to open");
 
         userFile = fileChooser.showOpenDialog(null);
@@ -310,7 +310,7 @@ public class MainWindowController {
                             str.getURL(), str.getVersion(), str.getDatabase(), str.getDatabaseService(), str.getMedium(), str.getPagesCitedStart(),
                             str.getPagesCitedEnd(), str.getAnnotation());
 
-                    fileWriter.write(temp+".json");
+                    fileWriter.write(temp+".source");
                 }
                 fileWriter.close();
 
