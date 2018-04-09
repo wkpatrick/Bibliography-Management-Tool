@@ -1,3 +1,9 @@
+//These imports are for making use of jason files.
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+
+//JavaFX imports, some need to be purged later.
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,10 +20,14 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+//Java file IO
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class MainWindowController {
@@ -117,93 +127,147 @@ public class MainWindowController {
 
     //Open and save, Randolph
     @FXML
-    private void openList(ActionEvent actionEvent) {
+    private void openList(ActionEvent actionEvent) throws IOException {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(jsonFilter);
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Source Files", "*.source"));
         fileChooser.setTitle("Select file to open");
 
         userFile = fileChooser.showOpenDialog(null);
+        if(userFile == null)
+            return;
+
         Source sTemp = new Source("");
-        //ObservableList<Source> tempList = FXCollections.observableArrayList();;
-        if (userFile.exists()) {
-            mainWindow.sourceList.clear();
-            try (Scanner scan = new Scanner(userFile)) {
-                while (scan.hasNextLine()) {
+        //ObservableList<Source> tempList = FXCollections.observableArrayList();
+        byte[] rawData = Files.readAllBytes(Paths.get(userFile.getAbsolutePath()));
+        String jsonData = new String(rawData);
 
-                    String x = "";
-                    if (scan.nextLine() != "") {
-                        x = scan.nextLine();
-                        //System.out.println(x);
-                    }
+        JsonFactory factory = new JsonFactory();
+        JsonParser parser = factory.createParser(jsonData);
+        JsonToken jsonToken;
 
+        Source bufferSource = new Source("");
+        mainWindow.sourceList.clear();
+        while(!parser.isClosed()){
+            jsonToken = parser.nextToken();
+            //start and stop of JSON
+            if(JsonToken.START_OBJECT.equals(jsonToken)){
 
-                    if (x.contains("“Title”")) {
-                        // System.out.println("Debug: "+ x);
-                        // System.out.println("Debug2: " + x.substring(x.indexOf(":")+1, x.indexOf(",")) );
-                        sTemp.setTitle(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
-                        // System.out.println(sTemp.getTitle());
-                    }
-                    if (x.contains("Author")) {
+                bufferSource = new Source("");
+            }
+            if(JsonToken.END_OBJECT.equals(jsonToken)){
+                mainWindow.addSource(bufferSource);
+            }
 
-                        //String y = x.substring(x.indexOf(":")+1, x.indexOf(","));
-                        sTemp.setAuthor(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
-                    }
-                    if (x.contains("Volume")) {
-                        sTemp.setVolume(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
-                    }
-                    if (x.contains("Edition")) {
-                        sTemp.setEdition(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
-                    }
-                    if (x.contains("Publisher")) {
-                        sTemp.setPublisher(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
-                    }
-                    if (x.contains("DatePublished")) {
-                        sTemp.setDatePublished(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
-                    }
-                    if (x.contains("WebsiteTitle")) {
-                        sTemp.setWebsiteTitle(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
-                    }
-                    if (x.contains("URL")) {
-                        sTemp.setURL(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
-                    }
-                    if (x.contains("Version")) {
-                        sTemp.setVersion(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
-                    }
-                    if (x.contains("Annotation")) {
-                        sTemp.setAnnotation(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
-                    }
-                    if (x.contains("Database") && !x.contains("Service")) {
-                        sTemp.setDatabase(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
-                    }
-                    if (x.contains("DatabaseService")) {
-                        sTemp.setDatabaseService(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
-                    }
-                    if (x.contains("Medium")) {
-                        sTemp.setMedium(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
-                    }
-                    if (x.contains("PageCitedStart")) {
-                        sTemp.setPagesCitedStart(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
-                    }
-                    if (x.contains("PagesCitedEnd")) {
-                        sTemp.setPagesCitedEnd(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
-                    }
-                    if (x.contains("“MagazineTitle”")) {
-                        sTemp.setMagazineTitle(x.substring(x.indexOf(":") + 1, x.indexOf(",")));
-                    }
+            if(jsonToken.FIELD_NAME.equals(jsonToken)){
+                System.out.println(parser.getText());
+                switch (parser.getText())
+                {
+                    //each switch case sets a field in the bufferSource object, once its done the End object
+                    //above should trigger and move to the next "object or source"
 
-                    //Here it should be adding the source to the source list, resetting the source temp, sTemp and starting again until we reach the end of the file.
-                    // System.out.println(sTemp.getTitle() + " hello hello");
+                    case "Title":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setTitle(parser.getText());
+                        break;
 
-                    mainWindow.addSource(sTemp);
-                    sTemp = new Source("");
+                    case "Author":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setAuthor(parser.getText());
+                        break;
+
+                    case "MagTitle":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setMagazineTitle(parser.getText());
+                        break;
+
+                    case "WebsiteTitle":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setWebsiteTitle(parser.getText());
+                        break;
+
+                    case "Volume":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setVolume(parser.getText());
+                        break;
+
+                    case "Edition":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setEdition(parser.getText());
+                        break;
+
+                    case "Issue":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setIssue(parser.getText());
+                        break;
+
+                    case "Publisher":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setPublisher(parser.getText());
+                        break;
+
+                    case "YearPublished":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setYearPublished(parser.getText());
+                        break;
+
+                    case "DatePublished":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setDatePublished(parser.getText());
+                        break;
+
+                    case "URL":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setURL(parser.getText());
+                        break;
+
+                    case "Version":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setVersion(parser.getText());
+                        break;
+
+                    case "Database":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setDatabase(parser.getText());
+                        break;
+
+                    case "DatabaseService":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setDatabaseService(parser.getText());
+                        //confound this
+                        System.out.println("Debug DatabaseService value read: "+parser.getText());
+                        System.out.println("Debug DatabaseService value set as: "+bufferSource.getDatabaseService());
+                        break;
+
+                    case "Medium":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setMedium(parser.getText());
+                        break;
+
+                    case "PagesCitedStart":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setPagesCitedStart(parser.getText());
+                        break;
+
+                    case "PagesCitedEnd":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setPagesCitedEnd(parser.getText());
+                        break;
+
+                    case "Annotation":
+                        jsonToken = parser.nextToken();
+                        bufferSource.setAnnotation(parser.getText());
+                        break;
+
+                    default:
+                        break;
                 }
 
 
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        }//end IF file exists.
-    }
+            }//End massive if block that parses through json tokens.
+
+        }//End while parser is not closed loop
+
+    } //end open list block
 
     @FXML
     private void saveList(ActionEvent actionEvent) {
@@ -217,35 +281,36 @@ public class MainWindowController {
         if (file != null) {
             try {
 
-                String JsonFileToDisk = "" +
-                        "“Author”:%s,\n" +
-                        "“Title”:%s,\n" +
-                        "“Volume”:%s,\n" +
-                        "“Edition”:%s,\n" +
-                        "“Publisher”:%s,\n" +
-                        "“DatePublished”:%s,\n" +
-                        "“WebsiteTitle”:%s,\n" +
-                        "“URL”:%s,\n" +
-                        "“Version”:%s,\n" +
-                        "“Annotation”:%s,\n" +
-                        "“Database”:%s,\n" +
-                        "“DatabaseService”:%s,\n" +
-                        "“Medium”:%s,\n" +
-                        "“PagesCitedStart”:%s,\n" +
-                        "“PagesCitedEnd”:%s,\n" +
-                        "“MagazineTitle”:%s,\n";
+                String JsonFileToDisk = "\n{" +
+                        "\"Title\":\"%s\",\n" +
+                        "\"Author\":\"%s\",\n" +
+                        "\"MagTitle\":\"%s\",\n" +
+                        "\"WebsiteTitle\":\"%s\",\n" +
+                        "\"Volume\":\"%s\",\n" +
+                        "\"Edition\":\"%s\",\n" +
+                        "\"Issue\":\"%s\",\n" +
+                        "\"Publisher\":\"%s\",\n" +
+                        "\"YearPublished\":\"%s\",\n" +
+                        "\"DatePublished\":\"%s\",\n" +
+                        "\"URL\":\"%s\",\n" +
+                        "\"Version\":\"%s\",\n" +
+                        "\"Database\":\"%s\",\n" +
+                        "\"DatabaseService\":\"%s\",\n" +
+                        "\"Medium\":\"%s\",\n" +
+                        "\"PagesCitedStart\":\"%s\",\n" +
+                        "\"PagesCitedEnd\":\"%s\",\n" +
+                        "\"Annotation\":\"%s\"\n}";
 
                 FileWriter fileWriter = new FileWriter(file);
                 //fileWriter.write(mainWindow.getSourceList().toString());
                 for (Source str : mainWindow.getSourceList()) {
-                    System.out.println(str.getTitle());
-                    String temp = String.format(JsonFileToDisk, str.getAuthor(), str.getTitle(),
-                            str.getVersion(), str.getEdition(), str.getPublisher(), str.getDatePublished(),
-                            str.getWebsiteTitle(), str.getURL(), str.getVersion(), str.getAnnotation(),
-                            str.getDatabase(), str.getDatabaseService(), str.getMedium(), str.getPagesCitedStart(),
-                            str.getPagesCitedEnd(), str.getMagazineTitle());
+                    //System.out.println(str.getTitle());
+                    String temp = String.format(JsonFileToDisk, str.getTitle(), str.getAuthor(), str.getMagazineTitle(), str.getWebsiteTitle(),
+                            str.getVolume(), str.getEdition(), str.getIssue(), str.getPublisher(), str.getYearPublished(), str.getDatePublished(),
+                            str.getURL(), str.getVersion(), str.getDatabase(), str.getDatabaseService(), str.getMedium(), str.getPagesCitedStart(),
+                            str.getPagesCitedEnd(), str.getAnnotation());
 
-                    fileWriter.write(temp);
+                    fileWriter.write(temp+".source");
                 }
                 fileWriter.close();
 
@@ -254,7 +319,7 @@ public class MainWindowController {
                 System.out.println(e);
             }
         }
-    }
+    }//end save list block
 
 
     public void customCitation(ActionEvent actionEvent) {
