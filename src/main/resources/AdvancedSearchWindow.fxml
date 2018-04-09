@@ -13,13 +13,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdvancedSearchWindowController">
+<AnchorPane minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdvancedSearchWindowController">
    <children>
-      <BorderPane layoutX="181.0" layoutY="93.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane layoutX="181.0" layoutY="93.0" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <AnchorPane prefHeight="120.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <AnchorPane minWidth="-Infinity" prefHeight="120.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GridPane layoutY="10.0" prefHeight="110.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -33,112 +33,124 @@
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                            <children>
-                              <Label text="Label">
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <TextField>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </TextField>
+                              <AnchorPane prefHeight="29.0" prefWidth="404.0">
+                                 <children>
+                                    <TextField prefHeight="25.0" prefWidth="275.0" promptText="Publisher" AnchorPane.rightAnchor="20.0" />
+                                    <Label text="Publisher" AnchorPane.leftAnchor="15.0">
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
                            </children></HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label text="Label">
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <TextField prefHeight="25.0" prefWidth="221.0">
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </TextField>
+                              <AnchorPane prefHeight="29.0" prefWidth="404.0">
+                                 <children>
+                                    <TextField accessibleText="Title" prefHeight="25.0" prefWidth="275.0" promptText="Title" AnchorPane.rightAnchor="20.0" />
+                                     <Label text="Title" AnchorPane.leftAnchor="15.0">
+                                         <padding>
+                                             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                         </padding>
+                                     </Label>
+                                 </children>
+                              </AnchorPane>
                            </children>
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                            <children>
-                              <Label text="Label">
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <TextField>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </TextField>
+                              <AnchorPane prefHeight="29.0" prefWidth="404.0">
+                                 <children>
+                                    <TextField prefHeight="25.0" prefWidth="275.0" promptText="Author" AnchorPane.rightAnchor="20.0" />
+                                    <Label text="Author" AnchorPane.leftAnchor="15.0">
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
                            </children>
                         </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+                           <children>
+                              <AnchorPane prefHeight="29.0" prefWidth="404.0">
+                                 <children>
+                                    <TextField prefHeight="25.0" prefWidth="275.0" promptText="Year Published" AnchorPane.rightAnchor="20.0" />
+                                    <Label text="Year Published" AnchorPane.leftAnchor="15.0">
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children></HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <Label text="Label">
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <TextField>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </TextField>
+                              <AnchorPane prefHeight="29.0" prefWidth="404.0">
+                                 <children>
+                                    <TextField prefHeight="25.0" prefWidth="275.0" promptText="Date Published" AnchorPane.rightAnchor="20.0" />
+                                    <Label text="Date Published" AnchorPane.leftAnchor="5.0">
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                       <BorderPane.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                                       </BorderPane.margin>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
                            </children>
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <Label text="Label">
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <TextField>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </TextField>
+                              <AnchorPane prefHeight="29.0" prefWidth="404.0">
+                                 <children>
+                                    <TextField prefHeight="25.0" prefWidth="275.0" AnchorPane.rightAnchor="20.0" />
+                                    <Label text="??" AnchorPane.leftAnchor="5.0">
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
                            </children>
                         </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <children>
+                              <AnchorPane prefHeight="29.0" prefWidth="404.0">
+                                 <children>
+                                    <TextField prefHeight="25.0" prefWidth="275.0" AnchorPane.rightAnchor="20.0" />
+                                    <Label text="??" AnchorPane.leftAnchor="5.0">
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <children>
+                              <AnchorPane prefHeight="29.0" prefWidth="404.0">
+                                 <children>
+                                    <Label text="??" AnchorPane.leftAnchor="5.0">
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </Label>
+                                    <TextField prefHeight="25.0" prefWidth="275.0" AnchorPane.rightAnchor="20.0" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </HBox>
                      </children>
                   </GridPane>
                </children>
             </AnchorPane>
          </top>
          <bottom>
-            <AnchorPane prefHeight="35.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="36.0" prefWidth="800.0" BorderPane.alignment="CENTER">
                <children>
                   <HBox layoutY="69.0" prefHeight="37.0" prefWidth="304.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="0.0">
                      <children>
@@ -175,7 +187,7 @@
             </AnchorPane>
          </bottom>
          <center>
-            <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <TableView minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn prefWidth="75.0" text="C1" />
                 <TableColumn prefWidth="75.0" text="C2" />
