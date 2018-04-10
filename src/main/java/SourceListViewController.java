@@ -161,7 +161,7 @@ public class SourceListViewController {
                 //populate autocompleteMenu with proper results through communication with elasticsearch
                 SearchResponse response = client.prepareSearch("index1", "index2").setQuery(QueryBuilders.termQuery(searchField.getText(),1)).get();
                 for(Aggregation a:response.getAggregations().asList()){
-                    a.toString();
+                    System.out.println(a.getName());
                 }
                 autocompleteMenu.show(searchField, Side.TOP, 0,0);
             }
