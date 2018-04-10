@@ -255,7 +255,7 @@ public class MainWindowController {
 
         FileChooser saveFile = new FileChooser();
         saveFile.getExtensionFilters().add(jsonFilter);
-        saveFile.setTitle("Save file");
+        saveFile.setTitle("Save File");
 
         File file = saveFile.showSaveDialog(null);
 
@@ -291,7 +291,7 @@ public class MainWindowController {
                             str.getURL(), str.getVersion(), str.getDatabase(), str.getDatabaseService(), str.getMedium(), str.getPagesCitedStart(),
                             str.getPagesCitedEnd(), str.getAnnotation());
 
-                    fileWriter.write(temp+".source");
+                    fileWriter.write(temp);
                 }
                 fileWriter.close();
 
