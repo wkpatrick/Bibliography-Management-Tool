@@ -42,7 +42,7 @@ public class MainWindowController {
     private MenuItem saveList;
     File userFile;
     //Filter so only a .json is written out
-    FileChooser.ExtensionFilter jsonFilter = new FileChooser.ExtensionFilter("JSON", "*.json");
+    FileChooser.ExtensionFilter jsonFilter = new FileChooser.ExtensionFilter("SOURCE", "*.source");
 
 
 
