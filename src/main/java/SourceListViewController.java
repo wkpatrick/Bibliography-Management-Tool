@@ -10,6 +10,15 @@ import javafx.event.ActionEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.transport.TransportAddress;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.aggregations.Aggregation;
+import org.elasticsearch.transport.client.PreBuiltTransportClient;
+
+import java.net.InetAddress;
 
 public class SourceListViewController {
     private Main mainWindow;
@@ -85,6 +94,9 @@ public class SourceListViewController {
     @FXML
     private MenuItem deleteItem;
 
+    String elasticsearchURL = "http://vpn.lucidlynx.net";
+    TransportClient client = new PreBuiltTransportClient(Settings.EMPTY);
+
     ContextMenu autocompleteMenu;
 
     private ObservableList<Source> testList = FXCollections.observableArrayList();
@@ -130,8 +142,6 @@ public class SourceListViewController {
         mediumColumn.setCellValueFactory(cellData -> cellData.getValue().mediumProperty());
         mediumColumn.setText("Medium");
 
-
-
         sourceTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showSource(newValue)
         );
@@ -149,12 +159,23 @@ public class SourceListViewController {
         searchField.setOnKeyTyped((KeyEvent e) ->{
             if(!searchField.getText().equals("")){
                 //populate autocompleteMenu with proper results through communication with elasticsearch
+                SearchResponse response = client.prepareSearch("index1", "index2").setQuery(QueryBuilders.termQuery(searchField.getText(),1)).get();
+                for(Aggregation a:response.getAggregations().asList()){
+                    a.toString();
+                }
                 autocompleteMenu.show(searchField, Side.TOP, 0,0);
             }
             else{
                 autocompleteMenu.hide();
             }
         });
+
+        try{
+            client = new PreBuiltTransportClient(Settings.EMPTY).addTransportAddress(new TransportAddress(InetAddress.getByName(elasticsearchURL), 9200));
+        }
+        catch(Exception e){
+            System.out.println("Elasticsearch server not found!");
+        }
 
         deleteItem.setOnAction((ActionEvent event) -> {
             int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
