@@ -44,26 +44,7 @@ public class MainWindowController {
     //Filter so only a .json is written out
     FileChooser.ExtensionFilter jsonFilter = new FileChooser.ExtensionFilter("JSON", "*.json");
 
-    public void createNewSource(ActionEvent actionEvent) {
-        try {
-            Stage primaryStage = new Stage();
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("AddSourceView.fxml"));
 
-            AnchorPane rootLayout = (AnchorPane) loader.load();
-
-            primaryStage.setTitle("New Source");
-            primaryStage.setScene(new Scene(rootLayout));
-            primaryStage.show();
-
-            AddSourceController controller = loader.getController();
-            controller.setMainWindow(this.mainWindow);
-
-
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
 
 
 

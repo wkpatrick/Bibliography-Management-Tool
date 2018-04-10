@@ -31,24 +31,11 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
-                           <children>
-                              <AnchorPane prefHeight="29.0" prefWidth="404.0">
-                                 <children>
-                                    <TextField prefHeight="25.0" prefWidth="275.0" promptText="Publisher" AnchorPane.rightAnchor="20.0" />
-                                    <Label text="Publisher" AnchorPane.leftAnchor="15.0">
-                                       <padding>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </padding>
-                                    </Label>
-                                 </children>
-                              </AnchorPane>
-                           </children></HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <AnchorPane prefHeight="29.0" prefWidth="404.0">
                                  <children>
-                                    <TextField accessibleText="Title" prefHeight="25.0" prefWidth="275.0" promptText="Title" AnchorPane.rightAnchor="20.0" />
+                                    <TextField fx:id="titleField" accessibleText="Title" prefHeight="25.0" prefWidth="275.0" promptText="Title" AnchorPane.rightAnchor="20.0" />
                                      <Label text="Title" AnchorPane.leftAnchor="15.0">
                                          <padding>
                                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -62,7 +49,7 @@
                            <children>
                               <AnchorPane prefHeight="29.0" prefWidth="404.0">
                                  <children>
-                                    <TextField prefHeight="25.0" prefWidth="275.0" promptText="Author" AnchorPane.rightAnchor="20.0" />
+                                    <TextField fx:id="authorField" prefHeight="25.0" prefWidth="275.0" promptText="Author" AnchorPane.rightAnchor="20.0" />
                                     <Label text="Author" AnchorPane.leftAnchor="15.0">
                                        <padding>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -72,11 +59,24 @@
                               </AnchorPane>
                            </children>
                         </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                           <children>
+                              <AnchorPane prefHeight="29.0" prefWidth="404.0">
+                                 <children>
+                                    <TextField fx:id="publi" prefHeight="25.0" prefWidth="275.0" promptText="Publisher" AnchorPane.rightAnchor="20.0" />
+                                    <Label text="Publisher" AnchorPane.leftAnchor="15.0">
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children></HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
                            <children>
                               <AnchorPane prefHeight="29.0" prefWidth="404.0">
                                  <children>
-                                    <TextField prefHeight="25.0" prefWidth="275.0" promptText="Year Published" AnchorPane.rightAnchor="20.0" />
+                                    <TextField fx:id="yearPublishedField" prefHeight="25.0" prefWidth="275.0" promptText="Year Published" AnchorPane.rightAnchor="20.0" />
                                     <Label text="Year Published" AnchorPane.leftAnchor="15.0">
                                        <padding>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -89,7 +89,7 @@
                            <children>
                               <AnchorPane prefHeight="29.0" prefWidth="404.0">
                                  <children>
-                                    <TextField prefHeight="25.0" prefWidth="275.0" promptText="Date Published" AnchorPane.rightAnchor="20.0" />
+                                    <TextField fx:id="datePublishedField" prefHeight="25.0" prefWidth="275.0" promptText="Date Published" AnchorPane.rightAnchor="20.0" />
                                     <Label text="Date Published" AnchorPane.leftAnchor="5.0">
                                        <padding>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -152,9 +152,9 @@
          <bottom>
             <AnchorPane prefHeight="36.0" prefWidth="800.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox layoutY="69.0" prefHeight="37.0" prefWidth="304.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="0.0">
+                  <HBox prefHeight="41.0" prefWidth="403.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Search">
+                        <Button mnemonicParsing="false" onAction="#searchServer" text="Search">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -162,7 +162,7 @@
                               <Insets bottom="2.0" top="2.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" text="Clear Search">
+                        <Button mnemonicParsing="false" onAction="#clearSearch" text="Clear Search">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -170,13 +170,21 @@
                               <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" text="Add to My Sources">
+                        <Button mnemonicParsing="false" onAction="#addToSourceList" text="Add to My Sources">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                            <HBox.margin>
                               <Insets bottom="2.0" left="35.0" right="5.0" top="2.0" />
                            </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#ExitSearch" prefHeight="27.0" prefWidth="76.0" text="Exit Search">
+                           <HBox.margin>
+                              <Insets bottom="2.0" left="35.0" right="5.0" top="2.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
                         </Button>
                      </children>
                      <padding>
@@ -187,10 +195,21 @@
             </AnchorPane>
          </bottom>
          <center>
-            <TableView minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="searchTable" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                  <TableColumn fx:id="titleColumn" minWidth="120.0" prefWidth="130.0" text="Column X" />
+                  <TableColumn fx:id="authorColumn" minWidth="110.0" prefWidth="120.0" text="Column X" />
+                  <TableColumn fx:id="mediumColumn" minWidth="60.0" prefWidth="80.0" text="Column X" />
+                  <TableColumn fx:id="magazineTitleColumn" minWidth="100.0" prefWidth="130.0" text="Column X" />
+                  <TableColumn fx:id="websiteTitleColumn" minWidth="100.0" prefWidth="100.0" text="Column X" />
+                  <TableColumn fx:id="volumeColumn" minWidth="50.0" prefWidth="90.0" text="Column X" />
+                  <TableColumn fx:id="editionColumn" minWidth="50.0" prefWidth="80.0" text="Column X" />
+                  <TableColumn fx:id="issueColumn" minWidth="50.0" prefWidth="80.0" text="Column X" />
+                  <TableColumn fx:id="yearPublishedColumn" minWidth="50.0" prefWidth="80.0" text="Column X" />
+                  <TableColumn fx:id="datePublishedColumn" minWidth="50.0" prefWidth="80.0" text="Column X" />
+                  <TableColumn fx:id="urlColumn" minWidth="200.0" prefWidth="340.0" text="Column X" />
+                  <TableColumn fx:id="versionColumn" minWidth="50.0" prefWidth="75.0" text="Column X" />
+                  <TableColumn fx:id="annotationColumn" minWidth="50.0" prefWidth="75.0" text="Column X" />
               </columns>
                <BorderPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

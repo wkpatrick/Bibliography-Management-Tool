@@ -412,11 +412,11 @@ public class SourceListViewController {
 
             AnchorPane rootLayout = (AnchorPane) loader.load();
 
-            primaryStage.setTitle("New Source");
+            primaryStage.setTitle("Advanced Search");
             primaryStage.setScene(new Scene(rootLayout));
             primaryStage.show();
 
-            AddSourceController controller = loader.getController();
+            AdvancedSearchWindowController controller = loader.getController();
             controller.setMainWindow(this.mainWindow);
 
 
