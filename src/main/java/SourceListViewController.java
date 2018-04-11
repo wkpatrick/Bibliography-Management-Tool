@@ -1,3 +1,6 @@
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,15 +13,6 @@ import javafx.event.ActionEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.TransportAddress;
-import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.search.aggregations.Aggregation;
-import org.elasticsearch.transport.client.PreBuiltTransportClient;
-
-import java.net.InetAddress;
 
 public class SourceListViewController {
     private Main mainWindow;
@@ -94,8 +88,7 @@ public class SourceListViewController {
     @FXML
     private MenuItem deleteItem;
 
-    String elasticsearchURL = "http://vpn.lucidlynx.net";
-    TransportClient client = new PreBuiltTransportClient(Settings.EMPTY);
+    String serverURL = "http://vpn.lucidlynx.net:9200";
 
     ContextMenu autocompleteMenu;
 
@@ -158,10 +151,13 @@ public class SourceListViewController {
 
         searchField.setOnKeyTyped((KeyEvent e) ->{
             if(!searchField.getText().equals("")){
-                //populate autocompleteMenu with proper results through communication with elasticsearch
-                SearchResponse response = client.prepareSearch("index1", "index2").setQuery(QueryBuilders.termQuery(searchField.getText(),1)).get();
-                for(Aggregation a:response.getAggregations().asList()){
-                    System.out.println(a.getName());
+                //populate autocompleteMenu with proper results through communication with unirest
+                try {
+                     HttpResponse<JsonNode> jsonResponse = Unirest.post(serverURL).queryString("Title", searchField.getText()).asJson();
+                     System.out.println("Search output: " +  jsonResponse.getBody().toString());
+                }
+                catch(Exception ex){
+                    System.out.println("Failed to communicate with server :c");
                 }
                 autocompleteMenu.show(searchField, Side.TOP, 0,0);
             }
@@ -169,13 +165,6 @@ public class SourceListViewController {
                 autocompleteMenu.hide();
             }
         });
-
-        try{
-            client = new PreBuiltTransportClient(Settings.EMPTY).addTransportAddress(new TransportAddress(InetAddress.getByName(elasticsearchURL), 9200));
-        }
-        catch(Exception e){
-            System.out.println("Elasticsearch server not found!");
-        }
 
         deleteItem.setOnAction((ActionEvent event) -> {
             int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
