@@ -155,6 +155,29 @@ public class SourceListViewController {
         MenuItem menu4 = new MenuItem("Advanced Search...");
         autocompleteMenu.getItems().addAll(menu4);
 
+        menu4.setOnAction((ActionEvent e) -> advancedSearch(e));
+
+        menu1.setOnAction((ActionEvent e) -> {
+            mainWindow.sourceList.add(quickResults.get(0));
+            autocompleteMenu.hide();
+            searchField.setText("");
+            quickResults.clear();
+        });
+
+        menu2.setOnAction((ActionEvent e) -> {
+            mainWindow.sourceList.add(quickResults.get(1));
+            autocompleteMenu.hide();
+            searchField.setText("");
+            quickResults.clear();
+        });
+
+        menu3.setOnAction((ActionEvent e) -> {
+            mainWindow.sourceList.add(quickResults.get(2));
+            autocompleteMenu.hide();
+            searchField.setText("");
+            quickResults.clear();
+        });
+
         searchField.setOnKeyTyped((KeyEvent e) ->{
             if(!searchField.getText().equals("")){
                 //populate autocompleteMenu with proper results through communication with unirest
