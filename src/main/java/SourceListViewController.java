@@ -236,6 +236,7 @@ public class SourceListViewController {
                 selectedSource.setTitle(newValue);
             }
         });
+        titleField.autosize();
 
         authorField.textProperty().addListener((obj, oldValue, newValue) -> {
             int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
@@ -244,6 +245,7 @@ public class SourceListViewController {
                 selectedSource.setAuthor(newValue);
             }
         });
+        authorField.autosize();
 
         magazineTitleField.textProperty().addListener((obj, oldValue, newValue) -> {
             int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
@@ -252,6 +254,7 @@ public class SourceListViewController {
                 selectedSource.setMagazineTitle(newValue);
             }
         });
+        magazineTitleField.autosize();
 
         websiteTitleField.textProperty().addListener((obj, oldValue, newValue) -> {
             int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
@@ -260,6 +263,7 @@ public class SourceListViewController {
                 selectedSource.setWebsiteTitle(newValue);
             }
         });
+        websiteTitleField.autosize();
 
         volumeField.textProperty().addListener((obj, oldValue, newValue) -> {
             int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
@@ -268,6 +272,7 @@ public class SourceListViewController {
                 selectedSource.setVolume(newValue);
             }
         });
+        volumeField.autosize();
 
         editionField.textProperty().addListener((obj, oldValue, newValue) -> {
             int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
@@ -276,6 +281,7 @@ public class SourceListViewController {
                 selectedSource.setEdition(newValue);
             }
         });
+        editionField.autosize();
 
         issueField.textProperty().addListener((obj, oldValue, newValue) -> {
             int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
@@ -284,6 +290,7 @@ public class SourceListViewController {
                 selectedSource.setIssue(newValue);
             }
         });
+        issueField.autosize();
 
         publisherField.textProperty().addListener((obj, oldValue, newValue) -> {
             int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
@@ -292,6 +299,7 @@ public class SourceListViewController {
                 selectedSource.setPublisher(newValue);
             }
         });
+        publisherField.autosize();
 
         yearPublishedField.textProperty().addListener((obj, oldValue, newValue) -> {
             int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
@@ -300,6 +308,7 @@ public class SourceListViewController {
                 selectedSource.setYearPublished(newValue);
             }
         });
+        yearPublishedField.autosize();
 
         datePublishedField.textProperty().addListener((obj, oldValue, newValue) -> {
             int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
@@ -308,6 +317,7 @@ public class SourceListViewController {
                 selectedSource.setDatePublished(newValue);
             }
         });
+        datePublishedField.autosize();
 
         URLfield.textProperty().addListener((obj, oldValue, newValue) -> {
             int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
@@ -316,6 +326,7 @@ public class SourceListViewController {
                 selectedSource.setURL(newValue);
             }
         });
+        URLfield.autosize();
 
         versionField.textProperty().addListener((obj, oldValue, newValue) -> {
             int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
@@ -324,6 +335,7 @@ public class SourceListViewController {
                 selectedSource.setVersion(newValue);
             }
         });
+        versionField.autosize();
 
         annotationField.textProperty().addListener((obj, oldValue, newValue) -> {
             int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
@@ -332,6 +344,7 @@ public class SourceListViewController {
                 selectedSource.setAnnotation(newValue);
             }
         });
+        annotationField.autosize();
 
         databaseField.textProperty().addListener((obj, oldValue, newValue) -> {
             int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
@@ -340,6 +353,7 @@ public class SourceListViewController {
                 selectedSource.setDatabase(newValue);
             }
         });
+        databaseField.autosize();
 
         mediumField.textProperty().addListener((obj, oldValue, newValue) -> {
             int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
@@ -348,6 +362,7 @@ public class SourceListViewController {
                 selectedSource.setMedium(newValue);
             }
         });
+        mediumField.autosize();
 
         pagesCitedField1.textProperty().addListener((obj, oldValue, newValue) -> {
             int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
