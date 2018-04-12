@@ -198,6 +198,7 @@ public class SourceListViewController {
                 }
                 catch(Exception ex){
                     System.out.println("Failed to communicate with server :c");
+                    ex.printStackTrace();
                 }
                 if(quickResults.size()>=3){
                     menu1.setText(quickResults.get(0).title.get());
