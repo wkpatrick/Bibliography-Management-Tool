@@ -111,7 +111,7 @@
                             <TextField fx:id="pagesCitedField2" maxWidth="50" />
                         </HBox>
                         <HBox minHeight="100" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
-                            <Label minWidth="150.0" prefHeight="90" text="Annotation" />
+                            <Label minWidth="150.0" prefHeight="90" text="Notes" />
                             <TextArea fx:id="annotationField" prefHeight="100" prefWidth="200" wrapText="true" />
                         </HBox>
                     </JFXListView>
