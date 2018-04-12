@@ -259,7 +259,19 @@ public class MainWindowController {
 
         File file = saveFile.showSaveDialog(null);
 
-        if (file != null) {
+        File f2;
+
+        if(System.getProperty("os.name").contains("Linux"))
+        {
+           // System.out.println(System.getProperty("os.name"));
+             f2 = new File(file.getAbsolutePath().toString() + ".source");
+        }
+        else
+            f2 = file;
+        //System.out.println(f2.getName());
+
+
+        if (f2 != null) {
             try {
 
                 String JsonFileToDisk = "\n{" +
@@ -282,7 +294,7 @@ public class MainWindowController {
                         "\"PagesCitedEnd\":\"%s\",\n" +
                         "\"Annotation\":\"%s\"\n}";
 
-                FileWriter fileWriter = new FileWriter(file);
+                FileWriter fileWriter = new FileWriter(f2); //previously was file
                 //fileWriter.write(mainWindow.getSourceList().toString());
                 for (Source str : mainWindow.getSourceList()) {
                     //System.out.println(str.getTitle());
