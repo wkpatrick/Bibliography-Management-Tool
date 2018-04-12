@@ -1,3 +1,6 @@
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
@@ -16,6 +19,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -189,6 +193,8 @@ public class SourceListViewController {
                     System.out.println("Search output:" + jsonResponse.getBody().toString());
                     quickResults.clear();
                     //convert json formatted return statement to Source objects, place in list
+                    String jsonString = jsonResponse.toString();
+                    quickResults.addAll(extractJSONSources(jsonString));
                 }
                 catch(Exception ex){
                     System.out.println("Failed to communicate with server :c");
@@ -383,6 +389,111 @@ public class SourceListViewController {
         rightClickMenu.getItems().add(deleteItem);
         sourceTable.setContextMenu(rightClickMenu);
 
+    }
+
+    private ObservableList<Source> extractJSONSources(String jsonData) throws IOException {
+        ObservableList<Source> result = FXCollections.observableArrayList();
+
+        JsonFactory factory = new JsonFactory();
+        JsonParser parser = factory.createParser(jsonData);
+        JsonToken jsonToken;
+
+        Source bufferSource = new Source("");
+
+        while(!parser.isClosed()){
+            jsonToken = parser.nextToken();
+
+            //"Source" field captured.
+            if(JsonToken.FIELD_NAME.equals(jsonToken) && parser.getText().equals("_source"))
+            {
+                //Scan through Source JSON object until "}" token is found.
+                while(!JsonToken.END_OBJECT.equals(jsonToken))
+                {
+                    jsonToken = parser.nextToken();
+
+                    //Capture Source JSON fields in bufferSource.
+                    if(JsonToken.FIELD_NAME.equals(jsonToken))
+                    {
+                        switch(parser.getText())
+                        {
+                            case "Author":
+                                jsonToken = parser.nextToken();
+                                bufferSource.setAuthor(parser.getText());
+                                break;
+                            case "Title":
+                                jsonToken = parser.nextToken();
+                                bufferSource.setTitle(parser.getText());
+                                break;
+                            case "Volume":
+                                jsonToken = parser.nextToken();
+                                bufferSource.setVolume(parser.getText());
+                                break;
+                            case "Edition":
+                                jsonToken = parser.nextToken();
+                                bufferSource.setEdition(parser.getText());
+                                break;
+                            case "Publisher":
+                                jsonToken = parser.nextToken();
+                                bufferSource.setPublisher(parser.getText());
+                                break;
+                            case "Year":
+                                jsonToken = parser.nextToken();
+                                bufferSource.setDatePublished(parser.getText());
+                                break;
+                            case "WebsiteTitle":
+                                jsonToken = parser.nextToken();
+                                bufferSource.setWebsiteTitle(parser.getText());
+                                break;
+                            case "URL":
+                                jsonToken = parser.nextToken();
+                                bufferSource.setURL(parser.getText());
+                                break;
+                            case "Version":
+                                jsonToken = parser.nextToken();
+                                bufferSource.setVersion(parser.getText());
+                                break;
+                            case "Annotation":
+                                jsonToken = parser.nextToken();
+                                bufferSource.setAnnotation(parser.getText());
+                                break;
+                            case "Database:":
+                                jsonToken = parser.nextToken();
+                                bufferSource.setDatabase(parser.getText());
+                                break;
+                            case "DatabaseService":
+                                jsonToken = parser.nextToken();
+                                bufferSource.setDatabaseService(parser.getText());
+                                break;
+                            case "Medium":
+                                jsonToken = parser.nextToken();
+                                bufferSource.setMedium(parser.getText());
+                                break;
+                            case "PagesCitedStart":
+                                jsonToken = parser.nextToken();
+                                bufferSource.setPagesCitedStart(parser.getText());
+                                break;
+                            case "PagesCitedEnd":
+                                jsonToken = parser.nextToken();
+                                bufferSource.setPagesCitedEnd(parser.getText());
+                                break;
+                            case "MagTitle":
+                                jsonToken = parser.nextToken();
+                                bufferSource.setMagazineTitle(parser.getText());
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+                //JSON Source captured in bufferSource.
+                //Append bufferSource to result.
+                result.add(bufferSource);
+                //Reset bufferSource to capture more fields.
+                bufferSource = new Source("");
+            }
+        }
+
+        return result;
     }
 
     public void showSource(Source source) {
