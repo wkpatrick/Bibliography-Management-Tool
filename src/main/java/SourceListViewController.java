@@ -1,6 +1,8 @@
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.request.GetRequest;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,6 +15,9 @@ import javafx.event.ActionEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SourceListViewController {
     private Main mainWindow;
@@ -88,7 +93,8 @@ public class SourceListViewController {
     @FXML
     private MenuItem deleteItem;
 
-    String serverURL = "http://vpn.lucidlynx.net:9200";
+    String serverURL = "http://vpn.lucidlynx.net:9200/library/_search";
+    List<Source> quickResults = new ArrayList<Source>();
 
     ContextMenu autocompleteMenu;
 
@@ -143,21 +149,48 @@ public class SourceListViewController {
         deleteItem = new MenuItem("Delete Source");
 
         autocompleteMenu = new ContextMenu();
-        MenuItem menu1 = new MenuItem("Item 1");
-        MenuItem menu2 = new MenuItem("Item 2");
-        MenuItem menu3 = new MenuItem("Item 3");
+        MenuItem menu1 = new MenuItem("");
+        MenuItem menu2 = new MenuItem("");
+        MenuItem menu3 = new MenuItem("");
         MenuItem menu4 = new MenuItem("Advanced Search...");
-        autocompleteMenu.getItems().addAll(menu1, menu2, menu3, menu4);
+        autocompleteMenu.getItems().addAll(menu4);
 
         searchField.setOnKeyTyped((KeyEvent e) ->{
             if(!searchField.getText().equals("")){
                 //populate autocompleteMenu with proper results through communication with unirest
                 try {
-                     HttpResponse<JsonNode> jsonResponse = Unirest.post(serverURL).queryString("Title", searchField.getText()).asJson();
-                     System.out.println("Search output: " +  jsonResponse.getBody().toString());
+                    HttpResponse<JsonNode> jsonResponse = Unirest.get(serverURL)
+                            .header("accept", "application/json")
+                            .queryString("q", searchField.getText())
+                            .asJson();
+                    System.out.println("Search output:" + jsonResponse.getBody().toString());
+                    quickResults.clear();
+                    //convert json formatted return statement to Source objects, place in list
                 }
                 catch(Exception ex){
                     System.out.println("Failed to communicate with server :c");
+                }
+                if(quickResults.size()>=3){
+                    menu1.setText(quickResults.get(0).title.get());
+                    menu2.setText(quickResults.get(1).title.get());
+                    menu3.setText(quickResults.get(2).title.get());
+                    autocompleteMenu.getItems().clear();
+                    autocompleteMenu.getItems().addAll(menu1, menu2, menu3, menu4);
+                }
+                else if(quickResults.size()>=2){
+                    menu1.setText(quickResults.get(0).title.get());
+                    menu2.setText(quickResults.get(1).title.get());
+                    autocompleteMenu.getItems().clear();
+                    autocompleteMenu.getItems().addAll(menu1, menu2, menu4);
+                }
+                else if(quickResults.size()>=1){
+                    menu1.setText(quickResults.get(0).title.get());
+                    autocompleteMenu.getItems().clear();
+                    autocompleteMenu.getItems().addAll(menu1, menu4);
+                }
+                else{
+                    autocompleteMenu.getItems().clear();
+                    autocompleteMenu.getItems().addAll(menu4);
                 }
                 autocompleteMenu.show(searchField, Side.TOP, 0,0);
             }
