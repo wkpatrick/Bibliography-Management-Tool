@@ -7,9 +7,12 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.async.Callback;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.mashape.unirest.request.GetRequest;
+import javafx.application.Platform;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Side;
@@ -24,6 +27,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Future;
 
 public class SourceListViewController {
@@ -102,6 +106,32 @@ public class SourceListViewController {
 
     String serverURL = "http://vpn.lucidlynx.net:9200/library/_search";
     List<Source> quickResults = new ArrayList<Source>();
+
+    Service<Void> service = new Service<Void>() {//Just a default instantiation so the service is globally available
+        @Override//it admittedly takes up a lot of space.
+        protected Task<Void> createTask() {
+            return new Task<Void>() {
+                @Override
+                protected Void call() throws Exception {
+                    //Background work
+                    final CountDownLatch latch = new CountDownLatch(1);
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            try{
+                                //FX Stuff done here
+                            }finally{
+                                latch.countDown();
+                            }
+                        }
+                    });
+                    latch.await();
+                    //Keep with the background work
+                    return null;
+                }
+            };
+        }
+    };
 
     ContextMenu autocompleteMenu;
 
@@ -186,67 +216,73 @@ public class SourceListViewController {
         });
 
         searchField.setOnKeyTyped((KeyEvent e) -> {
-            if (!searchField.getText().equals("")) {
-                //populate autocompleteMenu with proper results through communication with unirest
-                try {
-                    Future<HttpResponse<JsonNode>> jsonResponse = Unirest.get(serverURL)
-                            .header("accept", "application/json")
-                            .queryString("q", searchField.getText())
-                            .asJsonAsync(new Callback<JsonNode>() {
-                                @Override
-                                public void completed(HttpResponse<JsonNode> response) {
+            if(service.isRunning()){
+                service.cancel();
+            }
+            if(!searchField.getText().equals("")){
+                service = new Service<Void>() {
+                    @Override
+                    protected Task<Void> createTask() {
+                        return new Task<Void>() {
+                            @Override
+                            protected Void call() throws Exception {
+                                //Background work
+                                try {
+                                    HttpResponse<JsonNode> jsonResponse = Unirest.get(serverURL)
+                                            .header("accept", "application/json")
+                                            .queryString("q", searchField.getText())
+                                            .asJson();
+                                    System.out.println("Search output:" + jsonResponse.getBody().toString());
                                     quickResults.clear();
-                                    String jsonString = response.getBody().toString();
-                                    try {
-                                        quickResults.addAll(extractJSONSources(jsonString));
-                                    } catch (IOException e1) {
-                                        e1.printStackTrace();
+                                    //convert json formatted return statement to Source objects, place in list
+                                    String jsonString = jsonResponse.getBody().toString();
+                                    quickResults.addAll(extractJSONSources(jsonString));
+                                }
+                                catch(Exception ex){
+                                    System.out.println("Failed to communicate with server :c");
+                                }
+                                final CountDownLatch latch = new CountDownLatch(1);
+                                Platform.runLater(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        try{
+                                            //FX Stuff done here
+                                            //populate autocompleteMenu with proper results through communication with unirest
+                                            if (quickResults.size() >= 3) {
+                                                menu1.setText(quickResults.get(0).title.get());
+                                                menu2.setText(quickResults.get(1).title.get());
+                                                menu3.setText(quickResults.get(2).title.get());
+                                                autocompleteMenu.getItems().clear();
+                                                autocompleteMenu.getItems().addAll(menu1, menu2, menu3, menu4);
+                                            } else if (quickResults.size() >= 2) {
+                                                menu1.setText(quickResults.get(0).title.get());
+                                                menu2.setText(quickResults.get(1).title.get());
+                                                autocompleteMenu.getItems().clear();
+                                                autocompleteMenu.getItems().addAll(menu1, menu2, menu4);
+                                            } else if (quickResults.size() >= 1) {
+                                                menu1.setText(quickResults.get(0).title.get());
+                                                autocompleteMenu.getItems().clear();
+                                                autocompleteMenu.getItems().addAll(menu1, menu4);
+                                            } else {
+                                                autocompleteMenu.getItems().clear();
+                                                autocompleteMenu.getItems().addAll(menu4);
+                                            }
+                                            autocompleteMenu.show(searchField, Side.BOTTOM, 0, 0);
+                                        }finally{
+                                            latch.countDown();
+                                        }
                                     }
-                                }
-
-                                @Override
-                                public void failed(UnirestException e) {
-
-                                }
-
-                                @Override
-                                public void cancelled() {
-
-                                }
-                            });
-
-                    /**
-                     System.out.println("Search output:" + jsonResponse.getBody().toString());
-                     quickResults.clear();
-                     //convert json formatted return statement to Source objects, place in list
-                     String jsonString = jsonResponse.getBody().toString();
-                     quickResults.addAll(extractJSONSources(jsonString));
-                     **/
-                } catch (Exception ex) {
-                    System.out.println("Failed to communicate with server :c");
-                    ex.printStackTrace();
-                }
-                if (quickResults.size() >= 3) {
-                    menu1.setText(quickResults.get(0).title.get());
-                    menu2.setText(quickResults.get(1).title.get());
-                    menu3.setText(quickResults.get(2).title.get());
-                    autocompleteMenu.getItems().clear();
-                    autocompleteMenu.getItems().addAll(menu1, menu2, menu3, menu4);
-                } else if (quickResults.size() >= 2) {
-                    menu1.setText(quickResults.get(0).title.get());
-                    menu2.setText(quickResults.get(1).title.get());
-                    autocompleteMenu.getItems().clear();
-                    autocompleteMenu.getItems().addAll(menu1, menu2, menu4);
-                } else if (quickResults.size() >= 1) {
-                    menu1.setText(quickResults.get(0).title.get());
-                    autocompleteMenu.getItems().clear();
-                    autocompleteMenu.getItems().addAll(menu1, menu4);
-                } else {
-                    autocompleteMenu.getItems().clear();
-                    autocompleteMenu.getItems().addAll(menu4);
-                }
-                autocompleteMenu.show(searchField, Side.BOTTOM, 0, 0);
-            } else {
+                                });
+                                latch.await();
+                                //Keep with the background work
+                                return null;
+                            }
+                        };
+                    }
+                };
+                service.start();
+            }
+            else{
                 autocompleteMenu.hide();
             }
         });
