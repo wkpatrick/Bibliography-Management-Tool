@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonToken;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.async.Callback;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import com.mashape.unirest.request.GetRequest;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -22,6 +24,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Future;
 
 public class SourceListViewController {
     private Main mainWindow;
@@ -182,49 +185,68 @@ public class SourceListViewController {
             quickResults.clear();
         });
 
-        searchField.setOnKeyTyped((KeyEvent e) ->{
-            if(!searchField.getText().equals("")){
+        searchField.setOnKeyTyped((KeyEvent e) -> {
+            if (!searchField.getText().equals("")) {
                 //populate autocompleteMenu with proper results through communication with unirest
                 try {
-                    HttpResponse<JsonNode> jsonResponse = Unirest.get(serverURL)
+                    Future<HttpResponse<JsonNode>> jsonResponse = Unirest.get(serverURL)
                             .header("accept", "application/json")
                             .queryString("q", searchField.getText())
-                            .asJson();
-                    System.out.println("Search output:" + jsonResponse.getBody().toString());
-                    quickResults.clear();
-                    //convert json formatted return statement to Source objects, place in list
-                    String jsonString = jsonResponse.getBody().toString();
-                    quickResults.addAll(extractJSONSources(jsonString));
-                }
-                catch(Exception ex){
+                            .asJsonAsync(new Callback<JsonNode>() {
+                                @Override
+                                public void completed(HttpResponse<JsonNode> response) {
+                                    quickResults.clear();
+                                    String jsonString = response.getBody().toString();
+                                    try {
+                                        quickResults.addAll(extractJSONSources(jsonString));
+                                    } catch (IOException e1) {
+                                        e1.printStackTrace();
+                                    }
+                                }
+
+                                @Override
+                                public void failed(UnirestException e) {
+
+                                }
+
+                                @Override
+                                public void cancelled() {
+
+                                }
+                            });
+
+                    /**
+                     System.out.println("Search output:" + jsonResponse.getBody().toString());
+                     quickResults.clear();
+                     //convert json formatted return statement to Source objects, place in list
+                     String jsonString = jsonResponse.getBody().toString();
+                     quickResults.addAll(extractJSONSources(jsonString));
+                     **/
+                } catch (Exception ex) {
                     System.out.println("Failed to communicate with server :c");
                     ex.printStackTrace();
                 }
-                if(quickResults.size()>=3){
+                if (quickResults.size() >= 3) {
                     menu1.setText(quickResults.get(0).title.get());
                     menu2.setText(quickResults.get(1).title.get());
                     menu3.setText(quickResults.get(2).title.get());
                     autocompleteMenu.getItems().clear();
                     autocompleteMenu.getItems().addAll(menu1, menu2, menu3, menu4);
-                }
-                else if(quickResults.size()>=2){
+                } else if (quickResults.size() >= 2) {
                     menu1.setText(quickResults.get(0).title.get());
                     menu2.setText(quickResults.get(1).title.get());
                     autocompleteMenu.getItems().clear();
                     autocompleteMenu.getItems().addAll(menu1, menu2, menu4);
-                }
-                else if(quickResults.size()>=1){
+                } else if (quickResults.size() >= 1) {
                     menu1.setText(quickResults.get(0).title.get());
                     autocompleteMenu.getItems().clear();
                     autocompleteMenu.getItems().addAll(menu1, menu4);
-                }
-                else{
+                } else {
                     autocompleteMenu.getItems().clear();
                     autocompleteMenu.getItems().addAll(menu4);
                 }
-                autocompleteMenu.show(searchField, Side.TOP, 0,0);
-            }
-            else{
+                autocompleteMenu.show(searchField, Side.TOP, 0, 0);
+            } else {
                 autocompleteMenu.hide();
             }
         });
@@ -402,29 +424,25 @@ public class SourceListViewController {
 
         Source bufferSource = new Source("");
 
-        while(!parser.isClosed()){
+        while (!parser.isClosed()) {
             jsonToken = parser.nextToken();
             String bufferString;
 
             //"Source" field captured.
-            if(JsonToken.FIELD_NAME.equals(jsonToken) && parser.getText().equals("_source"))
-            {
+            if (JsonToken.FIELD_NAME.equals(jsonToken) && parser.getText().equals("_source")) {
 
                 //Scan through Source JSON object until "}" token is found.
-                while(!JsonToken.END_OBJECT.equals(jsonToken))
-                {
+                while (!JsonToken.END_OBJECT.equals(jsonToken)) {
                     jsonToken = parser.nextToken();
 
                     //Capture Source JSON fields in bufferSource.
-                    if(JsonToken.FIELD_NAME.equals(jsonToken))
-                    {
-                        switch(parser.getText())
-                        {
+                    if (JsonToken.FIELD_NAME.equals(jsonToken)) {
+                        switch (parser.getText()) {
                             case "Author":
                                 jsonToken = parser.nextToken();
                                 bufferString = parser.getText();
-                                if(bufferString.charAt(bufferString.length()-1) == '.'
-                                        || bufferString.charAt(bufferString.length()-1) == ',')
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
                                     bufferString = bufferString.substring(0, bufferString.length() - 1);
 
                                 bufferSource.setAuthor(bufferString);
@@ -432,8 +450,8 @@ public class SourceListViewController {
                             case "Title":
                                 jsonToken = parser.nextToken();
                                 bufferString = parser.getText();
-                                if(bufferString.charAt(bufferString.length()-1) == '.'
-                                        || bufferString.charAt(bufferString.length()-1) == ',')
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
                                     bufferString = bufferString.substring(0, bufferString.length() - 1);
 
                                 bufferSource.setTitle(bufferString);
@@ -441,8 +459,8 @@ public class SourceListViewController {
                             case "Volume":
                                 jsonToken = parser.nextToken();
                                 bufferString = parser.getText();
-                                if(bufferString.charAt(bufferString.length()-1) == '.'
-                                        || bufferString.charAt(bufferString.length()-1) == ',')
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
                                     bufferString = bufferString.substring(0, bufferString.length() - 1);
 
                                 bufferSource.setVolume(bufferString);
@@ -450,8 +468,8 @@ public class SourceListViewController {
                             case "Edition":
                                 jsonToken = parser.nextToken();
                                 bufferString = parser.getText();
-                                if(bufferString.charAt(bufferString.length()-1) == '.'
-                                        || bufferString.charAt(bufferString.length()-1) == ',')
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
                                     bufferString = bufferString.substring(0, bufferString.length() - 1);
 
                                 bufferSource.setEdition(bufferString);
@@ -459,8 +477,8 @@ public class SourceListViewController {
                             case "Publisher":
                                 jsonToken = parser.nextToken();
                                 bufferString = parser.getText();
-                                if(bufferString.charAt(bufferString.length()-1) == '.'
-                                        || bufferString.charAt(bufferString.length()-1) == ',')
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
                                     bufferString = bufferString.substring(0, bufferString.length() - 1);
 
                                 bufferSource.setPublisher(bufferString);
@@ -468,8 +486,8 @@ public class SourceListViewController {
                             case "Year":
                                 jsonToken = parser.nextToken();
                                 bufferString = parser.getText();
-                                if(bufferString.charAt(bufferString.length()-1) == '.'
-                                        || bufferString.charAt(bufferString.length()-1) == ',')
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
                                     bufferString = bufferString.substring(0, bufferString.length() - 1);
 
                                 bufferSource.setDatePublished(bufferString);
@@ -477,8 +495,8 @@ public class SourceListViewController {
                             case "WebsiteTitle":
                                 jsonToken = parser.nextToken();
                                 bufferString = parser.getText();
-                                if(bufferString.charAt(bufferString.length()-1) == '.'
-                                        || bufferString.charAt(bufferString.length()-1) == ',')
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
                                     bufferString = bufferString.substring(0, bufferString.length() - 1);
 
                                 bufferSource.setWebsiteTitle(bufferString);
@@ -486,8 +504,8 @@ public class SourceListViewController {
                             case "URL":
                                 jsonToken = parser.nextToken();
                                 bufferString = parser.getText();
-                                if(bufferString.charAt(bufferString.length()-1) == '.'
-                                        || bufferString.charAt(bufferString.length()-1) == ',')
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
                                     bufferString = bufferString.substring(0, bufferString.length() - 1);
 
                                 bufferSource.setURL(bufferString);
@@ -495,8 +513,8 @@ public class SourceListViewController {
                             case "Version":
                                 jsonToken = parser.nextToken();
                                 bufferString = parser.getText();
-                                if(bufferString.charAt(bufferString.length()-1) == '.'
-                                        || bufferString.charAt(bufferString.length()-1) == ',')
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
                                     bufferString = bufferString.substring(0, bufferString.length() - 1);
 
                                 bufferSource.setVersion(bufferString);
@@ -504,8 +522,8 @@ public class SourceListViewController {
                             case "Database:":
                                 jsonToken = parser.nextToken();
                                 bufferString = parser.getText();
-                                if(bufferString.charAt(bufferString.length()-1) == '.'
-                                        || bufferString.charAt(bufferString.length()-1) == ',')
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
                                     bufferString = bufferString.substring(0, bufferString.length() - 1);
 
                                 bufferSource.setDatabase(bufferString);
@@ -513,8 +531,8 @@ public class SourceListViewController {
                             case "DatabaseService":
                                 jsonToken = parser.nextToken();
                                 bufferString = parser.getText();
-                                if(bufferString.charAt(bufferString.length()-1) == '.'
-                                        || bufferString.charAt(bufferString.length()-1) == ',')
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
                                     bufferString = bufferString.substring(0, bufferString.length() - 1);
 
                                 bufferSource.setDatabaseService(bufferString);
@@ -522,8 +540,8 @@ public class SourceListViewController {
                             case "Medium":
                                 jsonToken = parser.nextToken();
                                 bufferString = parser.getText();
-                                if(bufferString.charAt(bufferString.length()-1) == '.'
-                                        || bufferString.charAt(bufferString.length()-1) == ',')
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
                                     bufferString = bufferString.substring(0, bufferString.length() - 1);
 
                                 bufferSource.setMedium(bufferString);
@@ -531,8 +549,8 @@ public class SourceListViewController {
                             case "PagesCitedStart":
                                 jsonToken = parser.nextToken();
                                 bufferString = parser.getText();
-                                if(bufferString.charAt(bufferString.length()-1) == '.'
-                                        || bufferString.charAt(bufferString.length()-1) == ',')
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
                                     bufferString = bufferString.substring(0, bufferString.length() - 1);
 
                                 bufferSource.setPagesCitedStart(bufferString);
@@ -540,8 +558,8 @@ public class SourceListViewController {
                             case "PagesCitedEnd":
                                 jsonToken = parser.nextToken();
                                 bufferString = parser.getText();
-                                if(bufferString.charAt(bufferString.length()-1) == '.'
-                                        || bufferString.charAt(bufferString.length()-1) == ',')
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
                                     bufferString = bufferString.substring(0, bufferString.length() - 1);
 
                                 bufferSource.setPagesCitedEnd(bufferString);
@@ -549,8 +567,8 @@ public class SourceListViewController {
                             case "MagTitle":
                                 jsonToken = parser.nextToken();
                                 bufferString = parser.getText();
-                                if(bufferString.charAt(bufferString.length()-1) == '.'
-                                        || bufferString.charAt(bufferString.length()-1) == ',')
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
                                     bufferString = bufferString.substring(0, bufferString.length() - 1);
 
                                 bufferSource.setMagazineTitle(bufferString);
@@ -649,6 +667,7 @@ public class SourceListViewController {
             System.out.println(e);
         }
     }
+
     public void createNewSource(ActionEvent actionEvent) {
         try {
             Stage primaryStage = new Stage();
@@ -692,11 +711,10 @@ public class SourceListViewController {
     }
 
 
-    public void UpdateSearchResults(ActionEvent actionEvent){
-        if(searchField.getText().equals("")){
+    public void UpdateSearchResults(ActionEvent actionEvent) {
+        if (searchField.getText().equals("")) {
             //clear associated results list
-        }
-        else{
+        } else {
             //send string to elasticsearch
             //use results to populate associated results list
         }
