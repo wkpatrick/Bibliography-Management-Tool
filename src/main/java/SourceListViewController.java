@@ -245,7 +245,7 @@ public class SourceListViewController {
                     autocompleteMenu.getItems().clear();
                     autocompleteMenu.getItems().addAll(menu4);
                 }
-                autocompleteMenu.show(searchField, Side.TOP, 0, 0);
+                autocompleteMenu.show(searchField, Side.BOTTOM, 0, 0);
             } else {
                 autocompleteMenu.hide();
             }
