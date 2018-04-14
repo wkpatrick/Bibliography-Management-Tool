@@ -187,10 +187,13 @@ public class SourceListViewController {
 
         autocompleteMenu = new ContextMenu();
         MenuItem menu1 = new MenuItem("");
+        menu1.setVisible(false);
         MenuItem menu2 = new MenuItem("");
+        menu2.setVisible(false);
         MenuItem menu3 = new MenuItem("");
+        menu3.setVisible(false);
         MenuItem menu4 = new MenuItem("Advanced Search...");
-        autocompleteMenu.getItems().addAll(menu4);
+        autocompleteMenu.getItems().addAll(menu1, menu2, menu3, menu4);
 
         menu4.setOnAction((ActionEvent e) -> advancedSearch(e));
 
@@ -252,22 +255,26 @@ public class SourceListViewController {
                                                 menu1.setText(quickResults.get(0).title.get());
                                                 menu2.setText(quickResults.get(1).title.get());
                                                 menu3.setText(quickResults.get(2).title.get());
-                                                autocompleteMenu.getItems().clear();
-                                                autocompleteMenu.getItems().addAll(menu1, menu2, menu3, menu4);
+                                                menu1.setVisible(true);
+                                                menu2.setVisible(true);
+                                                menu3.setVisible(true);
                                             } else if (quickResults.size() >= 2) {
                                                 menu1.setText(quickResults.get(0).title.get());
                                                 menu2.setText(quickResults.get(1).title.get());
-                                                autocompleteMenu.getItems().clear();
-                                                autocompleteMenu.getItems().addAll(menu1, menu2, menu4);
+                                                menu1.setVisible(true);
+                                                menu2.setVisible(true);
+                                                menu3.setVisible(false);
                                             } else if (quickResults.size() >= 1) {
                                                 menu1.setText(quickResults.get(0).title.get());
-                                                autocompleteMenu.getItems().clear();
-                                                autocompleteMenu.getItems().addAll(menu1, menu4);
+                                                menu1.setVisible(true);
+                                                menu2.setVisible(false);
+                                                menu3.setVisible(false);
                                             } else {
-                                                autocompleteMenu.getItems().clear();
-                                                autocompleteMenu.getItems().addAll(menu4);
+                                                menu1.setVisible(false);
+                                                menu2.setVisible(false);
+                                                menu3.setVisible(false);
                                             }
-                                            autocompleteMenu.show(searchField, Side.BOTTOM, 0, 0);
+                                            autocompleteMenu.show(searchField, Side.TOP, 0, 0);
                                         }finally{
                                             latch.countDown();
                                         }
