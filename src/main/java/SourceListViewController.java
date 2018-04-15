@@ -4,11 +4,7 @@ import com.fasterxml.jackson.core.JsonToken;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.async.Callback;
-import com.mashape.unirest.http.exceptions.UnirestException;
-import com.mashape.unirest.request.GetRequest;
 import javafx.application.Platform;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Service;
@@ -21,14 +17,15 @@ import javafx.scene.control.*;
 
 import javafx.event.ActionEvent;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Future;
 
 public class SourceListViewController {
     private Main mainWindow;
@@ -40,7 +37,6 @@ public class SourceListViewController {
     private TableColumn<Source, String> authorColumn;
     @FXML
     private TableColumn<Source, String> magazineTitleColumn;
-
     @FXML
     private TableColumn<Source, String> websiteTitleColumn;
     @FXML
@@ -61,42 +57,77 @@ public class SourceListViewController {
     private TableColumn<Source, String> annotationColumn;
     @FXML
     private TableColumn<Source, String> mediumColumn;
+
     @FXML
     TextField titleField;
     @FXML
+    HBox titleBox;
+    @FXML
     TextField authorField;
+    @FXML
+    HBox authorBox;
     @FXML
     TextField magazineTitleField;
     @FXML
+    HBox magazineTitleBox;
+    @FXML
     TextField websiteTitleField;
+    @FXML
+    HBox websiteTitleBox;
     @FXML
     TextField volumeField;
     @FXML
+    HBox volumeBox;
+    @FXML
     TextField editionField;
+    @FXML
+    HBox editionBox;
     @FXML
     TextField issueField;
     @FXML
+    HBox issueBox;
+    @FXML
     TextField publisherField;
+    @FXML
+    HBox publisherBox;
     @FXML
     TextField yearPublishedField;
     @FXML
+    HBox yearPublishedBox;
+    @FXML
     TextField datePublishedField;
+    @FXML
+    HBox datePublishedBox;
     @FXML
     TextField URLfield;
     @FXML
+    HBox URLBox;
+    @FXML
     TextField versionField;
+    @FXML
+    HBox versionBox;
     @FXML
     TextArea annotationField;
     @FXML
+    HBox annotationBox;
+    @FXML
     TextField databaseField;
+    @FXML
+    HBox databaseBox;
     @FXML
     TextField databaseServiceField;
     @FXML
+    HBox databaseServiceBox;
+    @FXML
     TextField mediumField;
+    @FXML
+    HBox mediumBox;
     @FXML
     TextField pagesCitedField1;
     @FXML
     TextField pagesCitedField2;
+    @FXML
+    HBox pagesCitedBox;
     @FXML
     TextField searchField;
     @FXML
@@ -139,6 +170,24 @@ public class SourceListViewController {
 
     @FXML
     private void initialize() {
+        titleBox.setOnMouseClicked((MouseEvent e) -> titleField.requestFocus());
+        authorBox.setOnMouseClicked((MouseEvent e) -> authorField.requestFocus());
+        magazineTitleBox.setOnMouseClicked((MouseEvent e) -> magazineTitleField.requestFocus());
+        websiteTitleBox.setOnMouseClicked((MouseEvent e) -> websiteTitleField.requestFocus());
+        volumeBox.setOnMouseClicked((MouseEvent e) -> volumeField.requestFocus());
+        editionBox.setOnMouseClicked((MouseEvent e) -> editionField.requestFocus());
+        issueBox.setOnMouseClicked((MouseEvent e) -> issueField.requestFocus());
+        publisherBox.setOnMouseClicked((MouseEvent e) -> publisherField.requestFocus());
+        yearPublishedBox.setOnMouseClicked((MouseEvent e) -> yearPublishedField.requestFocus());
+        datePublishedBox.setOnMouseClicked((MouseEvent e) -> datePublishedField.requestFocus());
+        URLBox.setOnMouseClicked((MouseEvent e) -> URLfield.requestFocus());
+        versionBox.setOnMouseClicked((MouseEvent e) -> versionField.requestFocus());
+        annotationBox.setOnMouseClicked((MouseEvent e) -> annotationField.requestFocus());
+        databaseBox.setOnMouseClicked((MouseEvent e) -> databaseField.requestFocus());
+        databaseServiceBox.setOnMouseClicked((MouseEvent e) -> databaseServiceField.requestFocus());
+        mediumBox.setOnMouseClicked((MouseEvent e) -> mediumField.requestFocus());
+        pagesCitedBox.setOnMouseClicked((MouseEvent e) -> pagesCitedField1.requestFocus());
+
         titleColumn.setCellValueFactory(cellData -> cellData.getValue().titleProperty());
         titleColumn.setText("Title");
 

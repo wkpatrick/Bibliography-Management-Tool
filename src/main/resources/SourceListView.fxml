@@ -44,75 +44,75 @@
 
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                     <JFXListView prefHeight="611.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                        <HBox fx:id="titleBox" prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
                             <Label minWidth="150.0" text="Title" />
-                            <TextField fx:id="titleField" HBox.hgrow="ALWAYS"></TextField>
+                            <TextField fx:id="titleField" HBox.hgrow="ALWAYS" />
                         </HBox>
-                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                        <HBox fx:id="authorBox" prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
                             <Label minWidth="150.0" text="Authors" />
-                            <TextField fx:id="authorField" HBox.hgrow="ALWAYS"/>
+                            <TextField fx:id="authorField" HBox.hgrow="ALWAYS" />
                         </HBox>
-                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                        <HBox fx:id="magazineTitleBox" prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
                             <Label minWidth="150.0" text="Magazine Title" />
-                            <TextField fx:id="magazineTitleField" HBox.hgrow="ALWAYS"/>
+                            <TextField fx:id="magazineTitleField" HBox.hgrow="ALWAYS" />
                         </HBox>
-                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                        <HBox fx:id="issueBox" prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
                             <Label minWidth="150.0" text="Issue" />
-                            <TextField fx:id="issueField" HBox.hgrow="ALWAYS"/>
+                            <TextField fx:id="issueField" HBox.hgrow="ALWAYS" />
                         </HBox>
-                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                        <HBox fx:id="mediumBox" prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
                             <Label minWidth="150.0" text="Medium" />
-                            <TextField fx:id="mediumField" HBox.hgrow="ALWAYS"/>
+                            <TextField fx:id="mediumField" HBox.hgrow="ALWAYS" />
                         </HBox>
-                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                        <HBox fx:id="volumeBox" prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
                             <Label minWidth="150.0" text="Volume" />
-                            <TextField fx:id="volumeField" HBox.hgrow="ALWAYS"/>
+                            <TextField fx:id="volumeField" HBox.hgrow="ALWAYS" />
                         </HBox>
-                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                        <HBox fx:id="editionBox" prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
                             <Label minWidth="150.0" text="Edition" />
-                            <TextField fx:id="editionField" HBox.hgrow="ALWAYS"/>
+                            <TextField fx:id="editionField" HBox.hgrow="ALWAYS" />
                         </HBox>
-                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                        <HBox fx:id="publisherBox" prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
                             <Label minWidth="150.0" text="Publisher" />
-                            <TextField fx:id="publisherField" HBox.hgrow="ALWAYS"/>
+                            <TextField fx:id="publisherField" HBox.hgrow="ALWAYS" />
                         </HBox>
-                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                        <HBox fx:id="yearPublishedBox" prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
                             <Label minWidth="150.0" text="Year Published" />
-                            <TextField fx:id="yearPublishedField" HBox.hgrow="ALWAYS"/>
+                            <TextField fx:id="yearPublishedField" HBox.hgrow="ALWAYS" />
                         </HBox>
-                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                        <HBox fx:id="datePublishedBox" prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
                             <Label minWidth="150.0" text="Date Published" />
-                            <TextField fx:id="datePublishedField" HBox.hgrow="ALWAYS"/>
+                            <TextField fx:id="datePublishedField" HBox.hgrow="ALWAYS" />
                         </HBox>
-                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                        <HBox fx:id="websiteTitleBox" prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
                             <Label minWidth="150.0" text="Website Title" />
-                            <TextField fx:id="websiteTitleField" HBox.hgrow="ALWAYS"/>
+                            <TextField fx:id="websiteTitleField" HBox.hgrow="ALWAYS" />
                         </HBox>
-                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                        <HBox fx:id="URLBox" prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
                             <Label minWidth="150.0" text="URL" />
-                            <TextField fx:id="URLfield" HBox.hgrow="ALWAYS"/>
+                            <TextField fx:id="URLfield" HBox.hgrow="ALWAYS" />
                         </HBox>
-                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                        <HBox fx:id="versionBox" prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
                             <Label minWidth="150.0" text="Version" />
-                            <TextField fx:id="versionField" HBox.hgrow="ALWAYS"/>
+                            <TextField fx:id="versionField" HBox.hgrow="ALWAYS" />
                         </HBox>
-                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                        <HBox fx:id="databaseBox" prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
                             <Label minWidth="150.0" text="Database" />
-                            <TextField fx:id="databaseField" HBox.hgrow="ALWAYS"/>
+                            <TextField fx:id="databaseField" HBox.hgrow="ALWAYS" />
                         </HBox>
-                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                        <HBox fx:id="databaseServiceBox" prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
                             <Label minWidth="150.0" text="Database Service" />
-                            <TextField fx:id="databaseServiceField" HBox.hgrow="ALWAYS"/>
+                            <TextField fx:id="databaseServiceField" HBox.hgrow="ALWAYS" />
                         </HBox>
-                        <HBox prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                        <HBox fx:id="pagesCitedBox" prefHeight="31.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
                             <Label minWidth="150.0" text="Pages Cited" />
                             <TextField fx:id="pagesCitedField1" maxWidth="50" />
                             <Label alignment="CENTER" minWidth="58" prefWidth="0" text="-" />
                             <TextField fx:id="pagesCitedField2" maxWidth="50" />
                         </HBox>
-                        <HBox minHeight="100" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
+                        <HBox fx:id="annotationBox" minHeight="100" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="91.0">
                             <Label minWidth="150.0" prefHeight="90" text="Notes" />
-                            <TextArea fx:id="annotationField" prefHeight="100" prefWidth="200" wrapText="true" HBox.hgrow="ALWAYS"/>
+                            <TextArea fx:id="annotationField" prefHeight="100" prefWidth="200" wrapText="true" HBox.hgrow="ALWAYS" />
                         </HBox>
                     </JFXListView>
                 </AnchorPane>
