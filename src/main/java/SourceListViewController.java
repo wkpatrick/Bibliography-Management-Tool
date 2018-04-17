@@ -194,6 +194,9 @@ public class SourceListViewController {
         authorColumn.setCellValueFactory(cellData -> cellData.getValue().authorProperty());
         authorColumn.setText("Author");
 
+        annotationColumn.setCellValueFactory(cellData -> cellData.getValue().publisherProperty());
+        annotationColumn.setText("Publisher");
+
         magazineTitleColumn.setCellValueFactory(cellData -> cellData.getValue().magazineTitleProperty());
         magazineTitleColumn.setText("Magazine Title");
 
@@ -221,8 +224,7 @@ public class SourceListViewController {
         versionColumn.setCellValueFactory(cellData -> cellData.getValue().versionProperty());
         versionColumn.setText("Version");
 
-        annotationColumn.setCellValueFactory(cellData -> cellData.getValue().annotationProperty());
-        annotationColumn.setText("Annotation");
+
 
         mediumColumn.setCellValueFactory(cellData -> cellData.getValue().mediumProperty());
         mediumColumn.setText("Medium");

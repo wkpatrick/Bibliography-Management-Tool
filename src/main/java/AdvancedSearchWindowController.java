@@ -1,8 +1,17 @@
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import java.io.IOException;
+
 
 
 
@@ -44,12 +53,43 @@ public class AdvancedSearchWindowController {
     TextField authorField;
 
     @FXML
-    TextField yearPublishedField;
+    TextField magazineTitleField;
+
+//    @FXML
+//    TextField issueField;
+//
+//    @FXML
+//    TextField mediumField;
+
+    @FXML
+    TextField volumeField;
+    @FXML
+    TextField editionField;
+
+    @FXML
+    TextField publisherField;
+
+    @FXML
+    TextField yPublishedField;
+
+
     @FXML
     TextField datePublishedField;
 
     @FXML
-    TextField publisherField;
+    TextField websiteTitleField;
+
+    @FXML
+    TextField urlField;
+
+//    @FXML
+//    TextField versionField;
+//
+//    @FXML
+//    TextField databaseServiceField;
+
+
+
 
 
     @FXML
@@ -59,6 +99,9 @@ public class AdvancedSearchWindowController {
 
         authorColumn.setCellValueFactory(cellData -> cellData.getValue().authorProperty());
         authorColumn.setText("Author");
+
+        annotationColumn.setCellValueFactory(cellData -> cellData.getValue().publisherProperty());
+        annotationColumn.setText("Publisher");
 
         magazineTitleColumn.setCellValueFactory(cellData -> cellData.getValue().magazineTitleProperty());
         magazineTitleColumn.setText("Magazine Title");
@@ -87,27 +130,37 @@ public class AdvancedSearchWindowController {
         versionColumn.setCellValueFactory(cellData -> cellData.getValue().versionProperty());
         versionColumn.setText("Version");
 
-        annotationColumn.setCellValueFactory(cellData -> cellData.getValue().annotationProperty());
-        annotationColumn.setText("Annotation");
+
 
         mediumColumn.setCellValueFactory(cellData -> cellData.getValue().mediumProperty());
         mediumColumn.setText("Medium");
 
     }
 
-
     @FXML
-    private void clearSearch(ActionEvent actionEvent) {
+    public void clearSearch(ActionEvent actionEvent) {
+        try {
+            searchTable.getItems().removeAll(testList);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         titleField.setText("");
         authorField.setText("");
-        yearPublishedField.setText("");
-        datePublishedField.setText("");
+        magazineTitleField.setText("");
+        volumeField.setText("");
+
+        editionField.setText("");
         publisherField.setText("");
-        testList.removeAll();
-        searchTable.refresh();
+        yPublishedField.setText("");
+        datePublishedField.setText("");
+        websiteTitleField.setText("");
+        urlField.setText("");
+
 
 
     }
+
+
 
     @FXML
     private void addToSourceList (ActionEvent actionEvent)
@@ -166,27 +219,217 @@ public class AdvancedSearchWindowController {
     private void searchServer(ActionEvent actionEvent){
 
         // Server search will go here. Testing with some data for now
+        searchTable.setItems(testList);
 
-                Source source1 = new Source("This will be a Result");
-                source1.setAuthor("NA");
-                source1.setYearPublished("2018");
-                source1.setMedium("Test");
+        HttpResponse<JsonNode> jsonResponse = null;
+        StringBuilder sb = new StringBuilder("");
+        sb.append(titleField.getText()) .append(" ")
+                .append(authorField.getText()) .append(" ")
+                .append(magazineTitleField.getText()) .append(" ")
+                .append(volumeField.getText()) .append(" ")
+                .append(editionField.getText()) .append(" ")
+                .append(publisherField.getText()) .append(" ")
+                .append(yPublishedField.getText()) .append(" ")
+                .append(datePublishedField.getText()) .append(" ")
+                .append(websiteTitleField.getText()) .append(" ")
+                .append(urlField.getText()) .append("")
 
-                Source source2 = new Source("Another Title Result");
-                source2.setAuthor("NA Again");
-                source2.setURL("wkrp.xyz/notgroup4");
-                source2.setMedium("Web");
 
-                Source source3 = new Source("This will be Title Result 3");
-                source3.setAuthor("NA");
-                source3.setMedium("Test");
-                source3.setYearPublished("1000");
+        ;
 
-                testList.add(source1);
-                testList.add(source2);
-                testList.add(source3);
-                searchTable.setItems(testList);
+        try {
+            jsonResponse = Unirest.post("http://vpn.lucidlynx.net:9200/library/_search")
+                    .header("accept", "application/json")
+                    .header("content-type", "application/json; charset=UTF-8")
+                    .queryString("q", sb.toString() )
 
+                    .asJson();
+        } catch (UnirestException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Search output:" + jsonResponse.getBody().toString());
+        testList.clear();
+        //convert json formatted return statement to Source objects, place in list
+        String jsonString = jsonResponse.getBody().toString();
+        try {
+            testList.addAll(extractJSONSources(jsonString));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    private ObservableList<Source> extractJSONSources(String jsonData) throws IOException {
+        ObservableList<Source> result = FXCollections.observableArrayList();
+
+        JsonFactory factory = new JsonFactory();
+        JsonParser parser = factory.createParser(jsonData);
+
+        JsonToken jsonToken;
+
+        Source bufferSource = new Source("");
+
+        while (!parser.isClosed()) {
+            jsonToken = parser.nextToken();
+            String bufferString;
+
+            //"Source" field captured.
+            if (JsonToken.FIELD_NAME.equals(jsonToken) && parser.getText().equals("_source")) {
+
+                //Scan through Source JSON object until "}" token is found.
+                while (!JsonToken.END_OBJECT.equals(jsonToken)) {
+                    jsonToken = parser.nextToken();
+
+                    //Capture Source JSON fields in bufferSource.
+                    if (JsonToken.FIELD_NAME.equals(jsonToken)) {
+                        switch (parser.getText()) {
+                            case "Author":
+                                jsonToken = parser.nextToken();
+                                bufferString = parser.getText();
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
+                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
+
+                                bufferSource.setAuthor(bufferString);
+                                break;
+                            case "Title":
+                                jsonToken = parser.nextToken();
+                                bufferString = parser.getText();
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
+                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
+
+                                bufferSource.setTitle(bufferString);
+                                break;
+                            case "Volume":
+                                jsonToken = parser.nextToken();
+                                bufferString = parser.getText();
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
+                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
+
+                                bufferSource.setVolume(bufferString);
+                                break;
+                            case "Edition":
+                                jsonToken = parser.nextToken();
+                                bufferString = parser.getText();
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
+                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
+
+                                bufferSource.setEdition(bufferString);
+                                break;
+                            case "Publisher":
+                                jsonToken = parser.nextToken();
+                                bufferString = parser.getText();
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
+                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
+
+                                bufferSource.setPublisher(bufferString);
+                                break;
+                            case "Year":
+                                jsonToken = parser.nextToken();
+                                bufferString = parser.getText();
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
+                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
+
+                                bufferSource.setDatePublished(bufferString);
+                                break;
+                            case "WebsiteTitle":
+                                jsonToken = parser.nextToken();
+                                bufferString = parser.getText();
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
+                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
+
+                                bufferSource.setWebsiteTitle(bufferString);
+                                break;
+                            case "URL":
+                                jsonToken = parser.nextToken();
+                                bufferString = parser.getText();
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
+                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
+
+                                bufferSource.setURL(bufferString);
+                                break;
+                            case "Version":
+                                jsonToken = parser.nextToken();
+                                bufferString = parser.getText();
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
+                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
+
+                                bufferSource.setVersion(bufferString);
+                                break;
+                            case "Database:":
+                                jsonToken = parser.nextToken();
+                                bufferString = parser.getText();
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
+                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
+
+                                bufferSource.setDatabase(bufferString);
+                                break;
+                            case "DatabaseService":
+                                jsonToken = parser.nextToken();
+                                bufferString = parser.getText();
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
+                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
+
+                                bufferSource.setDatabaseService(bufferString);
+                                break;
+                            case "Medium":
+                                jsonToken = parser.nextToken();
+                                bufferString = parser.getText();
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
+                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
+
+                                bufferSource.setMedium(bufferString);
+                                break;
+                            case "PagesCitedStart":
+                                jsonToken = parser.nextToken();
+                                bufferString = parser.getText();
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
+                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
+
+                                bufferSource.setPagesCitedStart(bufferString);
+                                break;
+                            case "PagesCitedEnd":
+                                jsonToken = parser.nextToken();
+                                bufferString = parser.getText();
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
+                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
+
+                                bufferSource.setPagesCitedEnd(bufferString);
+                                break;
+                            case "MagTitle":
+                                jsonToken = parser.nextToken();
+                                bufferString = parser.getText();
+                                if (bufferString.charAt(bufferString.length() - 1) == '.'
+                                        || bufferString.charAt(bufferString.length() - 1) == ',')
+                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
+
+                                bufferSource.setMagazineTitle(bufferString);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+                //JSON Source captured in bufferSource.
+                //Append bufferSource to result.
+                result.add(bufferSource);
+                //Reset bufferSource to capture more fields.
+                bufferSource = new Source("");
+            }
+        }
+        return result;
     }
 
     public void setMainWindow(Main mainWindow) {

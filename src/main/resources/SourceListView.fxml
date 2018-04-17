@@ -22,6 +22,7 @@
                             <columns>
                                 <TableColumn fx:id="titleColumn" minWidth="120.0" prefWidth="130.0" text="Column X" />
                                 <TableColumn fx:id="authorColumn" minWidth="110.0" prefWidth="120.0" text="Column X" />
+                                 <TableColumn fx:id="annotationColumn" minWidth="110.0" prefWidth="120.0" text="Column X" />
                                 <TableColumn fx:id="mediumColumn" minWidth="60.0" prefWidth="80.0" text="Column X" />
                                 <TableColumn fx:id="magazineTitleColumn" minWidth="100.0" prefWidth="130.0" text="Column X" />
                                 <TableColumn fx:id="websiteTitleColumn" minWidth="100.0" prefWidth="100.0" text="Column X" />
@@ -32,7 +33,6 @@
                                 <TableColumn fx:id="datePublishedColumn" minWidth="50.0" prefWidth="80.0" text="Column X" />
                                 <TableColumn fx:id="urlColumn" minWidth="200.0" prefWidth="340.0" text="Column X" />
                                 <TableColumn fx:id="versionColumn" minWidth="50.0" prefWidth="75.0" text="Column X" />
-                                <TableColumn fx:id="annotationColumn" minWidth="50.0" prefWidth="75.0" text="Column X" />
 
                             </columns>
                             <columnResizePolicy>
@@ -130,18 +130,13 @@
                   <Insets bottom="3.0" left="2.0" right="5.0" top="3.0" />
                </HBox.margin>
             </Button>
-            <TextField fx:id="searchField" alignment="TOP_LEFT" onAction="#UpdateSearchResults" promptText="Search source server" HBox.hgrow="SOMETIMES">
+            <TextField fx:id="searchField" alignment="TOP_LEFT" onAction="#UpdateSearchResults" promptText="Quick Search Server" HBox.hgrow="SOMETIMES">
                <HBox.margin>
                   <Insets left="5.0" right="10.0" top="4.0" />
                </HBox.margin>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets></TextField>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="58.0" text="Search">
-               <HBox.margin>
-                  <Insets bottom="3.0" left="2.0" right="5.0" top="3.0" />
-               </HBox.margin>
-            </Button>
             <Button mnemonicParsing="false" onAction="#advancedSearch" text="Advanced Search ">
                <HBox.margin>
                   <Insets bottom="3.0" left="2.0" right="5.0" top="3.0" />

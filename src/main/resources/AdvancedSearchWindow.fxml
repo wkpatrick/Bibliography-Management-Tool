@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdvancedSearchWindowController">
+<AnchorPane minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdvancedSearchWindowController">
    <children>
       <BorderPane layoutX="181.0" layoutY="93.0" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <AnchorPane minWidth="-Infinity" prefHeight="120.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <AnchorPane minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
                   <GridPane layoutY="10.0" prefHeight="110.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
                     <columnConstraints>
@@ -63,7 +63,7 @@
                            <children>
                               <AnchorPane prefHeight="29.0" prefWidth="404.0">
                                  <children>
-                                    <TextField fx:id="publi" prefHeight="25.0" prefWidth="275.0" promptText="Publisher" AnchorPane.rightAnchor="20.0" />
+                                    <TextField fx:id="publisherField" prefHeight="25.0" prefWidth="275.0" promptText="Publisher" AnchorPane.rightAnchor="20.0" />
                                     <Label text="Publisher" AnchorPane.leftAnchor="15.0">
                                        <padding>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -76,8 +76,8 @@
                            <children>
                               <AnchorPane prefHeight="29.0" prefWidth="404.0">
                                  <children>
-                                    <TextField fx:id="yearPublishedField" prefHeight="25.0" prefWidth="275.0" promptText="Year Published" AnchorPane.rightAnchor="20.0" />
-                                    <Label text="Year Published" AnchorPane.leftAnchor="15.0">
+                                    <TextField fx:id="magazineTitleField" prefHeight="25.0" prefWidth="275.0" promptText="Magazine Title" AnchorPane.rightAnchor="20.0" />
+                                    <Label text="Magazine Tilte" AnchorPane.leftAnchor="15.0">
                                        <padding>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </padding>
@@ -85,12 +85,12 @@
                                  </children>
                               </AnchorPane>
                            </children></HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <children>
                               <AnchorPane prefHeight="29.0" prefWidth="404.0">
                                  <children>
-                                    <TextField fx:id="datePublishedField" prefHeight="25.0" prefWidth="275.0" promptText="Date Published" AnchorPane.rightAnchor="20.0" />
-                                    <Label text="Date Published" AnchorPane.leftAnchor="5.0">
+                                    <TextField fx:id="datePublishedField" prefHeight="22.0" prefWidth="96.0" promptText="Date Published" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="214.0" />
+                                    <Label text="Date Published" AnchorPane.leftAnchor="0.0">
                                        <padding>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </padding>
@@ -98,6 +98,12 @@
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
                                        </BorderPane.margin>
                                     </Label>
+                                    <Label prefHeight="15.0" prefWidth="88.0" text="Year Published" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="112.0">
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </Label>
+                                    <TextField fx:id="yPublishedField" prefHeight="25.0" prefWidth="96.0" promptText="YearPublished" AnchorPane.rightAnchor="15.0" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -106,8 +112,8 @@
                            <children>
                               <AnchorPane prefHeight="29.0" prefWidth="404.0">
                                  <children>
-                                    <TextField prefHeight="25.0" prefWidth="275.0" AnchorPane.rightAnchor="20.0" />
-                                    <Label text="??" AnchorPane.leftAnchor="5.0">
+                                    <TextField fx:id="urlField" prefHeight="25.0" prefWidth="290.0" promptText="URL" AnchorPane.rightAnchor="15.0" />
+                                    <Label text="URL" AnchorPane.leftAnchor="0.0">
                                        <padding>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </padding>
@@ -120,26 +126,31 @@
                            <children>
                               <AnchorPane prefHeight="29.0" prefWidth="404.0">
                                  <children>
-                                    <TextField prefHeight="25.0" prefWidth="275.0" AnchorPane.rightAnchor="20.0" />
-                                    <Label text="??" AnchorPane.leftAnchor="5.0">
+                                    <TextField fx:id="editionField" prefHeight="25.0" prefWidth="96.0" promptText="Edition" AnchorPane.rightAnchor="15.0" />
+                                    <Label text="Volume" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="349.0">
                                        <padding>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </padding>
                                     </Label>
+                                    <TextField fx:id="volumeField" layoutX="67.0" prefHeight="24.0" prefWidth="96.0" promptText="Volume" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="214.0" />
+                                    <Label text="Edition" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="112.0">
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding></Label>
                                  </children>
                               </AnchorPane>
                            </children>
                         </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
                               <AnchorPane prefHeight="29.0" prefWidth="404.0">
                                  <children>
-                                    <Label text="??" AnchorPane.leftAnchor="5.0">
+                                    <Label text="Website Tilte" AnchorPane.leftAnchor="0.0">
                                        <padding>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <TextField prefHeight="25.0" prefWidth="275.0" AnchorPane.rightAnchor="20.0" />
+                                    <TextField fx:id="websiteTitleField" prefHeight="25.0" prefWidth="290.0" promptText="Website Title" AnchorPane.rightAnchor="15.0" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -199,6 +210,7 @@
               <columns>
                   <TableColumn fx:id="titleColumn" minWidth="120.0" prefWidth="130.0" text="Column X" />
                   <TableColumn fx:id="authorColumn" minWidth="110.0" prefWidth="120.0" text="Column X" />
+                  <TableColumn fx:id="annotationColumn" minWidth="50.0" prefWidth="75.0" text="Column X" />
                   <TableColumn fx:id="mediumColumn" minWidth="60.0" prefWidth="80.0" text="Column X" />
                   <TableColumn fx:id="magazineTitleColumn" minWidth="100.0" prefWidth="130.0" text="Column X" />
                   <TableColumn fx:id="websiteTitleColumn" minWidth="100.0" prefWidth="100.0" text="Column X" />
@@ -209,7 +221,6 @@
                   <TableColumn fx:id="datePublishedColumn" minWidth="50.0" prefWidth="80.0" text="Column X" />
                   <TableColumn fx:id="urlColumn" minWidth="200.0" prefWidth="340.0" text="Column X" />
                   <TableColumn fx:id="versionColumn" minWidth="50.0" prefWidth="75.0" text="Column X" />
-                  <TableColumn fx:id="annotationColumn" minWidth="50.0" prefWidth="75.0" text="Column X" />
               </columns>
                <BorderPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
