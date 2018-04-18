@@ -1,3 +1,4 @@
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToggleButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,8 +25,8 @@ public class ExportController {
 
     private TableColumn< Source, Boolean > selectedColumn = new TableColumn<>( "Select" );
 
-    public Button exportButton;
-    public Button cancelButton;
+    public JFXButton exportButton;
+    public JFXButton cancelButton;
     private ObservableList<Source> sourceList;
 
     private ObservableList<String> styleNames = FXCollections.observableArrayList();

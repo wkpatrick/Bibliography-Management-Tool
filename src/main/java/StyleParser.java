@@ -13,12 +13,13 @@ class StyleParser
     private ObservableList<FieldStyle> selectedFields = FXCollections.observableArrayList();
 
     //Fieldname type enum dictionary
+    //DO NOT ERASE YearPublished
     public enum FieldNames
     {
         author, title, MagazineTitle, WebsiteTitle,
         Database, DatabaseService, Version, Volume,
         Edition, Issue, Publisher, DatePublished, Medium,
-        URL, PagesCitedStart, PagesCitedEnd
+        URL, PagesCitedStart, PagesCitedEnd, YearPublished
     }
 
     //Default configuration is MLA.
@@ -148,6 +149,8 @@ class StyleParser
                 case PagesCitedEnd:
                     bufferField = format(source.getPagesCitedEnd(), style);
                     break;
+                default:
+                     break;
             }
         }
         catch(IllegalArgumentException e)

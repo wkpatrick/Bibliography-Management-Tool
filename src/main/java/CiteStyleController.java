@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
+import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,17 +19,17 @@ import java.nio.file.Files;
 import java.util.*;
 
 public class CiteStyleController {
-    public Button deleteButton;
+    public JFXButton deleteButton;
     private ObservableList<File> stylesData = FXCollections.observableArrayList();
 
-    public Button shiftUpButton;
-    public Button shiftDownButton;
+    public JFXButton shiftUpButton;
+    public JFXButton shiftDownButton;
     private Main mainWindow;
     public TableView<FieldStyle> createTable;
-    public Button saveButton;
-    public Button cancelButton;
+    public JFXButton saveButton;
+    public JFXButton cancelButton;
     public ListView<String> styleListView;
-    public Button editButton;
+    public JFXButton editButton;
 
     private StyleParser parser = new StyleParser();
 

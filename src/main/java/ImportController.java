@@ -1,6 +1,7 @@
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
+import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,10 +22,10 @@ public class ImportController
     private Main mainWindow;
 
     public TextField filepathField;
-    public Button filepathButton;
-    public Button openButton;
-    public Button okButton;
-    public Button cancelButton;
+    public JFXButton filepathButton;
+    public JFXButton openButton;
+    public JFXButton okButton;
+    public JFXButton cancelButton;
     private File inputFile;
 
     private boolean validSources = false;
