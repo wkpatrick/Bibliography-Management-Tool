@@ -1,6 +1,5 @@
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,7 +10,6 @@ import javafx.scene.input.ClipboardContent;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -20,8 +18,8 @@ public class ExportDisplayController {
 
     public ListView<String> sourcesDisplayList;
     private ObservableList<Source> exportList;
-    public JFXButton clipboardButton;
-    public JFXButton exitButton;
+    public Button clipboardButton;
+    public Button exitButton;
     private boolean isAPA;
 
     private boolean isCustom = false;

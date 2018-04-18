@@ -1,11 +1,5 @@
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.CollectionType;
-import com.fasterxml.jackson.databind.type.TypeFactory;
-import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,22 +8,21 @@ import javafx.scene.control.cell.CheckBoxTableCell;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.nio.file.Files;
 import java.util.*;
 
 public class CiteStyleController {
-    public JFXButton deleteButton;
+    public Button deleteButton;
     private ObservableList<File> stylesData = FXCollections.observableArrayList();
 
-    public JFXButton shiftUpButton;
-    public JFXButton shiftDownButton;
+    public Button shiftUpButton;
+    public Button shiftDownButton;
+    public Button saveButton;
+    public Button cancelButton;
+    public Button editButton;
     private Main mainWindow;
     public TableView<FieldStyle> createTable;
-    public JFXButton saveButton;
-    public JFXButton cancelButton;
     public ListView<String> styleListView;
-    public JFXButton editButton;
+
 
     private StyleParser parser = new StyleParser();
 
