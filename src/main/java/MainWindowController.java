@@ -331,7 +331,25 @@ public class MainWindowController {
         }
     }
 
-    public void searchSettings(ActionEvent actionEvent)
-    {
+    public void openSearchSettings(ActionEvent actionEvent) {
+        try {
+            Stage primaryStage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("SearchSettings.fxml"));
+
+            AnchorPane rootLayout = (AnchorPane) loader.load();
+
+            SearchSettingsController controller = loader.getController();
+            controller.setMainWindow(this.mainWindow);
+            controller.SetDefaults(mainWindow.searchURL, mainWindow.searchPort);
+
+            primaryStage.setTitle("Search Settings");
+            primaryStage.setScene(new Scene(rootLayout));
+            primaryStage.show();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

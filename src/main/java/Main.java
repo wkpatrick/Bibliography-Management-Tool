@@ -16,6 +16,9 @@ public class Main extends Application {
 
     ObservableList<Source> sourceList;
 
+    public String searchURL = "http://vpn.lucidlynx.net";
+    public String searchPort = "9200";
+
 
     public static void main(String[] args) {
         launch(args);

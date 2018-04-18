@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="SearchSettingsController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SearchSettingsController">
+   <children>
+      <VBox fx:id="box" layoutX="26.0" layoutY="29.0" spacing="5.0">
+         <children>
+            <HBox>
+               <children>
+                  <Label minWidth="50.0" text="URL:" />
+                  <TextField fx:id="urlField" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label minWidth="50.0" text="Port:" />
+                  <TextField fx:id="portField" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>

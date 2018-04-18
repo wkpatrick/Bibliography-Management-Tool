@@ -134,8 +134,7 @@ public class SourceListViewController {
     private ContextMenu rightClickMenu;
     @FXML
     private MenuItem deleteItem;
-
-    String serverURL = "http://vpn.lucidlynx.net:9200/library/_search";
+    
     List<Source> quickResults = new ArrayList<Source>();
 
     Service<Void> service = new Service<Void>() {//Just a default instantiation so the service is globally available
@@ -282,7 +281,7 @@ public class SourceListViewController {
                             protected Void call() throws Exception {
                                 //Background work
                                 try {
-                                    HttpResponse<JsonNode> jsonResponse = Unirest.get(serverURL)
+                                    HttpResponse<JsonNode> jsonResponse = Unirest.get(mainWindow.searchURL + ":" + mainWindow.searchPort + "/library/_search")
                                             .header("accept", "application/json")
                                             .queryString("q", searchField.getText())
                                             .asJson();
