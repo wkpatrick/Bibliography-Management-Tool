@@ -186,11 +186,6 @@ public class MainWindowController {
                         bufferSource.setPublisher(parser.getText());
                         break;
 
-                    case "YearPublished":
-                        jsonToken = parser.nextToken();
-                        bufferSource.setYearPublished(parser.getText());
-                        break;
-
                     case "DatePublished":
                         jsonToken = parser.nextToken();
                         bufferSource.setDatePublished(parser.getText());
@@ -283,7 +278,7 @@ public class MainWindowController {
                         "\"Edition\":\"%s\",\n" +
                         "\"Issue\":\"%s\",\n" +
                         "\"Publisher\":\"%s\",\n" +
-                        "\"YearPublished\":\"%s\",\n" +
+
                         "\"DatePublished\":\"%s\",\n" +
                         "\"URL\":\"%s\",\n" +
                         "\"Version\":\"%s\",\n" +
@@ -299,7 +294,7 @@ public class MainWindowController {
                 for (Source str : mainWindow.getSourceList()) {
                     //System.out.println(str.getTitle());
                     String temp = String.format(JsonFileToDisk, str.getTitle(), str.getAuthor(), str.getMagazineTitle(), str.getWebsiteTitle(),
-                            str.getVolume(), str.getEdition(), str.getIssue(), str.getPublisher(), str.getYearPublished(), str.getDatePublished(),
+                            str.getVolume(), str.getEdition(), str.getIssue(), str.getPublisher(), str.getDatePublished(),
                             str.getURL(), str.getVersion(), str.getDatabase(), str.getDatabaseService(), str.getMedium(), str.getPagesCitedStart(),
                             str.getPagesCitedEnd(), str.getAnnotation());
 

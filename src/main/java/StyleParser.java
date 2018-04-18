@@ -17,9 +17,8 @@ class StyleParser
     {
         author, title, MagazineTitle, WebsiteTitle,
         Database, DatabaseService, Version, Volume,
-        Edition, Issue, Publisher, YearPublished,
-        DatePublished, Medium, URL, PagesCitedStart,
-        PagesCitedEnd
+        Edition, Issue, Publisher, DatePublished, Medium,
+        URL, PagesCitedStart, PagesCitedEnd
     }
 
     //Default configuration is MLA.
@@ -28,7 +27,7 @@ class StyleParser
         //MLA configuration
         FieldNames fieldnamesMLA[] = {FieldNames.author, FieldNames.title, FieldNames.MagazineTitle, FieldNames.WebsiteTitle,
                 FieldNames.Database, FieldNames.DatabaseService, FieldNames.Version, FieldNames.Volume,
-                FieldNames.Edition, FieldNames.Issue, FieldNames.Publisher, FieldNames.YearPublished,
+                FieldNames.Edition, FieldNames.Issue, FieldNames.Publisher,
                 FieldNames.DatePublished, FieldNames.Medium, FieldNames.URL, FieldNames.PagesCitedStart,
                 FieldNames.PagesCitedEnd};
 
@@ -133,9 +132,6 @@ class StyleParser
                     break;
                 case Publisher:
                     bufferField = format(source.getPublisher(), style);
-                    break;
-                case YearPublished:
-                    bufferField = format(source.getYearPublished(), style);
                     break;
                 case DatePublished:
                     bufferField = format(source.getDatePublished(), style);

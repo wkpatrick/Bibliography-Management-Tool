@@ -577,7 +577,7 @@ public class SourceListViewController {
 
                                 bufferSource.setPublisher(bufferString);
                                 break;
-                            case "Year":
+                            case "Date":
                                 jsonToken = parser.nextToken();
                                 bufferString = parser.getText();
                                 if (bufferString.charAt(bufferString.length() - 1) == '.'
