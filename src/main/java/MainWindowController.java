@@ -330,4 +330,8 @@ public class MainWindowController {
             System.out.println(e);
         }
     }
+
+    public void searchSettings(ActionEvent actionEvent)
+    {
+    }
 }

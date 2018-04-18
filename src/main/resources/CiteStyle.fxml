@@ -13,15 +13,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <GridPane alignment="CENTER" prefHeight="500" prefWidth="900" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CiteStyleController">
     <padding><Insets bottom="25" left="25" right="25" top="25" /></padding>
     <Label text="Shift Position" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.vgrow="ALWAYS" />
     <Label text="Edit Field Styles" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.vgrow="ALWAYS" />
     <Label text="Custom Styles" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.vgrow="ALWAYS" />
     <VBox GridPane.columnIndex="0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
-        <JFXButton fx:id="shiftUpButton" onAction="#shiftUp" text="Up" VBox.vgrow="ALWAYS" />
-        <JFXButton fx:id="shiftDownButton" onAction="#shiftDown" text="Down" VBox.vgrow="ALWAYS" />
+        <Button fx:id="shiftUpButton" onAction="#shiftUp" text="Up" VBox.vgrow="ALWAYS" />
+        <Button fx:id="shiftDownButton" onAction="#shiftDown" text="Down" VBox.vgrow="ALWAYS" />
     </VBox>
     <VBox GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
         <TableView fx:id="createTable">
@@ -36,16 +35,16 @@
         </TableView>
         <HBox alignment="CENTER">
             <padding><Insets bottom="5" top="5" /></padding>
-            <JFXButton fx:id="saveButton" onAction="#createStyle" text="Save Style" />
-            <JFXButton fx:id="cancelButton" onAction="#exit" text="Cancel" />
+            <Button fx:id="saveButton" onAction="#createStyle" text="Save Style" />
+            <Button fx:id="cancelButton" onAction="#exit" text="Cancel" />
         </HBox>
     </VBox>
     <VBox GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
         <ListView fx:id="styleListView" />
         <HBox alignment="CENTER">
             <padding><Insets bottom="5" top="5" /></padding>
-            <JFXButton fx:id="editButton" onAction="#editStyle" text="Edit Style" />
-            <JFXButton fx:id="deleteButton" onAction="#deleteStyle" text="Delete Style"/>
+            <Button fx:id="editButton" onAction="#editStyle" text="Edit Style" />
+            <Button fx:id="deleteButton" onAction="#deleteStyle" text="Delete Style"/>
         </HBox>
     </VBox>
    <columnConstraints>
