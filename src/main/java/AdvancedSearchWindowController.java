@@ -238,7 +238,7 @@ public class AdvancedSearchWindowController {
         ;
 
         try {
-            jsonResponse = Unirest.post("http://vpn.lucidlynx.net:9200/library/_search")
+            jsonResponse = Unirest.post(mainWindow.searchURL + ":" + mainWindow.searchPort + "/library/_search")
                     .header("accept", "application/json")
                     .header("content-type", "application/json; charset=UTF-8")
                     .queryString("q", sb.toString() )
