@@ -91,10 +91,6 @@ public class SourceListViewController {
     @FXML
     HBox publisherBox;
     @FXML
-    TextField yearPublishedField;
-    @FXML
-    HBox yearPublishedBox;
-    @FXML
     TextField datePublishedField;
     @FXML
     HBox datePublishedBox;
@@ -177,7 +173,6 @@ public class SourceListViewController {
         editionBox.setOnMouseClicked((MouseEvent e) -> editionField.requestFocus());
         issueBox.setOnMouseClicked((MouseEvent e) -> issueField.requestFocus());
         publisherBox.setOnMouseClicked((MouseEvent e) -> publisherField.requestFocus());
-        yearPublishedBox.setOnMouseClicked((MouseEvent e) -> yearPublishedField.requestFocus());
         datePublishedBox.setOnMouseClicked((MouseEvent e) -> datePublishedField.requestFocus());
         URLBox.setOnMouseClicked((MouseEvent e) -> URLfield.requestFocus());
         versionBox.setOnMouseClicked((MouseEvent e) -> versionField.requestFocus());
@@ -284,7 +279,6 @@ public class SourceListViewController {
                                             .header("accept", "application/json")
                                             .queryString("q", searchField.getText())
                                             .asJson();
-                                    System.out.println("Search output:" + jsonResponse.getBody().toString());
                                     quickResults.clear();
                                     //convert json formatted return statement to Source objects, place in list
                                     String jsonString = jsonResponse.getBody().toString();
@@ -420,6 +414,7 @@ public class SourceListViewController {
         });
         publisherField.autosize();
 
+        /*
         yearPublishedField.textProperty().addListener((obj, oldValue, newValue) -> {
             int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
             if (selectedIndex >= 0) {
@@ -428,6 +423,7 @@ public class SourceListViewController {
             }
         });
         yearPublishedField.autosize();
+        */
 
         datePublishedField.textProperty().addListener((obj, oldValue, newValue) -> {
             int selectedIndex = sourceTable.getSelectionModel().getSelectedIndex();
@@ -643,7 +639,7 @@ public class SourceListViewController {
             editionField.setText(source.getEdition());
             issueField.setText(source.getIssue());
             publisherField.setText(source.getPublisher());
-            yearPublishedField.setText(source.getYearPublished());
+            //Field.setText(source.getYearPublished());
             datePublishedField.setText(source.getDatePublished());
             URLfield.setText(source.getURL());
             versionField.setText(source.getVersion());
@@ -661,7 +657,7 @@ public class SourceListViewController {
             editionField.setText("");
             issueField.setText("");
             publisherField.setText("");
-            yearPublishedField.setText("");
+            //yearPublishedField.setText("");
             datePublishedField.setText("");
             URLfield.setText("");
             versionField.setText("");

@@ -2,6 +2,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 
+import java.awt.event.ActionEvent;
+
 public class SearchSettingsController {
     private Main mainWindow;
     private String url;
@@ -23,7 +25,14 @@ public class SearchSettingsController {
 
     @FXML
     private void initialize() {
-        urlField.setOnKeyTyped((KeyEvent e) -> this.mainWindow.searchURL = urlField.getText());
-        portField.setOnKeyTyped((KeyEvent e) -> this.mainWindow.searchPort = portField.getText());
+
+    }
+    public void SaveAndExit(){
+        this.mainWindow.searchURL = urlField.getText();
+        this.mainWindow.searchPort = portField.getText();
+        urlField.getScene().getWindow().hide();
+    }
+    public void Exit(){
+        urlField.getScene().getWindow().hide();
     }
 }

@@ -28,8 +28,6 @@ public class AddSourceController {
     @FXML
     TextField publisherField;
     @FXML
-    TextField yearPublishedField;
-    @FXML
     TextField datePublishedField;
     @FXML
     TextField URLfield;
@@ -82,9 +80,6 @@ public class AddSourceController {
             }
             if (!publisherField.getText().equals("")) {
                 output.setPublisher(publisherField.getText());
-            }
-            if (!yearPublishedField.getText().equals("")) {
-                output.setYearPublished(yearPublishedField.getText());
             }
             if (!datePublishedField.getText().equals("")) {
                 output.setDatePublished(datePublishedField.getText());

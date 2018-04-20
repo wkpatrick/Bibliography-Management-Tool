@@ -62,12 +62,6 @@
             </HBox>
             <HBox>
                <children>
-                  <Label minWidth="100.0" text="Year Published:" />
-                  <TextField fx:id="yearPublishedField" minWidth="200.0" />
-               </children>
-            </HBox>
-            <HBox>
-               <children>
                   <Label minWidth="100.0" text="Date Published:" />
                   <TextField fx:id="datePublishedField" minWidth="200.0" />
                </children>
