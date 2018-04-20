@@ -258,6 +258,7 @@ public class AdvancedSearchWindowController {
         }
 
     }
+
     private ObservableList<Source> extractJSONSources(String jsonData) throws IOException {
         ObservableList<Source> result = FXCollections.observableArrayList();
 
@@ -284,137 +285,77 @@ public class AdvancedSearchWindowController {
                         switch (parser.getText()) {
                             case "Author":
                                 jsonToken = parser.nextToken();
-                                bufferString = parser.getText();
-                                if (bufferString.charAt(bufferString.length() - 1) == '.'
-                                        || bufferString.charAt(bufferString.length() - 1) == ',')
-                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
-
+                                bufferString = trimString(parser.getText());
                                 bufferSource.setAuthor(bufferString);
                                 break;
                             case "Title":
                                 jsonToken = parser.nextToken();
-                                bufferString = parser.getText();
-                                if (bufferString.charAt(bufferString.length() - 1) == '.'
-                                        || bufferString.charAt(bufferString.length() - 1) == ',')
-                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
-
+                                bufferString = trimString(parser.getText());
                                 bufferSource.setTitle(bufferString);
                                 break;
                             case "Volume":
                                 jsonToken = parser.nextToken();
-                                bufferString = parser.getText();
-                                if (bufferString.charAt(bufferString.length() - 1) == '.'
-                                        || bufferString.charAt(bufferString.length() - 1) == ',')
-                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
-
+                                bufferString = trimString(parser.getText());
                                 bufferSource.setVolume(bufferString);
                                 break;
                             case "Edition":
                                 jsonToken = parser.nextToken();
-                                bufferString = parser.getText();
-                                if (bufferString.charAt(bufferString.length() - 1) == '.'
-                                        || bufferString.charAt(bufferString.length() - 1) == ',')
-                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
-
+                                bufferString = trimString(parser.getText());
                                 bufferSource.setEdition(bufferString);
                                 break;
                             case "Publisher":
                                 jsonToken = parser.nextToken();
-                                bufferString = parser.getText();
-                                if (bufferString.charAt(bufferString.length() - 1) == '.'
-                                        || bufferString.charAt(bufferString.length() - 1) == ',')
-                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
-
+                                bufferString = trimString(parser.getText());
                                 bufferSource.setPublisher(bufferString);
                                 break;
-                            case "Year":
+                            case "Date":
                                 jsonToken = parser.nextToken();
-                                bufferString = parser.getText();
-                                if (bufferString.charAt(bufferString.length() - 1) == '.'
-                                        || bufferString.charAt(bufferString.length() - 1) == ',')
-                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
-
+                                bufferString = trimString(parser.getText());
                                 bufferSource.setDatePublished(bufferString);
                                 break;
                             case "WebsiteTitle":
                                 jsonToken = parser.nextToken();
-                                bufferString = parser.getText();
-                                if (bufferString.charAt(bufferString.length() - 1) == '.'
-                                        || bufferString.charAt(bufferString.length() - 1) == ',')
-                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
-
+                                bufferString = trimString(parser.getText());
                                 bufferSource.setWebsiteTitle(bufferString);
                                 break;
                             case "URL":
                                 jsonToken = parser.nextToken();
-                                bufferString = parser.getText();
-                                if (bufferString.charAt(bufferString.length() - 1) == '.'
-                                        || bufferString.charAt(bufferString.length() - 1) == ',')
-                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
-
+                                bufferString = trimString(parser.getText());
                                 bufferSource.setURL(bufferString);
                                 break;
                             case "Version":
                                 jsonToken = parser.nextToken();
-                                bufferString = parser.getText();
-                                if (bufferString.charAt(bufferString.length() - 1) == '.'
-                                        || bufferString.charAt(bufferString.length() - 1) == ',')
-                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
-
+                                bufferString = trimString(parser.getText());
                                 bufferSource.setVersion(bufferString);
                                 break;
                             case "Database:":
                                 jsonToken = parser.nextToken();
-                                bufferString = parser.getText();
-                                if (bufferString.charAt(bufferString.length() - 1) == '.'
-                                        || bufferString.charAt(bufferString.length() - 1) == ',')
-                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
-
+                                bufferString = trimString(parser.getText());
                                 bufferSource.setDatabase(bufferString);
                                 break;
                             case "DatabaseService":
                                 jsonToken = parser.nextToken();
-                                bufferString = parser.getText();
-                                if (bufferString.charAt(bufferString.length() - 1) == '.'
-                                        || bufferString.charAt(bufferString.length() - 1) == ',')
-                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
-
+                                bufferString = trimString(parser.getText());
                                 bufferSource.setDatabaseService(bufferString);
                                 break;
                             case "Medium":
                                 jsonToken = parser.nextToken();
-                                bufferString = parser.getText();
-                                if (bufferString.charAt(bufferString.length() - 1) == '.'
-                                        || bufferString.charAt(bufferString.length() - 1) == ',')
-                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
-
+                                bufferString = trimString(parser.getText());
                                 bufferSource.setMedium(bufferString);
                                 break;
                             case "PagesCitedStart":
                                 jsonToken = parser.nextToken();
-                                bufferString = parser.getText();
-                                if (bufferString.charAt(bufferString.length() - 1) == '.'
-                                        || bufferString.charAt(bufferString.length() - 1) == ',')
-                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
-
+                                bufferString = trimString(parser.getText());
                                 bufferSource.setPagesCitedStart(bufferString);
                                 break;
                             case "PagesCitedEnd":
                                 jsonToken = parser.nextToken();
-                                bufferString = parser.getText();
-                                if (bufferString.charAt(bufferString.length() - 1) == '.'
-                                        || bufferString.charAt(bufferString.length() - 1) == ',')
-                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
-
+                                bufferString = trimString(parser.getText());
                                 bufferSource.setPagesCitedEnd(bufferString);
                                 break;
                             case "MagTitle":
                                 jsonToken = parser.nextToken();
-                                bufferString = parser.getText();
-                                if (bufferString.charAt(bufferString.length() - 1) == '.'
-                                        || bufferString.charAt(bufferString.length() - 1) == ',')
-                                    bufferString = bufferString.substring(0, bufferString.length() - 1);
-
+                                bufferString = trimString(parser.getText());
                                 bufferSource.setMagazineTitle(bufferString);
                                 break;
                             default:
@@ -429,6 +370,21 @@ public class AdvancedSearchWindowController {
                 bufferSource = new Source("");
             }
         }
+        return result;
+    }
+
+    private String trimString(String input)
+    {
+        String result = input;
+
+        if(result.isEmpty() || result.equals("null") || input.matches("null"))
+        {
+            return ("");
+        }
+
+        if(result.charAt(input.length() - 1) == '.'
+                || result.charAt(input.length() - 1) == ',')
+            result = result.substring(0, input.length() - 1);
         return result;
     }
 
