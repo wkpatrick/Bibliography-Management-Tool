@@ -134,7 +134,7 @@ public class SourceListViewController {
     private ContextMenu rightClickMenu;
     @FXML
     private MenuItem deleteItem;
-    
+
     List<Source> quickResults = new ArrayList<Source>();
 
     Service<Void> service = new Service<Void>() {//Just a default instantiation so the service is globally available
@@ -148,9 +148,9 @@ public class SourceListViewController {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
-                            try{
+                            try {
                                 //FX Stuff done here
-                            }finally{
+                            } finally {
                                 latch.countDown();
                             }
                         }
@@ -224,7 +224,6 @@ public class SourceListViewController {
         versionColumn.setText("Version");
 
 
-
         mediumColumn.setCellValueFactory(cellData -> cellData.getValue().mediumProperty());
         mediumColumn.setText("Medium");
 
@@ -269,10 +268,10 @@ public class SourceListViewController {
         });
 
         searchField.setOnKeyTyped((KeyEvent e) -> {
-            if(service.isRunning()){
+            if (service.isRunning()) {
                 service.cancel();
             }
-            if(!searchField.getText().equals("")){
+            if (!searchField.getText().equals("")) {
                 service = new Service<Void>() {
                     @Override
                     protected Task<Void> createTask() {
@@ -290,15 +289,14 @@ public class SourceListViewController {
                                     //convert json formatted return statement to Source objects, place in list
                                     String jsonString = jsonResponse.getBody().toString();
                                     quickResults.addAll(extractJSONSources(jsonString));
-                                }
-                                catch(Exception ex){
+                                } catch (Exception ex) {
                                     System.out.println("Failed to communicate with server :c");
                                 }
                                 final CountDownLatch latch = new CountDownLatch(1);
                                 Platform.runLater(new Runnable() {
                                     @Override
                                     public void run() {
-                                        try{
+                                        try {
                                             //FX Stuff done here
                                             //populate autocompleteMenu with proper results through communication with unirest
                                             if (quickResults.size() >= 3) {
@@ -325,7 +323,7 @@ public class SourceListViewController {
                                                 menu3.setVisible(false);
                                             }
                                             autocompleteMenu.show(searchField, Side.TOP, 0, 0);
-                                        }finally{
+                                        } finally {
                                             latch.countDown();
                                         }
                                     }
@@ -338,8 +336,7 @@ public class SourceListViewController {
                     }
                 };
                 service.start();
-            }
-            else{
+            } else {
                 autocompleteMenu.hide();
             }
         });
@@ -680,27 +677,6 @@ public class SourceListViewController {
         this.mainWindow = mainWindow;
         testList = mainWindow.getSourceList();
         sourceTable.setItems(testList);
-
-        Source source1 = new Source("How to not fall behind schdule");
-        source1.setAuthor("Not Group 4");
-        source1.setYearPublished("2018");
-        source1.setMedium("Book");
-
-        Source source2 = new Source("Writing Code Gud");
-        source2.setAuthor("Still Not Group 4");
-        source2.setURL("wkrp.xyz/notgroup4");
-        source2.setMedium("Web");
-
-        Source source3 = new Source("Accomplishing Thigs On Time");
-        source3.setAuthor("Some Group That Is On Time");
-        source3.setMedium("Smoke Signal");
-        source3.setYearPublished("1000");
-
-        testList.add(source1);
-        testList.add(source2);
-        testList.add(source3);
-
-
     }
 
     public void deleteSelected(ActionEvent actionEvent) {
