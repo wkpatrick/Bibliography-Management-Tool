@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -26,14 +27,43 @@
             </HBox>
             <HBox>
                <children>
-                  <Label minWidth="100.0" text="Magazine Title:" />
-                  <TextField fx:id="magazineTitleField" minWidth="200.0" />
+                  <Label minWidth="100.0" text="Pages Cited:" />
+                  <TextField fx:id="pagesCitedField1" prefWidth="75.0">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin></TextField>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
+                  <TextField fx:id="pagesCitedField2" prefWidth="75.0" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label minWidth="100.0" text="Publisher:" />
+                  <TextField fx:id="publisherField" minWidth="200.0" />
                </children>
             </HBox>
             <HBox>
                <children>
                   <Label minWidth="100.0" text="Website Title:" />
                   <TextField fx:id="websiteTitleField" minWidth="200.0" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label minWidth="100.0" text="URL:" />
+                  <TextField fx:id="URLfield" minWidth="200.0" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label minWidth="100.0" text="Magazine Title:" />
+                  <TextField fx:id="magazineTitleField" minWidth="200.0" />
+               </children>
+            </HBox>
+               <HBox>
+               <children>
+                  <Label minWidth="100.0" text="Issue:" />
+                  <TextField fx:id="issueField" minWidth="200.0" />
                </children>
             </HBox>
             <HBox>
@@ -48,28 +78,10 @@
                   <TextField fx:id="editionField" minWidth="200.0" />
                </children>
             </HBox>
-               <HBox>
-               <children>
-                  <Label minWidth="100.0" text="Issue:" />
-                  <TextField fx:id="issueField" minWidth="200.0" />
-               </children>
-            </HBox>
-            <HBox>
-               <children>
-                  <Label minWidth="100.0" text="Publisher:" />
-                  <TextField fx:id="publisherField" minWidth="200.0" />
-               </children>
-            </HBox>
             <HBox>
                <children>
                   <Label minWidth="100.0" text="Date Published:" />
                   <TextField fx:id="datePublishedField" minWidth="200.0" />
-               </children>
-            </HBox>
-            <HBox>
-               <children>
-                  <Label minWidth="100.0" text="URL:" />
-                  <TextField fx:id="URLfield" minWidth="200.0" />
                </children>
             </HBox>
             <HBox>
@@ -94,14 +106,6 @@
                  <children>
                   <Label minWidth="100.0" text="Medium:" />
                   <TextField fx:id="mediumField" minWidth="200.0" />
-               </children>
-            </HBox>
-            <HBox>
-               <children>
-                  <Label minWidth="100.0" text="Pages Cited:" />
-                  <TextField fx:id="pagesCitedField1" prefWidth="50.0" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
-                  <TextField fx:id="pagesCitedField2" prefWidth="50.0" />
                </children>
             </HBox>
             <HBox>

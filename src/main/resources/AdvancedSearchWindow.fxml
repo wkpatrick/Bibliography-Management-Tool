@@ -76,12 +76,12 @@
                            <children>
                               <AnchorPane prefHeight="29.0" prefWidth="404.0">
                                  <children>
+                                    <TextField fx:id="magazineTitleField" prefHeight="25.0" prefWidth="275.0" promptText="Magazine Title" AnchorPane.rightAnchor="20.0" />
                                     <Label text="Magazine Title" AnchorPane.leftAnchor="15.0">
                                        <padding>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <TextField fx:id="magazineTitleField" prefHeight="25.0" prefWidth="275.0" promptText="Magazine Title" AnchorPane.rightAnchor="20.0" />
                                  </children>
                               </AnchorPane>
                            </children></HBox>
@@ -94,39 +94,16 @@
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <TextField fx:id="websiteTitleField" prefHeight="25.0" prefWidth="290.0" promptText="Website Title" AnchorPane.rightAnchor="15.0" />
-                                 </children>
-                              </AnchorPane>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                           <children>
-                              <AnchorPane prefHeight="29.0" prefWidth="404.0">
-                                 <children>
-                                    <TextField fx:id="datePublishedField" prefHeight="22.0" prefWidth="96.0" promptText="Date Published" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="214.0" />
-                                    <Label text="Date Published" AnchorPane.leftAnchor="0.0">
-                                       <padding>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </padding>
-                                       <BorderPane.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
-                                       </BorderPane.margin>
-                                    </Label>
-                                    <Label prefHeight="15.0" prefWidth="88.0" text="Year Published" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="112.0">
-                                       <padding>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </padding>
-                                    </Label>
-                                    <TextField fx:id="yPublishedField" prefHeight="25.0" prefWidth="96.0" promptText="YearPublished" AnchorPane.rightAnchor="15.0" />
+                                    <TextField fx:id="websiteTitleField" prefHeight="25.0" prefWidth="290.0" promptText="Website Title" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="15.0" />
                                  </children>
                               </AnchorPane>
                            </children>
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <AnchorPane prefHeight="53.0" prefWidth="435.0">
+                              <AnchorPane prefHeight="29.0" prefWidth="404.0">
                                  <children>
-                                    <TextField fx:id="urlField" prefHeight="25.0" prefWidth="290.0" promptText="URL" AnchorPane.rightAnchor="15.0" />
+                                    <TextField fx:id="urlField" prefHeight="25.0" prefWidth="290.0" promptText="URL" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="15.0" />
                                     <Label text="URL" AnchorPane.leftAnchor="0.0">
                                        <padding>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -140,19 +117,42 @@
                            <children>
                               <AnchorPane prefHeight="29.0" prefWidth="404.0">
                                  <children>
-                                     <Label text="Edition" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="112.0">
-                                         <padding>
-                                             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                         </padding>
-                                     </Label>
-                                    <TextField fx:id="editionField" prefHeight="25.0" prefWidth="96.0" promptText="Edition" AnchorPane.rightAnchor="15.0" />
-                                    <Label text="Volume" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="349.0">
+                                    <Label text="Volume" AnchorPane.leftAnchor="0.0">
                                        <padding>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <TextField fx:id="volumeField" layoutX="67.0" prefHeight="24.0" prefWidth="96.0" promptText="Volume" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="214.0" />
+                                     <Label prefHeight="25.0" prefWidth="64.0" text="Edition" AnchorPane.leftAnchor="215.0">
+                                         <padding>
+                                             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                         </padding>
+                                     </Label>
+                                    <TextField fx:id="volumeField" layoutX="67.0" prefHeight="24.0" prefWidth="100.0" promptText="Volume" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="214.0" />
+                                    <TextField fx:id="editionField" prefHeight="25.0" prefWidth="100.0" promptText="Edition" AnchorPane.rightAnchor="15.0" />
 
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <children>
+                              <AnchorPane prefHeight="29.0" prefWidth="404.0">
+                                 <children>
+                                    <TextField fx:id="datePublishedField" prefHeight="22.0" prefWidth="100.0" promptText="Date Published" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="214.0" />
+                                    <Label text="Date Published" AnchorPane.leftAnchor="0.0">
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                       <BorderPane.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                                       </BorderPane.margin>
+                                    </Label>
+                                    <Label prefHeight="22.0" prefWidth="57.0" text="Version" AnchorPane.leftAnchor="215.0">
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </Label>
+                                    <TextField fx:id="versionField" prefHeight="25.0" prefWidth="100.0" promptText="Version" AnchorPane.rightAnchor="15.0" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -210,19 +210,37 @@
          <center>
             <TableView fx:id="searchTable" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <columns>
-                  <TableColumn fx:id="titleColumn" minWidth="120.0" prefWidth="130.0" text="Column X" />
-                  <TableColumn fx:id="authorColumn" minWidth="110.0" prefWidth="120.0" text="Column X" />
-                  <TableColumn fx:id="annotationColumn" minWidth="50.0" prefWidth="75.0" text="Column X" />
-                  <TableColumn fx:id="mediumColumn" minWidth="60.0" prefWidth="80.0" text="Column X" />
-                  <TableColumn fx:id="magazineTitleColumn" minWidth="100.0" prefWidth="130.0" text="Column X" />
+
+
+                  <TableColumn fx:id="titleColumn"   minWidth="130.0" prefWidth="130.0" text="Column X" />
+                  <TableColumn fx:id="authorColumn"   minWidth="120.0" prefWidth="120.0" text="Column X" />
+                  <TableColumn fx:id="publisherColumn"   minWidth="120.0" prefWidth="120.0" text="Column X" />
+
                   <TableColumn fx:id="websiteTitleColumn" minWidth="100.0" prefWidth="100.0" text="Column X" />
-                  <TableColumn fx:id="volumeColumn" minWidth="50.0" prefWidth="90.0" text="Column X" />
-                  <TableColumn fx:id="editionColumn" minWidth="50.0" prefWidth="80.0" text="Column X" />
-                  <TableColumn fx:id="issueColumn" minWidth="50.0" prefWidth="80.0" text="Column X" />
-                  <TableColumn fx:id="yearPublishedColumn" minWidth="50.0" prefWidth="80.0" text="Column X" />
-                  <TableColumn fx:id="datePublishedColumn" minWidth="50.0" prefWidth="80.0" text="Column X" />
                   <TableColumn fx:id="urlColumn" minWidth="200.0" prefWidth="340.0" text="Column X" />
-                  <TableColumn fx:id="versionColumn" minWidth="50.0" prefWidth="75.0" text="Column X" />
+                  <TableColumn fx:id="magazineTitleColumn" minWidth="100.0" prefWidth="130.0" text="Column X" />
+                  <TableColumn fx:id="issueColumn" minWidth="80.0" prefWidth="80.0" text="Column X" />
+                  <TableColumn fx:id="volumeColumn" minWidth="90.0" prefWidth="90.0" text="Column X" />
+                  <TableColumn fx:id="editionColumn" minWidth="80.0" prefWidth="80.0" text="Column X" />
+
+                  <!--<TableColumn fx:id="yearPublishedColumn" minWidth="50.0" prefWidth="80.0" text="Column X" />-->
+                  <TableColumn fx:id="versionColumn" minWidth="90.0" prefWidth="90.0" text="Column X" />
+                  <TableColumn fx:id="databaseColumn" minWidth="120" prefWidth="120.0" text="Column X" />
+                  <TableColumn fx:id="databaseServiceColumn" minWidth="120" prefWidth="120.0" text="Column X" />
+                  <TableColumn fx:id="mediumColumn" minWidth="120" prefWidth="120.0" text="Column X" />
+                  <TableColumn fx:id="datePublishedColumn" minWidth="100.0" prefWidth="100.0" text="Column X" />
+
+                  <!--<TableColumn fx:id="titleColumn" minWidth="120.0" prefWidth="130.0" text="Column X" />-->
+                  <!--<TableColumn fx:id="authorColumn" minWidth="110.0" prefWidth="120.0" text="Column X" />-->
+                  <!--<TableColumn fx:id="annotationColumn" minWidth="50.0" prefWidth="75.0" text="Column X" />-->
+                  <!--<TableColumn fx:id="mediumColumn" minWidth="60.0" prefWidth="80.0" text="Column X" />-->
+                  <!--<TableColumn fx:id="magazineTitleColumn" minWidth="100.0" prefWidth="130.0" text="Column X" />-->
+                  <!--<TableColumn fx:id="websiteTitleColumn" minWidth="100.0" prefWidth="100.0" text="Column X" />-->
+                  <!--<TableColumn fx:id="volumeColumn" minWidth="50.0" prefWidth="90.0" text="Column X" />-->
+                  <!--<TableColumn fx:id="editionColumn" minWidth="50.0" prefWidth="80.0" text="Column X" />-->
+                  <!--<TableColumn fx:id="issueColumn" minWidth="50.0" prefWidth="80.0" text="Column X" />-->
+                  <!--<TableColumn fx:id="urlColumn" minWidth="200.0" prefWidth="340.0" text="Column X" />-->
+                  <!--<TableColumn fx:id="versionColumn" minWidth="50.0" prefWidth="75.0" text="Column X" />-->
               </columns>
                <BorderPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

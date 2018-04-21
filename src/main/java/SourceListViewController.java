@@ -45,8 +45,8 @@ public class SourceListViewController {
     private TableColumn<Source, String> editionColumn;
     @FXML
     private TableColumn<Source, String> issueColumn;
-    @FXML
-    private TableColumn<Source, String> yearPublishedColumn;
+//    @FXML
+//    private TableColumn<Source, String> yearPublishedColumn;
     @FXML
     private TableColumn<Source, String> datePublishedColumn;
     @FXML
@@ -54,7 +54,14 @@ public class SourceListViewController {
     @FXML
     private TableColumn<Source, String> versionColumn;
     @FXML
-    private TableColumn<Source, String> annotationColumn;
+    private TableColumn<Source, String> publisherColumn;
+    @FXML
+    private TableColumn<Source, String> databaseServiceColumn;
+    @FXML
+    private TableColumn<Source, String> databaseColumn;
+
+
+
     @FXML
     private TableColumn<Source, String> mediumColumn;
 
@@ -188,14 +195,20 @@ public class SourceListViewController {
         authorColumn.setCellValueFactory(cellData -> cellData.getValue().authorProperty());
         authorColumn.setText("Author");
 
-        annotationColumn.setCellValueFactory(cellData -> cellData.getValue().publisherProperty());
-        annotationColumn.setText("Publisher");
+        publisherColumn.setCellValueFactory(cellData -> cellData.getValue().publisherProperty());
+        publisherColumn.setText("Publisher");
+
+        websiteTitleColumn.setCellValueFactory(cellData -> cellData.getValue().websiteTitleProperty());
+        websiteTitleColumn.setText("Website Title");
+
+        urlColumn.setCellValueFactory(cellData -> cellData.getValue().URLProperty());
+        urlColumn.setText("URL");
 
         magazineTitleColumn.setCellValueFactory(cellData -> cellData.getValue().magazineTitleProperty());
         magazineTitleColumn.setText("Magazine Title");
 
-        websiteTitleColumn.setCellValueFactory(cellData -> cellData.getValue().websiteTitleProperty());
-        websiteTitleColumn.setText("Website Title");
+        issueColumn.setCellValueFactory(cellData -> cellData.getValue().issueProperty());
+        issueColumn.setText("Issued");
 
         volumeColumn.setCellValueFactory(cellData -> cellData.getValue().volumeProperty());
         volumeColumn.setText("Volume");
@@ -203,24 +216,31 @@ public class SourceListViewController {
         editionColumn.setCellValueFactory(cellData -> cellData.getValue().editionProperty());
         editionColumn.setText("Edition");
 
-        issueColumn.setCellValueFactory(cellData -> cellData.getValue().issueProperty());
-        issueColumn.setText("Issued");
+        versionColumn.setCellValueFactory(cellData -> cellData.getValue().versionProperty());
+        versionColumn.setText("Version");
 
-        yearPublishedColumn.setCellValueFactory(cellData -> cellData.getValue().yearPublishedProperty());
-        yearPublishedColumn.setText("Year Published");
+        databaseColumn.setCellValueFactory(cellData -> cellData.getValue().databaseProperty());
+        databaseColumn.setText("Database");
+
+        databaseServiceColumn.setCellValueFactory(cellData -> cellData.getValue().databaseServiceProperty());
+        databaseServiceColumn.setText("Database Service");
+
+//        yearPublishedColumn.setCellValueFactory(cellData -> cellData.getValue().yearPublishedProperty());
+//        yearPublishedColumn.setText("Year Published");
+
+        mediumColumn.setCellValueFactory(cellData -> cellData.getValue().mediumProperty());
+        mediumColumn.setText("Medium");
 
         datePublishedColumn.setCellValueFactory(cellData -> cellData.getValue().datePublishedProperty());
         datePublishedColumn.setText("Date Published");
 
-        urlColumn.setCellValueFactory(cellData -> cellData.getValue().URLProperty());
-        urlColumn.setText("URL");
-
-        versionColumn.setCellValueFactory(cellData -> cellData.getValue().versionProperty());
-        versionColumn.setText("Version");
 
 
-        mediumColumn.setCellValueFactory(cellData -> cellData.getValue().mediumProperty());
-        mediumColumn.setText("Medium");
+
+
+
+
+
 
         sourceTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showSource(newValue)

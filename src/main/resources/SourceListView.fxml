@@ -20,19 +20,25 @@
                     <children>
                         <TableView fx:id="sourceTable" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <columns>
-                                <TableColumn fx:id="titleColumn" minWidth="120.0" prefWidth="130.0" text="Column X" />
-                                <TableColumn fx:id="authorColumn" minWidth="110.0" prefWidth="120.0" text="Column X" />
-                                 <TableColumn fx:id="annotationColumn" minWidth="110.0" prefWidth="120.0" text="Column X" />
-                                <TableColumn fx:id="mediumColumn" minWidth="60.0" prefWidth="80.0" text="Column X" />
-                                <TableColumn fx:id="magazineTitleColumn" minWidth="100.0" prefWidth="130.0" text="Column X" />
+                                <TableColumn fx:id="titleColumn"   minWidth="130.0" prefWidth="130.0" text="Column X" />
+                                <TableColumn fx:id="authorColumn"   minWidth="120.0" prefWidth="120.0" text="Column X" />
+                                <TableColumn fx:id="publisherColumn"   minWidth="120.0" prefWidth="120.0" text="Column X" />
+
                                 <TableColumn fx:id="websiteTitleColumn" minWidth="100.0" prefWidth="100.0" text="Column X" />
-                                <TableColumn fx:id="volumeColumn" minWidth="50.0" prefWidth="90.0" text="Column X" />
-                                <TableColumn fx:id="editionColumn" minWidth="50.0" prefWidth="80.0" text="Column X" />
-                                <TableColumn fx:id="issueColumn" minWidth="50.0" prefWidth="80.0" text="Column X" />
-                                <TableColumn fx:id="yearPublishedColumn" minWidth="50.0" prefWidth="80.0" text="Column X" />
-                                <TableColumn fx:id="datePublishedColumn" minWidth="50.0" prefWidth="80.0" text="Column X" />
                                 <TableColumn fx:id="urlColumn" minWidth="200.0" prefWidth="340.0" text="Column X" />
-                                <TableColumn fx:id="versionColumn" minWidth="50.0" prefWidth="75.0" text="Column X" />
+                                <TableColumn fx:id="magazineTitleColumn" minWidth="100.0" prefWidth="130.0" text="Column X" />
+                                <TableColumn fx:id="issueColumn" minWidth="80.0" prefWidth="80.0" text="Column X" />
+                                <TableColumn fx:id="volumeColumn" minWidth="90.0" prefWidth="90.0" text="Column X" />
+                                <TableColumn fx:id="editionColumn" minWidth="80.0" prefWidth="80.0" text="Column X" />
+
+                                <!--<TableColumn fx:id="yearPublishedColumn" minWidth="50.0" prefWidth="80.0" text="Column X" />-->
+                                <TableColumn fx:id="versionColumn" minWidth="90.0" prefWidth="90.0" text="Column X" />
+                                <TableColumn fx:id="databaseColumn" minWidth="90" prefWidth="120.0" text="Column X" />
+                                <TableColumn fx:id="databaseServiceColumn" minWidth="90" prefWidth="120.0" text="Column X" />
+                                <TableColumn fx:id="mediumColumn" minWidth="120" prefWidth="120.0" text="Column X" />
+                                <TableColumn fx:id="datePublishedColumn" minWidth="90" prefWidth="100" text="Column X" />
+
+                                 <!--<TableColumn fx:id="annotationColumn" minWidth="120.0" prefWidth="120.0" text="Column X" />-->
 
                             </columns>
                             <columnResizePolicy>

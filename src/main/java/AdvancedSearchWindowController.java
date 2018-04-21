@@ -36,7 +36,10 @@ public class AdvancedSearchWindowController {
     @FXML
     private TableColumn<Source, String> issueColumn;
     @FXML
-    private TableColumn<Source, String> yearPublishedColumn;
+    private TableColumn<Source, String> databaseColumn;
+    @FXML
+    private TableColumn<Source, String> databaseServiceColumn;
+
     @FXML
     private TableColumn<Source, String> datePublishedColumn;
     @FXML
@@ -44,7 +47,7 @@ public class AdvancedSearchWindowController {
     @FXML
     private TableColumn<Source, String> versionColumn;
     @FXML
-    private TableColumn<Source, String> annotationColumn;
+    private TableColumn<Source, String> publisherColumn;
     @FXML
     private TableColumn<Source, String> mediumColumn;
     @FXML
@@ -69,8 +72,7 @@ public class AdvancedSearchWindowController {
     @FXML
     TextField publisherField;
 
-    @FXML
-    TextField yPublishedField;
+
 
 
     @FXML
@@ -82,8 +84,8 @@ public class AdvancedSearchWindowController {
     @FXML
     TextField urlField;
 
-//    @FXML
-//    TextField versionField;
+    @FXML
+    TextField versionField;
 //
 //    @FXML
 //    TextField databaseServiceField;
@@ -100,14 +102,20 @@ public class AdvancedSearchWindowController {
         authorColumn.setCellValueFactory(cellData -> cellData.getValue().authorProperty());
         authorColumn.setText("Author");
 
-        annotationColumn.setCellValueFactory(cellData -> cellData.getValue().publisherProperty());
-        annotationColumn.setText("Publisher");
+        publisherColumn.setCellValueFactory(cellData -> cellData.getValue().publisherProperty());
+        publisherColumn.setText("Publisher");
+
+        websiteTitleColumn.setCellValueFactory(cellData -> cellData.getValue().websiteTitleProperty());
+        websiteTitleColumn.setText("Website Title");
+
+        urlColumn.setCellValueFactory(cellData -> cellData.getValue().URLProperty());
+        urlColumn.setText("URL");
 
         magazineTitleColumn.setCellValueFactory(cellData -> cellData.getValue().magazineTitleProperty());
         magazineTitleColumn.setText("Magazine Title");
 
-        websiteTitleColumn.setCellValueFactory(cellData -> cellData.getValue().websiteTitleProperty());
-        websiteTitleColumn.setText("Website Title");
+        issueColumn.setCellValueFactory(cellData -> cellData.getValue().issueProperty());
+        issueColumn.setText("Issued");
 
         volumeColumn.setCellValueFactory(cellData -> cellData.getValue().volumeProperty());
         volumeColumn.setText("Volume");
@@ -115,26 +123,23 @@ public class AdvancedSearchWindowController {
         editionColumn.setCellValueFactory(cellData -> cellData.getValue().editionProperty());
         editionColumn.setText("Edition");
 
-        issueColumn.setCellValueFactory(cellData -> cellData.getValue().issueProperty());
-        issueColumn.setText("Issued");
-
-        yearPublishedColumn.setCellValueFactory(cellData -> cellData.getValue().yearPublishedProperty());
-        yearPublishedColumn.setText("Year Published");
-
-        datePublishedColumn.setCellValueFactory(cellData -> cellData.getValue().datePublishedProperty());
-        datePublishedColumn.setText("Date Published");
-
-        urlColumn.setCellValueFactory(cellData -> cellData.getValue().URLProperty());
-        urlColumn.setText("URL");
-
         versionColumn.setCellValueFactory(cellData -> cellData.getValue().versionProperty());
         versionColumn.setText("Version");
 
+        databaseColumn.setCellValueFactory(cellData -> cellData.getValue().databaseProperty());
+        databaseColumn.setText("Database");
 
+        databaseServiceColumn.setCellValueFactory(cellData -> cellData.getValue().databaseServiceProperty());
+        databaseServiceColumn.setText("Database Service");
+
+//        yearPublishedColumn.setCellValueFactory(cellData -> cellData.getValue().yearPublishedProperty());
+//        yearPublishedColumn.setText("Year Published");
 
         mediumColumn.setCellValueFactory(cellData -> cellData.getValue().mediumProperty());
         mediumColumn.setText("Medium");
 
+        datePublishedColumn.setCellValueFactory(cellData -> cellData.getValue().datePublishedProperty());
+        datePublishedColumn.setText("Date Published");
     }
 
     @FXML
@@ -151,7 +156,7 @@ public class AdvancedSearchWindowController {
 
         editionField.setText("");
         publisherField.setText("");
-        yPublishedField.setText("");
+        versionField.setText("");
         datePublishedField.setText("");
         websiteTitleField.setText("");
         urlField.setText("");
@@ -229,7 +234,7 @@ public class AdvancedSearchWindowController {
                 .append(volumeField.getText()) .append(" ")
                 .append(editionField.getText()) .append(" ")
                 .append(publisherField.getText()) .append(" ")
-                .append(yPublishedField.getText()) .append(" ")
+                .append(versionField.getText()) .append(" ")
                 .append(datePublishedField.getText()) .append(" ")
                 .append(websiteTitleField.getText()) .append(" ")
                 .append(urlField.getText()) .append("")
@@ -256,6 +261,8 @@ public class AdvancedSearchWindowController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
 
     }
 
