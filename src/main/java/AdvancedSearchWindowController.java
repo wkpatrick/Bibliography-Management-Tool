@@ -160,7 +160,7 @@ public class AdvancedSearchWindowController {
         datePublishedField.setText("");
         websiteTitleField.setText("");
         urlField.setText("");
-
+        versionField.setText("");
 
 
     }
@@ -237,6 +237,7 @@ public class AdvancedSearchWindowController {
                 .append(versionField.getText()) .append(" ")
                 .append(datePublishedField.getText()) .append(" ")
                 .append(websiteTitleField.getText()) .append(" ")
+                .append(versionField.getText()) .append(" ")
                 .append(urlField.getText()) .append("")
 
 
